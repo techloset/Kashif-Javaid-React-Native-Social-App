@@ -3,7 +3,7 @@ import React from 'react'
 import instimg from '../../assets/images/Instagram.png'
 import { resstyle } from './ResetStyle'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { ParamsList } from '../../../AllTypes'
+import { ParamsList } from '../../../type'
 
 
 type Params=NativeStackScreenProps<ParamsList,'Reset'>
@@ -20,7 +20,7 @@ export default function ResetPassword(props:Params) {
      we will</Text>
      <Text style={resstyle.retext}> send you a magic link to reset your passwod</Text>
       </View>
-     <View style={resstyle.inputview}>
+     <View>
      <TextInput placeholder='Email' style={resstyle.inputfiled}/>
      </View>
      <TouchableOpacity style={resstyle.signin} onPress={()=>props.navigation.navigate('Singup')}>

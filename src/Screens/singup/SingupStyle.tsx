@@ -3,26 +3,25 @@ import { StyleSheet } from "react-native";
 export const signstyleshhet=StyleSheet.create({
     container:{
      flex:1,
-     marginTop:'25%',
+     marginTop:'30%',
         fontFamily:'Roboto',
         justifyContent:'center',
         alignItems:'center'
     },
     sinimg:{
-        marginBottom:10
+        marginBottom:20
     },
     inputfiled:{
         width:343,
-        height:44,
+        height:50,
         borderWidth: 0.2,
-        marginTop:10,
-        borderRadius:3,
+        borderRadius:1,
         backgroundColor:'#f9f9f7',
         fontFamily:"Roboto",
-        padding:10
+        padding:15,
     },
     signin:{
-        marginTop:'5%',
+        marginTop:'2%',
     },
     signbutt:{
     width:335,
@@ -38,7 +37,7 @@ export const signstyleshhet=StyleSheet.create({
     },
     google:{
         padding:4,
-        marginTop:25,
+        marginTop:15,
         textAlign:'center', 
       },
       orcontainer: {

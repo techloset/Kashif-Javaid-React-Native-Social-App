@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753257465557",
+    "project_id": "social-app-71806",
+    "storage_bucket": "social-app-71806.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753257465557:android:07445369b1f2c1c3c5445c",
+        "android_client_info": {
+          "package_name": "com.kashif.socialapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_cREr2RYzqyzbsibeiDFgPDKMyLMg38I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.socialapp
+package com.kashif.socialapp
 
 import android.app.Application
 import com.facebook.react.PackageList
