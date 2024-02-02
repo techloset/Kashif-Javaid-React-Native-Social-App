@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import instimg from '../../assets/images/Instagram.png';
 import google from '../../assets/images/Google.png';
 import { loginstyle } from './LoginStyle';
 import { NativeStackScreenProps } from 'react-native-screens/native-stack';
 import { ParamsList } from '../../../type';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // typedefine
 type Params = NativeStackScreenProps<ParamsList,'Login'>;
@@ -63,15 +64,30 @@ export default function Login(props: Params) {
     }
   };
   
-  
+// google logout
+const googlelogout = async () => {
+  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  await GoogleSignin.signOut();
+  const { idToken } = await GoogleSignin.signIn();
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  const user_sign = auth().signInWithCredential(googleCredential);
+  user_sign
+    .then((user) => {
+      props.navigation.navigate('HomeScreen');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
   return (
     <View style={loginstyle.container}>
       {/* img div */}
+      <ScrollView>
       <View style={loginstyle.logimg}>
         <Image source={instimg} />
       </View>
       {/* input div */}
-      <View>
+      <View style={loginstyle.inputdiv}>
         <TextInput
           placeholder="Email"
           style={[loginstyle.inputstyle, bademail !== '' && loginstyle.errorInput]}
@@ -99,7 +115,7 @@ export default function Login(props: Params) {
         </TouchableOpacity>
 
         {/* google */}
-        <Text style={loginstyle.googlebutt}>
+        <Text style={loginstyle.googlebutt} onPress={googlelogout}>
           <Image source={google} />
         </Text>
       </View>
@@ -121,6 +137,7 @@ export default function Login(props: Params) {
           </Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </View>
   );
   

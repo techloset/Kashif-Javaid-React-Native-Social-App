@@ -2,25 +2,26 @@ import { StyleSheet } from "react-native";
 
 export const loginstyle=StyleSheet.create({
     container:{
-        width:375,
-        height:812,
         fontFamily:'Roboto',
         flex:1,
-        // justifyContent:'center',
-    marginTop:'30%',
-        alignItems:'center'
+        alignItems:'center',
     },
     logimg:{
-        marginBottom:10
+      marginTop:168,
+      justifyContent:'flex-end',
+      alignItems:'center'
+        
+    },
+    inputdiv:{
+     marginTop:39,
+     gap:12,
     },
     inputstyle: {
       color: 'black',
-      width: 335,
+      width: 343,
+      padding:15,
       borderWidth: 0.2,
-      marginTop: 17,
-      marginRight: 15,
       borderRadius: 3,
-      padding: 12,
       backgroundColor: '#f9f9f7',
       fontFamily: "Roboto-Light",
     },
@@ -29,15 +30,16 @@ export const loginstyle=StyleSheet.create({
     color:"#3797EF",
     fontSize:14,
     fontWeight:'bold',
-    marginTop:15,
-    marginRight:15,
+    lineHeight:14.06,
+    marginTop:8,
     alignSelf: 'flex-end', 
   },
   logindiv:{
-    marginTop:'5%',
+ marginTop:30   
+
   },
   loginbutt:{
-    width:335,
+    width:343,
     height:44,
     padding:10,
     marginTop:10,
@@ -49,13 +51,13 @@ export const loginstyle=StyleSheet.create({
   },
   googlebutt:{
     padding:4,
-    marginTop:25,
+    marginTop:37,
     textAlign:'center', 
   },
   orcontainer: {
     flexDirection: 'row', 
     alignItems: 'center',
-    marginTop:30
+    marginTop:42
   },
   line: {
     flex: 1, height: 1, backgroundColor: 'rgba(0, 0, 0, 0.2)'
@@ -66,7 +68,8 @@ export const loginstyle=StyleSheet.create({
      color:'black'
   },
   accountheading:{
-    marginTop:40,
+    marginTop:42,
+  textAlign:"center",
     color:'#000000',
     fontFamily:'Roboto-Medium'
   },

@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import MainNavigation from './src/Navigation/mainnavigation/MainNavigation';
 import  {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
