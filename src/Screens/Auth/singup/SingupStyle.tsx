@@ -7,21 +7,24 @@ export const signstyleshhet=StyleSheet.create({
         alignItems:'center'
     },
     sinimg:{
-        marginTop:120,
+        marginTop:90,
         justifyContent:"center",
         alignItems:"center"
     },
+    inputdiv:{
+  paddingTop:39,
+  padding:4,
+  gap:-3
+    },
     inputfiled:{
-        width:343,
-        height:44,
+      padding:15,
         borderWidth: 0.2,
         borderRadius:1,
         backgroundColor:'#f9f9f7',
-        fontFamily:"Roboto",
-        padding:15,
+        fontFamily:"Roboto",   
     },
     signin:{
-        marginTop:'5%',
+        marginTop:20,
     },
     signbutt:{
     width:343,
@@ -29,7 +32,7 @@ export const signstyleshhet=StyleSheet.create({
     padding:10,
     marginTop:23,
     textAlign:'center',
-    fontFamily:'Roboto',
+    fontFamily:'Robot',
     fontWeight:'600',
     color:'white',
     borderRadius:3,

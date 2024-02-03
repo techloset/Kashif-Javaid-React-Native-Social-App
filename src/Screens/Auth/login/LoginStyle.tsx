@@ -5,9 +5,10 @@ export const loginstyle=StyleSheet.create({
         fontFamily:'Roboto',
         flex:1,
         alignItems:'center',
+        
     },
     logimg:{
-      marginTop:168,
+      marginTop:100,
       justifyContent:'flex-end',
       alignItems:'center'
         
@@ -18,7 +19,6 @@ export const loginstyle=StyleSheet.create({
     },
     inputstyle: {
       color: 'black',
-      width: 343,
       padding:15,
       borderWidth: 0.2,
       borderRadius: 3,
@@ -31,7 +31,7 @@ export const loginstyle=StyleSheet.create({
     fontSize:14,
     fontWeight:'bold',
     lineHeight:14.06,
-    marginTop:8,
+    marginTop:19,
     alignSelf: 'flex-end', 
   },
   logindiv:{

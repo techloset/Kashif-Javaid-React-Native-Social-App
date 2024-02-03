@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
-import instimg from '../../assets/images/Instagram.png';
-import google from '../../assets/images/Google.png';
+import instimg from '../../../assets/images/Instagram.png';
+import google from '../../../assets/images/Google.png';
 import { loginstyle } from './LoginStyle';
 import { NativeStackScreenProps } from 'react-native-screens/native-stack';
-import { ParamsList } from '../../../type';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ParamsList } from '../../../../type';
 
 // typedefine
 type Params = NativeStackScreenProps<ParamsList,'Login'>;
@@ -38,7 +38,9 @@ export default function Login(props: Params) {
     } else if (password.length < 8) {
       setBadpassword('Password must be at least 8 characters');
       isValid = false;
-    }  else {
+    }
+    
+    else {
       setBadpassword('');
     }
 

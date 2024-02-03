@@ -1,12 +1,12 @@
 import { View, Text, Image, TextInput, TouchableOpacity,Alert, ScrollView } from 'react-native';
 import React, { useState } from 'react';
-import instaimg from '../../assets/images/Instagram.png';
+import instaimg from '../../../assets/images/Instagram.png';
 import { signstyleshhet } from './SingupStyle';
-import signimg from '../../assets/images/signup.png';
+import signimg from '../../../assets/images/signup.png';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ParamsList } from '../../../type';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ParamsList } from '../../../../type';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 // google configuration
 GoogleSignin.configure({
@@ -14,7 +14,7 @@ GoogleSignin.configure({
 });
 export default function SingUp(props:NativeStackScreenProps<ParamsList, 'Singup'>) {
 
-  const [username, setUserName] = useState("");
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpass, setConfirmpass] = useState('');
@@ -74,16 +74,23 @@ export default function SingUp(props:NativeStackScreenProps<ParamsList, 'Singup'
   };
 
   // authentication
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (validate()) {
-      auth()
+     await auth()
       .createUserWithEmailAndPassword(
         email,
         password,
+      ) 
+
+      await auth().currentUser?.updateProfile ({
+        displayName:username
+      }
       )
       .then(() => {
         Alert.alert('User account created & signed in!');
       })
+      
+      
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           Alert.alert('That email address is already in use!');
@@ -112,13 +119,14 @@ const onGoogleButtonPress = async () => {
       console.log(error);
     });
 };
+console.log(auth().currentUser?.displayName)
   return (
     <View style={signstyleshhet.container}>
       <ScrollView>
       <View style={signstyleshhet.sinimg}>
         <Image source={instaimg}/>
       </View>
-      <View> 
+      <View style={signstyleshhet.inputdiv}> 
         <TextInput placeholder='Username'
           value={username}
           style={signstyleshhet.inputfiled}
