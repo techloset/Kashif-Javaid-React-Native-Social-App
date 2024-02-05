@@ -8,7 +8,7 @@ export const loginstyle=StyleSheet.create({
         
     },
     logimg:{
-      marginTop:100,
+      marginTop:80,
       justifyContent:'flex-end',
       alignItems:'center'
         

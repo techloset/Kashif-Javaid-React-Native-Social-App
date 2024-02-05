@@ -3,19 +3,14 @@ import React, { useState } from 'react';
 import instimg from '../../../assets/images/Instagram.png';
 import { resstyle } from './ResetStyle';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
 import { firebase } from '@react-native-firebase/auth';
 import { ParamsList } from '../../../../type';
 type Params = NativeStackScreenProps<ParamsList, 'Reset'>;
-
-
 export default function ResetPassword(props: Params) {
   const [email, setEmail] = useState('');
   const [bademail, setBademail] = useState('');
-  
   const changepassword = async () => {
     let isvalide = true;
-  
     if (email === '') {
       setBademail('Please enter your email');
       isvalide = false;
@@ -32,19 +27,15 @@ export default function ResetPassword(props: Params) {
       props.navigation.navigate('Login');
     }
   };
-  
-
   return (
     <View style={resstyle.container}>
       <View style={resstyle.logimg}>
         <Image source={instimg} />
       </View>
-
       <View>
         <Text style={resstyle.restext}>Forgot your password? Write your email and we will</Text>
         <Text style={resstyle.retext}> send you a magic link to reset your password</Text>
       </View>
-      
       <View>
         <TextInput
           placeholder="Email"
@@ -54,7 +45,6 @@ export default function ResetPassword(props: Params) {
         />
         <Text style={{ color: 'red' }}>{bademail}</Text>
       </View>
-      
       <TouchableOpacity style={resstyle.signin} onPress={changepassword}>
         <Text style={resstyle.signbutt}>Send Magic Link</Text>
       </TouchableOpacity>

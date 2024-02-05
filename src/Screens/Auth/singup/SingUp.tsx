@@ -161,8 +161,6 @@ console.log(auth().currentUser?.displayName)
         <TouchableOpacity onPress={onGoogleButtonPress}>
         <Text style={signstyleshhet.google}><Image source={signimg}/></Text>
         </TouchableOpacity>
-         
-      
       </View>
       <View style={signstyleshhet.orcontainer}>
   <View style={signstyleshhet.line} />
@@ -171,7 +169,6 @@ console.log(auth().currentUser?.displayName)
   </View>
   <View style={signstyleshhet.line} />
 </View>
-
 <View>
  <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
     <Text style={signstyleshhet.accountheading}>Don’t have an account? <Text style={signstyleshhet.sign}>Log In</Text>

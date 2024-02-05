@@ -7,7 +7,6 @@ import { NativeStackScreenProps } from 'react-native-screens/native-stack';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { ParamsList } from '../../../../type';
-
 // typedefine
 type Params = NativeStackScreenProps<ParamsList,'Login'>;
 export default function Login(props: Params) {
@@ -39,14 +38,12 @@ export default function Login(props: Params) {
       setBadpassword('Password must be at least 8 characters');
       isValid = false;
     }
-    
     else {
       setBadpassword('');
     }
 
     return isValid;
   };
-
   // firebase use
   const handleLogin = () => {
     if (validate()) {
@@ -55,7 +52,7 @@ export default function Login(props: Params) {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log('User signed in:', user);
-          props.navigation.navigate('HomeScreen');
+         props.navigation.navigate('Home');
         })
         .catch(error => {
           if (error.code === 'auth/user-not-found') {
@@ -75,7 +72,7 @@ const googlelogout = async () => {
   const user_sign = auth().signInWithCredential(googleCredential);
   user_sign
     .then((user) => {
-      props.navigation.navigate('HomeScreen');
+      props.navigation.navigate('Home');
     })
     .catch((error) => {
       console.log(error);
@@ -83,12 +80,10 @@ const googlelogout = async () => {
 };
   return (
     <View style={loginstyle.container}>
-      {/* img div */}
       <ScrollView>
       <View style={loginstyle.logimg}>
         <Image source={instimg} />
       </View>
-      {/* input div */}
       <View style={loginstyle.inputdiv}>
         <TextInput
           placeholder="Email"
@@ -106,23 +101,16 @@ const googlelogout = async () => {
           secureTextEntry
         />
         {badpassword !== '' && <Text style={loginstyle.errorText}>{badpassword}</Text>}
-
         <TouchableOpacity onPress={() => props.navigation.navigate('Reset')}>
           <Text style={loginstyle.forpassword}>Forgot password?</Text>
         </TouchableOpacity>
-
-        {/* login button */}
         <TouchableOpacity style={loginstyle.logindiv} onPress={handleLogin}>
           <Text style={loginstyle.loginbutt}>Log in</Text>
         </TouchableOpacity>
-
-        {/* google */}
         <Text style={loginstyle.googlebutt} onPress={googlelogout}>
           <Image source={google} />
         </Text>
       </View>
-
-      {/* Or */}
       <View style={loginstyle.orcontainer}>
         <View style={loginstyle.line} />
         <View>
@@ -130,8 +118,6 @@ const googlelogout = async () => {
         </View>
         <View style={loginstyle.line} />
       </View>
-
-      {/* other account navigate */}
       <View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Singup')}>
           <Text style={loginstyle.accountheading}>
