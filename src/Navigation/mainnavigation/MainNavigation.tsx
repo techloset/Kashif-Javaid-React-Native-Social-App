@@ -22,11 +22,10 @@ export default function MainNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Root} options={{ headerShown: false }}  />
-
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Singup" component={SingUp} options={{ headerShown: false }} />
         <Stack.Screen name="Reset" component={ResetPassword} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={Root} options={{ headerShown: false }}  />
 
       </Stack.Navigator>
     </NavigationContainer>

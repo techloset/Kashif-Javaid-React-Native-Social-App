@@ -16,7 +16,9 @@ export default function HomeScreen() {
       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
         <View style={HomeStyle.scondcontainer}>
           <View>
-            <Image source={profileimg} alt='img' style={HomeStyle.img}/>
+            <View>
+              <Image source={user?.Image}/>
+            </View>
           </View>
           <View style={HomeStyle.name}>
             <Text style={HomeStyle.text1}>{user?.displayName}</Text>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Button, Alert } from 'react-native';
-import { launchImageLibrary, ImagePickerResponse, ImageLibraryOptions, launchCamera } from 'react-native-image-picker';
+import { View, Button, Alert ,Image} from 'react-native';
+import { launchImageLibrary, ImagePickerResponse, ImageLibraryOptions } from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 
 export default function HomeScreen() {
@@ -30,6 +30,8 @@ export default function HomeScreen() {
             const downloadURL = await uploadTask.snapshot?.ref.getDownloadURL();
             if (downloadURL) {
               setImage(downloadURL);
+              console.log(downloadURL);
+              
             }
           } catch (error) {
             console.error("Error getting download URL", error);
