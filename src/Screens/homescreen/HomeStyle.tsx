@@ -3,10 +3,29 @@ import { StyleSheet } from "react-native";
 export const HomeStyle=StyleSheet.create({
     container:{
         flex:1,
-        justifyContent:"center",
-        alignItems:"center"
     },
-    imgheader:{
-       marginTop:54,
+    imgcontainer:{
+        marginTop:54,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    scondcontainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    img:{
+        marginLeft:11,
+        marginTop:10
+    },
+    name:{
+        marginLeft:11,
+        marginTop:5
+    },text1:{
+        fontSize:20,
+        fontFamily:'Roboto-bold-ttf'
+    },
+    dots:{
+       marginRight:14,
+       fontSize:20
     }
 })
