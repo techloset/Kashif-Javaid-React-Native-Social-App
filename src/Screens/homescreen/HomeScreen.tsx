@@ -17,12 +17,16 @@ export default function HomeScreen() {
         <View style={HomeStyle.scondcontainer}>
           <View>
             <View>
-              <Image source={user?.Image}/>
+            <Image
+  source={{ uri: user?.providerData[0].photoURL }}
+  style={HomeStyle.img}
+/>
+
             </View>
           </View>
           <View style={HomeStyle.name}>
             <Text style={HomeStyle.text1}>{user?.displayName}</Text>
-            <Text>Tokyo,jpna</Text>
+            <Text>{(user?.providerData[0] as any)?.country}</Text>
           </View>
         </View> 
         <Text style={HomeStyle.dots}>...</Text>

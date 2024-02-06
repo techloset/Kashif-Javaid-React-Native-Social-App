@@ -15,7 +15,11 @@ export const HomeStyle=StyleSheet.create({
     },
     img:{
         marginLeft:11,
-        marginTop:10
+        marginTop:10,
+        width:22,
+        height:22,
+        borderRadius:100,
+        padding:20
     },
     name:{
         marginLeft:11,

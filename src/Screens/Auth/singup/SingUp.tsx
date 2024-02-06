@@ -83,7 +83,7 @@ export default function SingUp(props:NativeStackScreenProps<ParamsList, 'Singup'
       ) 
 
       await auth().currentUser?.updateProfile ({
-        displayName:username
+        displayName:username,
       }
       )
       .then(() => {
