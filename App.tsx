@@ -1,7 +1,7 @@
 import React from 'react';
-import MainNavigation from './src/Navigation/mainnavigation/MainNavigation';
 import  {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import MainNavigation from './src/navigation/mainnavigation/MainNavigation';
 export default function App() {
   useEffect(() => {
     SplashScreen.hide();

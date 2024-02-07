@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
-import instaimg from '../../assets/images/Instagram.png'
-import profileimg from '../../assets/images/icon/profile.png'
+import instaimg from '../../../assets/images/Instagram.png'
 import auth from  "@react-native-firebase/auth"
 import { HomeStyle } from './HomeStyle'
 export default function HomeScreen() {
@@ -26,7 +25,6 @@ export default function HomeScreen() {
           </View>
           <View style={HomeStyle.name}>
             <Text style={HomeStyle.text1}>{user?.displayName}</Text>
-            <Text>{(user?.providerData[0] as any)?.country}</Text>
           </View>
         </View> 
         <Text style={HomeStyle.dots}>...</Text>

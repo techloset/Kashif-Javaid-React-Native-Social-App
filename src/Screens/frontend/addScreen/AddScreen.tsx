@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Button, Alert ,Image} from 'react-native';
+import { View, Button, Alert} from 'react-native';
 import { launchImageLibrary, ImagePickerResponse, ImageLibraryOptions } from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 
-export default function HomeScreen() {
+export default function AddScreen() {
   const [image, setImage] = useState<string|null>(null);
 
   const pickImageAndUpload = async () => {
@@ -33,6 +33,7 @@ export default function HomeScreen() {
               console.log(downloadURL);
               
             }
+            
           } catch (error) {
             console.error("Error getting download URL", error);
           }
