@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import {Alert } from 'react-native';
+import { View, Button, Alert } from 'react-native';
 import { launchImageLibrary, ImagePickerResponse, ImageLibraryOptions } from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 import { db } from '../../../config/Firebase';
 import auth from "@react-native-firebase/auth";
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ParamsList } from '../../../../type';
-type Params = NativeStackScreenProps<ParamsList,'Add'>;
-export function useAddScreen() {
+
+export default function AddScreen() {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImageAndUpload = async () => {
@@ -56,7 +54,9 @@ export function useAddScreen() {
     }
   };
 
-  return {
-    pickImageAndUpload,
-  }
+  return (
+    <View>
+      <Button title='Select Image' onPress={pickImageAndUpload} />
+    </View>
+  );
 }

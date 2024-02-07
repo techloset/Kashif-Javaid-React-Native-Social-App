@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { ParamsList } from '../../../../type';
+import { db } from '../../../config/Firebase';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 GoogleSignin.configure({
   webClientId:"753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com",
@@ -67,6 +68,15 @@ export default function useSingup(props:NativeStackScreenProps<ParamsList, 'Sing
         email,
         password,
       ) 
+      db.collection('Users')
+      .add({
+        username,
+        email,
+        password,
+      })
+      .then(() => {
+        console.log('User added!');
+      });
       await auth().currentUser?.updateProfile ({
         displayName:username,
       }

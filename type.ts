@@ -4,6 +4,6 @@ export type ParamsList = {
   Reset: undefined,
   Home:undefined,
   Root:undefined,
-  Add:undefined,
+ Add:undefined,
   Show:undefined,
 }
