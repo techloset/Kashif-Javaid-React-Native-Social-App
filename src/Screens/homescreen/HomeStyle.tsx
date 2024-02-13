@@ -63,10 +63,25 @@ export const HomeStyle = StyleSheet.create({
     borderRadius: 100,
   },
   text2: {
-    marginLeft: 7,
+    marginLeft: 5,
     marginTop: 15,
     fontWeight: '600',
     lineHeight: 14,
     fontFamily: 'Roboto-Bold.ttf',
+  },
+  butt: {
+    gap: -10,
+    flexDirection: 'row',
+    marginTop: 12,
+    marginRight: 50,
+  },
+  user: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+  usertext: {
+    marginLeft: 3,
+    textAlign: 'justify',
+    lineHeight: 14,
   },
 });

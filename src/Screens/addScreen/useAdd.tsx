@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
-import { View, Button, Alert } from 'react-native';
-import { launchImageLibrary, ImagePickerResponse, ImageLibraryOptions } from 'react-native-image-picker';
+import React, {useState} from 'react';
+import {View, Button, Alert} from 'react-native';
+import {
+  launchImageLibrary,
+  ImagePickerResponse,
+  ImageLibraryOptions,
+} from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
-import { db } from '../../../config/Firebase';
-import auth from "@react-native-firebase/auth";
+import auth from '@react-native-firebase/auth';
+import {db} from '../../config/Firebase';
 
 export default function AddScreen() {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImageAndUpload = async () => {
-    const options: ImageLibraryOptions = { quality: 0.5, mediaType: 'photo' };
+    const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'photo'};
     launchImageLibrary(options, handleImageSelection);
   };
 
   const handleImageSelection = async (fileobj: ImagePickerResponse) => {
     if (fileobj.assets && fileobj.assets.length > 0) {
       const uri: string = fileobj.assets[0].uri ?? '';
-      const uploadTask = storage().ref().child(`/userprofile/${Date.now()}`).putFile(uri);
+      const uploadTask = storage()
+        .ref()
+        .child(`/userprofile/${Date.now()}`)
+        .putFile(uri);
 
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          if (progress === 100)
-            Alert.alert('Image uploaded');
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (progress === 100) Alert.alert('Image uploaded');
         },
-        (error) => {
-          Alert.alert("Error uploading image");
+        error => {
+          Alert.alert('Error uploading image');
         },
         async () => {
           try {
@@ -34,20 +42,20 @@ export default function AddScreen() {
               setImage(downloadURL);
               console.log(downloadURL);
               const user = auth().currentUser;
-              let userName = "";
+              let userName = '';
               if (user) {
-                userName = user.displayName || "";
+                userName = user.displayName || '';
               }
-              db.collection('Images')
-                .add({
-                  downloadURL,
-                  userName,
-                });
+              db.collection('Images').add({
+                downloadURL,
+                userName,
+                Date,
+              });
             }
           } catch (error) {
-            console.error("Error getting download URL", error);
+            console.error('Error getting download URL', error);
           }
-        }
+        },
       );
     } else {
       Alert.alert('Image not selected');
@@ -56,7 +64,7 @@ export default function AddScreen() {
 
   return (
     <View>
-      <Button title='Select Image' onPress={pickImageAndUpload} />
+      <Button title="Select Image" onPress={pickImageAndUpload} />
     </View>
   );
 }

@@ -75,13 +75,7 @@ export default function HomeScreen() {
                     <Image source={messenger} style={HomeStyle.messenger} />
                   </TouchableOpacity>
                 </View>
-                <View
-                  style={{
-                    gap: -10,
-                    flexDirection: 'row',
-                    marginTop: 12,
-                    marginRight: 50,
-                  }}>
+                <View style={HomeStyle.butt}>
                   <TouchableOpacity>
                     <Image source={ovel} style={HomeStyle.like} />
                   </TouchableOpacity>
@@ -111,10 +105,26 @@ export default function HomeScreen() {
                   Liked by {item.userName} and 44,686 others
                 </Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text>{item.userName}</Text>
-                <Text style={{marginRight: 10}}>
-                  The game in Japan was amazing and I want to share some photos
+              <View style={HomeStyle.user}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 14,
+                    marginRight: 5,
+                  }}>
+                  <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>
+                  <Text style={{marginLeft: 2}}>
+                    The game in Japan was amazing and I want {'\n'} to share
+                    some photos
+                  </Text>
+                </View>
+              </View>
+              <View>
+                <Text>
+                  <Text>
+                    {new Date(item.uploadTimestamp).toLocaleDateString()}
+                  </Text>
                 </Text>
               </View>
             </View>
