@@ -46,15 +46,16 @@ export function useCreate() {
               setImage(downloadURL);
               console.log(downloadURL);
               const user = auth().currentUser;
-              let userName = '';
               if (user) {
-                userName = user.displayName || '';
+                const userId = user.uid;
+                const userName = user.displayName || '';
+                db.collection('Images').add({
+                  downloadURL,
+                  userName,
+                  userId,
+                  createdAt: new Date(),
+                });
               }
-              db.collection('Images').add({
-                downloadURL,
-                userName,
-                createdAt: new Date(),
-              });
             }
           } catch (error) {
             console.error('Error getting download URL', error);

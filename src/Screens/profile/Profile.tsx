@@ -1,15 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, ScrollView, Text, Image, FlatList} from 'react-native';
 import {ProfileStlye} from './ProfileStyle';
 import auth from '@react-native-firebase/auth';
 import profilelock from '../../assets/images/profile.png';
 import profileimgs from '../../assets/images/profileimg.png';
 import {useHome} from '../home/useHome';
-
 export default function Profile() {
+  const [numColumns, setNumColumns] = useState(3);
   const user = auth().currentUser;
   const {data} = useHome();
-
   return (
     <View style={ProfileStlye.container}>
       <ScrollView>
@@ -47,7 +46,8 @@ export default function Profile() {
           <FlatList
             data={data}
             keyExtractor={item => item.id}
-            style={{width: 124}}
+            style={{flexGrow: 1, flexWrap: 'wrap'}}
+            numColumns={3}
             renderItem={({item}) => (
               <Image
                 source={{uri: item.downloadURL}}
