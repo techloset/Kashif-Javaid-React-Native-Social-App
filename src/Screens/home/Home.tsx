@@ -16,9 +16,8 @@ import comment from '../../assets/images/Comment.png';
 import messenger from '../../assets/images/Messanger.png';
 import ovel from '../../assets/images/Oval.png';
 import save from '../../assets/images/Save.png';
-
-export default function HomeScreen() {
-  const {data} = useHome();
+export default function Home() {
+  const {data, formatDate} = useHome();
   const user = auth().currentUser;
 
   return (
@@ -44,18 +43,18 @@ export default function HomeScreen() {
             </View>
             <View style={HomeStyle.name}>
               <Text style={HomeStyle.text1}>{user?.displayName}</Text>
+              <Text>Pakistan</Text>
             </View>
           </View>
 
           <Text style={HomeStyle.dots}>...</Text>
         </View>
-
+        {/* <Text>{item.userName}</Text> */}
         <FlatList
           data={data}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
-              {/* <Text>{item.userName}</Text> */}
               <Image
                 source={{uri: item.downloadURL}}
                 accessibilityLabel="images"
@@ -92,40 +91,42 @@ export default function HomeScreen() {
                 </TouchableOpacity>
               </View>
 
-              <View style={{flexDirection: 'row'}}>
-                {user?.providerData[0].photoURL ? (
-                  <Image
-                    source={{uri: user.providerData[0].photoURL}}
-                    style={HomeStyle.img1}
-                  />
-                ) : (
-                  <Text style={HomeStyle.placeholderText}>Image</Text>
-                )}
-                <Text style={HomeStyle.text2}>
-                  Liked by {item.userName} and 44,686 others
-                </Text>
-              </View>
-              <View style={HomeStyle.user}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginLeft: 14,
-                    marginRight: 5,
-                  }}>
-                  <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>
-                  <Text style={{marginLeft: 2}}>
-                    The game in Japan was amazing and I want {'\n'} to share
-                    some photos
+              <View style={{paddingHorizontal: 3}}>
+                <View style={{flexDirection: 'row'}}>
+                  {user?.providerData[0].photoURL ? (
+                    <Image
+                      source={{uri: user.providerData[0].photoURL}}
+                      style={HomeStyle.img1}
+                    />
+                  ) : (
+                    <Text style={HomeStyle.placeholderText}>Image</Text>
+                  )}
+                  <Text style={HomeStyle.text2}>
+                    Liked by {item.userName} and 44,686 others
                   </Text>
                 </View>
-              </View>
-              <View>
-                <Text>
-                  <Text>
-                    {new Date(item.uploadTimestamp).toLocaleDateString()}
-                  </Text>
-                </Text>
+
+                <View style={HomeStyle.user}>
+                  <View
+                    style={{
+                      flexWrap: 'wrap',
+                      alignItems: 'center',
+                    }}>
+                    <Text>
+                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>{' '}
+                      The game in Japan was amazing and I want to share some
+                      photos
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={{marginLeft: 15, marginTop: 15}}>
+                  {item.createdAt ? (
+                    <Text>{formatDate(item.createdAt)}</Text>
+                  ) : (
+                    <Text>No creation date available</Text>
+                  )}
+                </View>
               </View>
             </View>
           )}

@@ -28,10 +28,32 @@ export function useHome() {
     fetchUsers();
   }, []);
 
+  const formatDate = (timestamp: any) => {
+    const date = timestamp.toDate();
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const month = monthNames[date.getMonth()];
+    const day = date.getDate();
+    return `${month} ${day}`;
+  };
+
   return {
     data,
     handleLike,
     isLiked,
     setIsLiked,
+    formatDate,
   };
 }

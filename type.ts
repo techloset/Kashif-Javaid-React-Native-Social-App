@@ -4,17 +4,17 @@ export type ParamsList = {
   Reset: undefined;
   Home: undefined;
   Root: undefined;
-  Add: any;
+  Create: undefined;
   Show: undefined;
   useAddScreen: undefined;
+  user: undefined;
 };
-export type ParamsListbase = {
-  Add: undefined;
-  Show: undefined;
-  Home: undefined;
-};
-
 export type params = {
   image: string;
   photoUrl: string;
+};
+
+export type date = {
+  id: string;
+  imageUrl: string;
 };

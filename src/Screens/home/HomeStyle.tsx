@@ -78,6 +78,7 @@ export const HomeStyle = StyleSheet.create({
   user: {
     flexDirection: 'row',
     marginTop: 5,
+    marginLeft: 15,
   },
   usertext: {
     marginLeft: 3,

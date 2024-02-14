@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Button, Alert} from 'react-native';
+import {Alert} from 'react-native';
 import {
   launchImageLibrary,
   ImagePickerResponse,
@@ -7,9 +7,13 @@ import {
 } from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ParamsList} from '../../../type';
 import {db} from '../../config/Firebase';
 
-export default function AddScreen() {
+type Params = NativeStackScreenProps<ParamsList, 'Create'>;
+
+export function useCreate() {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImageAndUpload = async () => {
@@ -49,7 +53,7 @@ export default function AddScreen() {
               db.collection('Images').add({
                 downloadURL,
                 userName,
-                Date,
+                createdAt: new Date(),
               });
             }
           } catch (error) {
@@ -62,9 +66,7 @@ export default function AddScreen() {
     }
   };
 
-  return (
-    <View>
-      <Button title="Select Image" onPress={pickImageAndUpload} />
-    </View>
-  );
+  return {
+    pickImageAndUpload,
+  };
 }

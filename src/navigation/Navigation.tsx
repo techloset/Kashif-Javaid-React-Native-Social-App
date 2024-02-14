@@ -1,21 +1,21 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ParamsList} from '../../../type';
-import {Image, TouchableOpacity} from 'react-native';
-import firsticon from '../../assets/images/icon/homeicon.png';
-import secondicon from '../../assets/images/icon/shoeicon.png';
-import thiricon from '../../assets/images/icon/profile.png';
-import HomeScreen from '../../screens/homescreen/HomeScreen';
-import ShowData from '../../screens/showData/ShowData';
-import Login from '../../screens/auth/login/Login';
-import SingUp from '../../screens/auth/singup/SingUp';
-import ResetPassword from '../../screens/auth/resetPassword/ResetPassword';
-import {useAddScreen} from '../../screens/addScreen/AddScreen';
+import {Image, TouchableOpacity, Text, View} from 'react-native';
+import firsticon from '../assets/images/icon/homeicon.png';
+import secondicon from '../assets/images/icon/shoeicon.png';
+import auth from '@react-native-firebase/auth';
+import {useCreate} from '../screens/createPost/CreatePost';
+import Home from '../screens/home/Home';
+import Profile from '../screens/profile/Profile';
+import Login from '../screens/auth/login/Login';
+import SingUp from '../screens/auth/singup/SingUp';
+import ResetPassword from '../screens/auth/resetPassword/ResetPassword';
+import {ParamsList} from '../../type';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<ParamsList>();
 
-export default function MainNavigation() {
+export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -45,12 +45,12 @@ export default function MainNavigation() {
 }
 
 function Root() {
-  const {pickImageAndUpload} = useAddScreen();
+  const {pickImageAndUpload} = useCreate();
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={Home}
         options={{
           headerShown: false,
           tabBarLabel: '',
@@ -58,27 +58,46 @@ function Root() {
         }}
       />
       <Tab.Screen
-        name="Add"
-        component={useAddScreen}
+        name="Create"
+        component={useCreate}
         options={() => ({
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: ({color, size}) => (
+          tabBarIcon: () => (
             <TouchableOpacity onPress={pickImageAndUpload}>
               <Image source={secondicon} />
             </TouchableOpacity>
           ),
         })}
       />
-
       <Tab.Screen
         name="Show"
-        component={ShowData}
-        options={{
+        component={Profile}
+        options={({route: focused}) => ({
           headerShown: false,
           tabBarLabel: '',
-          tabBarIcon: () => <Image source={thiricon} />,
-        }}
+          tabBarIcon: ({}) => {
+            const user = auth().currentUser;
+            return (
+              <View>
+                {user?.providerData[0].photoURL ? (
+                  <Image
+                    source={{uri: user.providerData[0].photoURL}}
+                    style={{width: 28, height: 28, borderRadius: 30}}
+                  />
+                ) : (
+                  <View
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: 200,
+                      backgroundColor: focused ? 'gray' : '',
+                    }}></View>
+                )}
+              </View>
+            );
+          },
+        })}
       />
     </Tab.Navigator>
   );
