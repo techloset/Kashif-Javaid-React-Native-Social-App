@@ -3,6 +3,7 @@ import {db} from '../../config/Firebase';
 export function useHome() {
   const [data, setData] = useState<any>();
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const handleLike = () => {
     if (!isLiked) {
       setIsLiked(true);
@@ -27,6 +28,10 @@ export function useHome() {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+  };
 
   const formatDate = (timestamp: any) => {
     const date = timestamp.toDate();
@@ -55,5 +60,7 @@ export function useHome() {
     isLiked,
     setIsLiked,
     formatDate,
+    handleVideoPlay,
+    isVideoPlaying,
   };
 }

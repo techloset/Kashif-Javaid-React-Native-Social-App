@@ -69,7 +69,7 @@ export function useCreate() {
         },
       );
     } else {
-      Alert.alert('Image not selected');
+      Alert.alert('Not selected');
     }
   };
 

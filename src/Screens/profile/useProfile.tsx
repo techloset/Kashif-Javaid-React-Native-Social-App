@@ -4,7 +4,6 @@ import auth from '@react-native-firebase/auth';
 
 export function useProfile() {
   const [data, setData] = useState<any>([]);
-
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -12,7 +11,6 @@ export function useProfile() {
         if (!currentUser) {
           return;
         }
-
         const userId = currentUser.uid;
         const response = await db
           .collection('Images')

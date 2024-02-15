@@ -35,7 +35,11 @@ export const HomeStyle = StyleSheet.create({
   },
   profileimg: {
     marginTop: 10,
-    height: 300,
+    height: 350,
+  },
+  video: {
+    height: 375,
+    marginTop: 10,
   },
   like: {
     marginTop: 14,

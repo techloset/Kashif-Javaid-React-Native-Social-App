@@ -5,9 +5,10 @@ export type ParamsList = {
   Home: undefined;
   Root: undefined;
   Create: undefined;
-  Show: undefined;
+  Profile: undefined;
   useAddScreen: undefined;
   user: undefined;
+  Library: undefined;
 };
 export type params = {
   image: string;
@@ -17,4 +18,10 @@ export type params = {
 export type date = {
   id: string;
   imageUrl: string;
+};
+
+export type Post = {
+  id: string;
+  downloadURL: string;
+  mediaType: 'image' | 'video';
 };
