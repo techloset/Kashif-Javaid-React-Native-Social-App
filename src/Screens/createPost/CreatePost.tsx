@@ -17,13 +17,14 @@ export function useCreate() {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImageAndUpload = async () => {
-    const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'photo'};
+    const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, handleImageSelection);
   };
 
   const handleImageSelection = async (fileobj: ImagePickerResponse) => {
     if (fileobj.assets && fileobj.assets.length > 0) {
-      const uri: string = fileobj.assets[0].uri ?? '';
+      const selectedAsset = fileobj.assets[0];
+      const uri: string = selectedAsset.uri ?? '';
       const uploadTask = storage()
         .ref()
         .child(`/userprofile/${Date.now()}`)
@@ -34,7 +35,7 @@ export function useCreate() {
         snapshot => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          if (progress === 100) Alert.alert('Image uploaded');
+          if (progress === 100) Alert.alert('uploaded');
         },
         error => {
           Alert.alert('Error uploading image');
@@ -49,11 +50,16 @@ export function useCreate() {
               if (user) {
                 const userId = user.uid;
                 const userName = user.displayName || '';
+                const mediaType =
+                  selectedAsset.type && selectedAsset.type.startsWith('video')
+                    ? 'video'
+                    : 'image';
                 db.collection('Images').add({
                   downloadURL,
                   userName,
                   userId,
                   createdAt: new Date(),
+                  mediaType,
                 });
               }
             }

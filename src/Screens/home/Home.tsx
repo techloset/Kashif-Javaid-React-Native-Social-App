@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Video,
 } from 'react-native';
 import instaimg from '../../../src/assets/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
@@ -16,6 +17,7 @@ import comment from '../../assets/images/Comment.png';
 import messenger from '../../assets/images/Messanger.png';
 import ovel from '../../assets/images/Oval.png';
 import save from '../../assets/images/Save.png';
+
 export default function Home() {
   const {data, formatDate} = useHome();
   const user = auth().currentUser;
@@ -55,11 +57,19 @@ export default function Home() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
-              <Image
-                source={{uri: item.downloadURL}}
-                accessibilityLabel="images"
-                style={HomeStyle.profileimg}
-              />
+              {item.mediaType === 'image' ? (
+                <Image
+                  source={{uri: item.downloadURL}}
+                  accessibilityLabel="images"
+                  style={HomeStyle.profileimg}
+                />
+              ) : (
+                <Video
+                  source={{uri: item.downloadURL}}
+                  style={HomeStyle.profileimg}
+                  controls={true}
+                />
+              )}
 
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
