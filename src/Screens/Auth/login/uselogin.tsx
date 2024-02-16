@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { NativeStackScreenProps } from 'react-native-screens/native-stack';
+import React, {useState} from 'react';
+import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { ParamsList } from '../../../../type';
-import { Alert } from 'react-native';
-type Params = NativeStackScreenProps<ParamsList,'Login'>;
-export function useLogin (props: Params) {
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {ParamsList} from '../../../../type';
+import {Alert} from 'react-native';
+type Params = NativeStackScreenProps<ParamsList, 'Login'>;
+export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [bademail, setBademail] = useState('');
@@ -15,9 +15,13 @@ export function useLogin (props: Params) {
     if (email === '') {
       setBademail('Please enter a valid email');
       isValid = false;
-    } else if (!email.toLowerCase().match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )) {
+    } else if (
+      !email
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        )
+    ) {
       setBademail('Please enter a valid email');
       isValid = false;
     } else {
@@ -29,8 +33,7 @@ export function useLogin (props: Params) {
     } else if (password.length < 8) {
       setBadpassword('Password must be at least 8 characters');
       isValid = false;
-    }
-    else {
+    } else {
       setBadpassword('');
     }
 
@@ -40,7 +43,7 @@ export function useLogin (props: Params) {
     if (validate()) {
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+        .then(userCredential => {
           const user = userCredential.user;
           console.log('User signed in:', user);
           props.navigation.navigate('Home');
@@ -53,23 +56,22 @@ export function useLogin (props: Params) {
         });
     }
   };
-  
 
-const googlelogout = async () => {
-  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  await GoogleSignin.signOut();
-  const { idToken } = await GoogleSignin.signIn();
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  const user_sign = auth().signInWithCredential(googleCredential);
-  user_sign
- 
-    .then((user) => {
-      props.navigation.navigate('Home');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+  const googlelogout = async () => {
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    await GoogleSignin.signOut();
+    const {idToken} = await GoogleSignin.signIn();
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    const user_sign = auth().signInWithCredential(googleCredential);
+    user_sign
+
+      .then(user => {
+        props.navigation.navigate('Home');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return {
     password,
     setPassword,
@@ -78,7 +80,6 @@ const googlelogout = async () => {
     bademail,
     badpassword,
     handleLogin,
-    googlelogout
+    googlelogout,
   };
-  
 }

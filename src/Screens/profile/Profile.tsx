@@ -24,7 +24,7 @@ export default function Profile(
 
   return (
     <View style={ProfileStlye.container}>
-      <ScrollView>
+      <View style={{flex: 1}}>
         <View style={ProfileStlye.profileName}>
           <View style={{flexDirection: 'row'}}>
             <Image source={profilelock} style={ProfileStlye.lock} />
@@ -87,7 +87,7 @@ export default function Profile(
             )}
           />
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 }

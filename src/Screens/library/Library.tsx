@@ -6,7 +6,7 @@ import {ParamsList, Post} from '../../../type';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export default function Library(
-  props: NativeStackScreenProps<ParamsList, 'Profile'>,
+  props: NativeStackScreenProps<ParamsList, 'Library'>,
 ) {
   const {data} = useProfile();
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
@@ -33,7 +33,7 @@ export default function Library(
             padding: 10,
           }}>
           <Text onPress={handleCancel}>Cancel</Text>
-          <Text onPress={() => props.navigation.navigate('Login')}>Next</Text>
+          <Text onPress={() => props.navigation.navigate('Create')}>Next</Text>
         </View>
       )}
       <View style={{flex: 1}}>

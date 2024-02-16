@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, Text} from 'react-native'; // Imported FlatList and Text components
+import {View, FlatList} from 'react-native';
 import {useProfile} from '../profile/useProfile';
 import auth from '@react-native-firebase/auth';
 import Video from 'react-native-video';
