@@ -14,7 +14,6 @@ import {loginstyle} from './LoginStyle';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useLogin} from './uselogin';
-
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export default function Login(props: Params) {
   const {

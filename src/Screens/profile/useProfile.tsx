@@ -12,6 +12,7 @@ export function useProfile() {
           return;
         }
         const userId = currentUser.uid;
+        console.log(userId);
         const response = await db
           .collection('Images')
           .where('userId', '==', userId)
@@ -20,12 +21,14 @@ export function useProfile() {
           id: doc.id,
           ...doc.data(),
         }));
+
+        console.log(userData);
+
         setData(userData);
       } catch (error) {
         console.error('Error fetching user images:', error);
       }
     };
-
     fetchImages();
   }, []);
 

@@ -23,5 +23,8 @@ export type date = {
 export type Post = {
   id: string;
   downloadURL: string;
+  userName: string;
+  userId: string;
+  createdAt: Date;
   mediaType: 'image' | 'video';
 };
