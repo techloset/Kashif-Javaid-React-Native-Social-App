@@ -19,6 +19,7 @@ export function useCreate() {
   const [selectedPostIndex, setSelectedPostIndex] = useState<number | null>(
     null,
   );
+  const [description, setDescription] = useState('');
   const pickImageAndUpload = async () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, handleImageSelection);
@@ -63,6 +64,7 @@ export function useCreate() {
                   userId,
                   createdAt: new Date(),
                   mediaType,
+                  Description: description,
                 });
               }
             }
@@ -100,5 +102,7 @@ export function useCreate() {
     handleNext,
     selectedPostIndex,
     data,
+    setDescription,
+    handleImageSelection,
   };
 }

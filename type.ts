@@ -1,3 +1,5 @@
+import {KeyboardTypeOptions} from 'react-native';
+
 export type ParamsList = {
   Login: undefined;
   Singup: undefined;
@@ -27,4 +29,12 @@ export type Post = {
   userId: string;
   createdAt: Date;
   mediaType: 'image' | 'video';
+};
+
+export type InputType = {
+  secureTextEnter?: boolean;
+  placeholder?: string;
+  keyboardType?: KeyboardTypeOptions;
+  onChangeText?: (text: string) => void;
+  value?: string;
 };

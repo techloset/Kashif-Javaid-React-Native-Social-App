@@ -1,98 +1,48 @@
-import React from 'react';
-import {View, FlatList, Image, TouchableOpacity, Text} from 'react-native';
-import {useProfile} from '../profile/useProfile';
-import Video from 'react-native-video';
-import {ParamsList} from '../../../type';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {CreateStyle} from './CreateStyle';
+import upload from '../../assets/images/upload.png';
+import imageupload from '../../assets/images/imageupload.png';
+import InputField from '../../components/inputfiled/InputField';
 import {useCreate} from './useCreate';
+import {db} from '../../config/Firebase';
 
-export default function CreatePost(
-  props: NativeStackScreenProps<ParamsList, 'Create'>,
-) {
-  const {data} = useProfile();
-  const {
-    selectedPostIndex,
-    handleCancel,
-    handleNext,
-    handlePostPress,
-    pickImageAndUpload,
-  } = useCreate();
+export default function CreatePost() {
+  const {pickImageAndUpload, setDescription} = useCreate();
 
   return (
-    <View style={{flex: 1}}>
-      {selectedPostIndex !== null && (
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 10,
-          }}>
-          <Text onPress={handleCancel}>Cancel</Text>
-          <TouchableOpacity onPress={handleNext}>
-            <Text>Next</Text>
+    <View style={CreateStyle.container}>
+      <ScrollView>
+        <View style={CreateStyle.seccontainer}>
+          <TouchableOpacity>
+            <Text style={{color: 'black'}}>Cancel</Text>
           </TouchableOpacity>
-        </View>
-      )}
-
-      <View style={{flex: 1}}>
-        {selectedPostIndex !== null && (
-          <>
-            {data[selectedPostIndex].mediaType === 'image' && (
-              <Image
-                source={{uri: data[selectedPostIndex].downloadURL}}
-                style={{flex: 1, resizeMode: 'cover'}}
-              />
-            )}
-            {data[selectedPostIndex].mediaType === 'video' && (
-              <Video
-                source={{uri: data[selectedPostIndex].downloadURL}}
-                style={{flex: 1}}
-                resizeMode="cover"
-              />
-            )}
-          </>
-        )}
-      </View>
-      <View style={{flex: 1}}>
-        <View>
-          <TouchableOpacity onPress={pickImageAndUpload}>
-            <Text
-              style={{
-                position: 'absolute',
-                bottom: 50,
-                alignSelf: 'flex-end',
-                right: 10,
-              }}>
-              camera
+          <TouchableOpacity>
+            <Text style={{color: 'black', fontSize: 16}}>
+              Images
+              <Image source={imageupload} />
             </Text>
           </TouchableOpacity>
+          <Text></Text>
         </View>
-        <FlatList
-          data={data}
-          numColumns={3}
-          keyExtractor={item => item.id}
-          renderItem={({item, index}) => (
-            <>
-              {item.downloadURL && (
-                <TouchableOpacity onPress={() => handlePostPress(index)}>
-                  {item.mediaType === 'image' && (
-                    <Image
-                      source={{uri: item.downloadURL}}
-                      style={{width: 124, height: 124}}
-                    />
-                  )}
-                  {item.mediaType === 'video' && (
-                    <Video
-                      source={{uri: item.downloadURL}}
-                      style={{width: 124, height: 124}}
-                    />
-                  )}
-                </TouchableOpacity>
-              )}
-            </>
-          )}
+        <View>
+          <TouchableOpacity
+            style={{marginHorizontal: 12, marginTop: 20}}
+            onPress={pickImageAndUpload}>
+            <Image source={upload} alt="upload" />
+          </TouchableOpacity>
+        </View>
+        <Text style={CreateStyle.Post}>Post Description</Text>
+        <InputField
+          placeholder="Add post description"
+          onChangeText={text => setDescription(text)}
         />
-      </View>
+        <TouchableOpacity
+          style={CreateStyle.buttcontainer}
+          onPress={pickImageAndUpload}>
+          <Text style={CreateStyle.text}>Upload</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }

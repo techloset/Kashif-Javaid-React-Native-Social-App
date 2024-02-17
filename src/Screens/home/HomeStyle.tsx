@@ -16,6 +16,7 @@ export const HomeStyle = StyleSheet.create({
   img: {
     marginLeft: 11,
     marginTop: 10,
+    marginBottom: 10,
     width: 22,
     height: 22,
     borderRadius: 100,
@@ -27,7 +28,8 @@ export const HomeStyle = StyleSheet.create({
   },
   text1: {
     fontSize: 20,
-    fontFamily: 'Roboto-bold-ttf',
+    fontFamily: 'Roboto-bold',
+    color: 'black',
   },
   dots: {
     marginRight: 14,
