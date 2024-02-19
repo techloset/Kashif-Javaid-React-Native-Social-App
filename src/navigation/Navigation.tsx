@@ -16,6 +16,7 @@ import Library from '../screens/library/Library';
 import Photos from '../screens/photos/Photos';
 import Videos from '../screens/videos/Videos';
 import CreatePost from '../screens/createPost/CreatePost';
+import EditProfile from '../screens/editProfile/EditProfile';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<ParamsList>();
 
@@ -43,10 +44,14 @@ export default function Navigation() {
           component={Root}
           options={{headerShown: false}}
         />
-
         <Stack.Screen
           name="Library"
           component={Root1}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Editprofile"
+          component={EditProfile}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

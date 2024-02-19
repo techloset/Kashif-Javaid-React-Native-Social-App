@@ -17,7 +17,6 @@ export default function useSingup(
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpass, setConfirmpass] = useState('');
-
   const [badusername, setBadusername] = useState('');
   const [bademail, setBademail] = useState('');
   const [badpassword, setBadpassword] = useState('');

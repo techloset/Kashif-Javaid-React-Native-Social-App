@@ -11,6 +11,7 @@ export type ParamsList = {
   useAddScreen: undefined;
   user: undefined;
   Library: undefined;
+  Editprofile: undefined;
 };
 export type params = {
   image: string;
@@ -37,4 +38,14 @@ export type InputType = {
   keyboardType?: KeyboardTypeOptions;
   onChangeText?: (text: string) => void;
   value?: string;
+  label?: string;
+};
+
+export type EditInput = {
+  secureTextEnter?: boolean;
+  placeholder?: string;
+  keyboardType?: KeyboardTypeOptions;
+  onChangeText?: (text: string) => void;
+  value?: string;
+  label?: string;
 };

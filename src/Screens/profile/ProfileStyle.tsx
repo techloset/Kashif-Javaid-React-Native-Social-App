@@ -18,6 +18,8 @@ export const ProfileStlye = StyleSheet.create({
     marginTop: 56,
   },
   profileimg: {
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 86,
     height: 86,
     borderRadius: 100,
@@ -38,5 +40,19 @@ export const ProfileStlye = StyleSheet.create({
     flexWrap: 'nowrap',
     paddingHorizontal: 40,
     marginTop: 1,
+  },
+  button: {
+    height: 30,
+    borderRadius: 5,
+    marginHorizontal: 16,
+    marginTop: 15,
+    borderColor: 'lightgray',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'black',
+    fontSize: 15,
+    fontFamily: 'Roboto-bold',
+    lineHeight: 18,
   },
 });

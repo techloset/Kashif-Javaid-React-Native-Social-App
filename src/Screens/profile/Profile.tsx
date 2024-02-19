@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import {ProfileStlye} from './ProfileStyle';
 import auth from '@react-native-firebase/auth';
 import profilelock from '../../assets/images/profile.png';
@@ -51,6 +44,13 @@ export default function Profile(
             Digital goodies designer @pixsellz Everything is designed.
           </Text>
         </View>
+        <View style={ProfileStlye.button}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Editprofile')}>
+            <Text>Edit Profile</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={{marginTop: 12}}>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('Library')}>

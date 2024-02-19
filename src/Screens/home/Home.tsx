@@ -123,9 +123,8 @@ export default function Home() {
                       alignItems: 'center',
                     }}>
                     <Text>
-                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>{' '}
-                      The game in Japan was amazing and I want to share some
-                      photos
+                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>
+                      {item.description}
                     </Text>
                   </View>
                 </View>
