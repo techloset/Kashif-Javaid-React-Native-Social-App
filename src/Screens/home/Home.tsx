@@ -17,10 +17,12 @@ import messenger from '../../assets/images/Messanger.png';
 import ovel from '../../assets/images/Oval.png';
 import save from '../../assets/images/Save.png';
 import Video from 'react-native-video';
+import {useEditProfile} from '../editProfile/useEditProfile';
 
 export default function Home() {
   const {data, formatDate} = useHome();
   const user = auth().currentUser;
+  const {image} = useEditProfile();
 
   return (
     <View style={HomeStyle.container}>
@@ -39,8 +41,9 @@ export default function Home() {
                     style={HomeStyle.img}
                   />
                 ) : (
-                  <Text style={HomeStyle.placeholderText}>Image</Text>
+                  !image && <View style={HomeStyle.img} />
                 )}
+                {image && <Image source={{uri: image}} style={HomeStyle.img} />}
               </View>
             </View>
             <View style={HomeStyle.name}>
@@ -109,7 +112,10 @@ export default function Home() {
                       style={HomeStyle.img1}
                     />
                   ) : (
-                    <Text style={HomeStyle.placeholderText}>Image</Text>
+                    !image && <View style={HomeStyle.img1} />
+                  )}
+                  {image && (
+                    <Image source={{uri: image}} style={HomeStyle.img1} />
                   )}
                   <Text style={HomeStyle.text2}>
                     Liked by {item.userName} and 44,686 others

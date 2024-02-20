@@ -17,6 +17,7 @@ import Photos from '../screens/photos/Photos';
 import Videos from '../screens/videos/Videos';
 import CreatePost from '../screens/createPost/CreatePost';
 import EditProfile from '../screens/editProfile/EditProfile';
+import {useEditProfile} from '../screens/editProfile/useEditProfile';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<ParamsList>();
 
@@ -60,6 +61,7 @@ export default function Navigation() {
 }
 
 function Root() {
+  const {image} = useEditProfile();
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -96,13 +98,15 @@ function Root() {
                     style={{width: 28, height: 28, borderRadius: 30}}
                   />
                 ) : (
-                  <View
-                    style={{
-                      width: 28,
-                      height: 28,
-                      borderRadius: 200,
-                      backgroundColor: focused ? 'gray' : '',
-                    }}></View>
+                  !Image && (
+                    <View style={{width: 28, height: 28, borderRadius: 30}} />
+                  )
+                )}
+                {image && (
+                  <Image
+                    source={{uri: image}}
+                    style={{width: 28, height: 28, borderRadius: 30}}
+                  />
                 )}
               </View>
             );

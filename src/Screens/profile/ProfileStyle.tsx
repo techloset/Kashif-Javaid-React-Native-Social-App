@@ -34,12 +34,19 @@ export const ProfileStlye = StyleSheet.create({
   },
   username: {
     marginTop: 11,
+    alignItems: 'center',
+    fontFamily: 'Roboto-bold',
+    color: 'black',
+    fontWeight: 'bold',
   },
   bio: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    paddingHorizontal: 40,
     marginTop: 1,
+    fontFamily: 'Roboto-bold',
+    color: 'black',
+    fontSize: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
   },
   button: {
     height: 30,

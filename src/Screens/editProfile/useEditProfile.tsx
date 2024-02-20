@@ -10,6 +10,7 @@ import {
 import storage from '@react-native-firebase/storage';
 
 export function useEditProfile() {
+  const [image, setImage] = useState<string | null>('');
   const [name, setName] = useState('');
   const [username, setUserName] = useState('');
   const [website, setWebsite] = useState('');
@@ -17,8 +18,30 @@ export function useEditProfile() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
-  const [image, setImage] = useState<string | null>(null);
   const user = auth().currentUser;
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (user) {
+        const userRef = db.collection('Users').doc(user.uid);
+        const snapshot = await userRef.get();
+        if (snapshot.exists) {
+          const userData = snapshot.data();
+          console.log('User Data:', userData);
+          setImage(userData?.downloadURL || '');
+          setName(userData?.name || '');
+          setUserName(userData?.username || '');
+          setWebsite(userData?.website || '');
+          setBio(userData?.bio || '');
+          setEmail(userData?.email || '');
+          setPhone(userData?.phone || '');
+          setGender(userData?.gender || '');
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, [user]);
 
   const profile = async () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
@@ -42,7 +65,7 @@ export function useEditProfile() {
           if (progress === 100) Alert.alert('uploaded');
         },
         error => {
-          Alert.alert('Error uploading image');
+          Alert.alert('Error.');
         },
         async () => {
           try {
@@ -50,53 +73,21 @@ export function useEditProfile() {
             if (downloadURL) {
               setImage(downloadURL);
               console.log(downloadURL);
-              const user = auth().currentUser;
-              if (user) {
-                const userId = user.uid;
-                db.collection('Profile').add({
-                  downloadURL,
-                  userId,
-                  createdAt: new Date(),
-                });
-              }
             }
-
-            console.log(profileimage);
           } catch (error) {
-            console.error('Error getting download URL', error);
+            console.error('Download URL: ', error);
           }
         },
       );
     } else {
-      Alert.alert('Not selected');
+      Alert.alert('Not select');
     }
   };
-
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      if (user) {
-        const userRef = db.collection('Users').doc(user.uid);
-        const snapshot = await userRef.get();
-        if (snapshot.exists) {
-          const userData = snapshot.data();
-          setName(userData?.name || '');
-          setUserName(userData?.username || '');
-          setWebsite(userData?.website || '');
-          setBio(userData?.bio || '');
-          setEmail(userData?.email || '');
-          setPhone(userData?.phone || '');
-          setGender(userData?.gender || '');
-        }
-      }
-    };
-
-    fetchUserProfile();
-  }, [user]);
 
   const validate = () => {
     let isValid = true;
     if (phone.length < 11) {
-      setPhone('Please enter a valid phone number');
+      setPhone('');
       isValid = false;
     } else if (phone.length >= 11) {
       isValid = true;
@@ -107,10 +98,13 @@ export function useEditProfile() {
   const handleEditProfile = async () => {
     if (validate()) {
       if (user) {
+        const userId = user.uid;
         const userRef = db.collection('Users').doc(user.uid);
         await userRef
           .set(
             {
+              userId,
+              createdAt: new Date(),
               name,
               username,
               website,
@@ -118,6 +112,7 @@ export function useEditProfile() {
               email,
               phone,
               gender,
+              downloadURL: image,
             },
             {merge: true},
           )
@@ -125,7 +120,7 @@ export function useEditProfile() {
             Alert.alert('Profile updated!');
           })
           .catch(error => {
-            Alert.alert('Error updating profile: ', error.message);
+            Alert.alert('Profile update karne mein masla: ', error.message);
           });
       }
     }

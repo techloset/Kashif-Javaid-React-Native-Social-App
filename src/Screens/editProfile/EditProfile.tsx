@@ -6,6 +6,7 @@ import {ParamsList} from '../../../type';
 import auth from '@react-native-firebase/auth';
 import EditInput from '../../components/editprofileinput/EditProfile';
 import {useEditProfile} from './useEditProfile';
+
 export default function EditProfile(
   props: NativeStackScreenProps<ParamsList, 'Editprofile'>,
 ) {
@@ -27,7 +28,9 @@ export default function EditProfile(
     setGender,
     handleEditProfile,
     profile,
+    image,
   } = useEditProfile();
+
   return (
     <View style={EditStyle.container}>
       <ScrollView>
@@ -51,13 +54,24 @@ export default function EditProfile(
                 source={{uri: user.providerData[0].photoURL}}
                 style={EditStyle.profileimg}
               />
-            ) : item && item?.downloadURL ? (
-              <Image
-                source={{uri: item?.downloadURL}}
-                style={EditStyle.profileimg}
-              />
             ) : (
-              <View style={EditStyle.nonimg}></View>
+              <>
+                {image ? (
+                  <Image
+                    source={{uri: image}}
+                    style={{borderRadius: 100, width: 100, height: 100}}
+                  />
+                ) : (
+                  <View
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 100,
+                      backgroundColor: 'gray',
+                    }}
+                  />
+                )}
+              </>
             )}
           </View>
 

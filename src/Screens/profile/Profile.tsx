@@ -8,12 +8,14 @@ import {useProfile} from './useProfile';
 import Video from 'react-native-video';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
+import {useEditProfile} from '../editProfile/useEditProfile';
 
 export default function Profile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {
   const user = auth().currentUser;
   const {data} = useProfile();
+  const {image, bio, name, username} = useEditProfile();
 
   return (
     <View style={ProfileStlye.container}>
@@ -21,28 +23,41 @@ export default function Profile(
         <View style={ProfileStlye.profileName}>
           <View style={{flexDirection: 'row'}}>
             <Image source={profilelock} style={ProfileStlye.lock} />
-            <Text style={ProfileStlye.nameheading}>{user?.displayName}</Text>
+            <Text style={ProfileStlye.nameheading}>{username}</Text>
           </View>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <View>
-              {user?.providerData[0].photoURL ? (
+              {user && user.providerData && user.providerData[0].photoURL ? (
                 <Image
                   source={{uri: user.providerData[0].photoURL}}
                   style={ProfileStlye.profileimg}
                 />
               ) : (
-                <View style={ProfileStlye.nonimg}></View>
+                !image && (
+                  <View
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 100,
+                      backgroundColor: 'gray',
+                    }}
+                  />
+                )
+              )}
+              {image && (
+                <Image
+                  source={{uri: image}}
+                  style={{width: 100, borderRadius: 100, height: 100}}
+                />
               )}
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={ProfileStlye.username}>{user?.displayName}</Text>
+              <Text style={ProfileStlye.username}>{name}</Text>
             </View>
           </View>
         </View>
         <View style={ProfileStlye.bio}>
-          <Text>
-            Digital goodies designer @pixsellz Everything is designed.
-          </Text>
+          <Text>{bio}</Text>
         </View>
         <View style={ProfileStlye.button}>
           <TouchableOpacity
