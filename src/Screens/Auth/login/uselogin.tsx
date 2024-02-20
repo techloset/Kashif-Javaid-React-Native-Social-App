@@ -46,7 +46,6 @@ export function useLogin(props: Params) {
         .then(userCredential => {
           const user = userCredential.user;
           console.log('User signed in:', user);
-          props.navigation.navigate('Home');
         })
         .catch(error => {
           if (error.code === 'auth/user-not-found') {
@@ -64,10 +63,7 @@ export function useLogin(props: Params) {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const user_sign = auth().signInWithCredential(googleCredential);
     user_sign
-
-      .then(user => {
-        props.navigation.navigate('Home');
-      })
+      .then(user => {})
       .catch(error => {
         console.log(error);
       });

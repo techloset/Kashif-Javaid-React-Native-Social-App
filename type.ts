@@ -4,7 +4,7 @@ export type ParamsList = {
   Login: undefined;
   Singup: undefined;
   Reset: undefined;
-  Home: undefined;
+  HomeScreen: undefined;
   Root: undefined;
   Create: undefined;
   Profile: undefined;
@@ -12,7 +12,14 @@ export type ParamsList = {
   user: undefined;
   Library: undefined;
   Editprofile: undefined;
+  Photo: undefined;
+  Video: undefined;
+  EditNavigation: undefined;
 };
+export type RootStackParamList = {
+  Login: undefined;
+};
+
 export type params = {
   image: string;
   photoUrl: string;

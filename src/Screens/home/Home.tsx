@@ -2,10 +2,10 @@ import React from 'react';
 import {
   View,
   Text,
-  ScrollView,
   Image,
   FlatList,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from 'react-native';
 import instaimg from '../../../src/assets/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <View style={HomeStyle.container}>
-      <View>
+      <View style={HomeStyle.container}>
         <View style={HomeStyle.imgcontainer}>
           <Image source={instaimg} />
         </View>
