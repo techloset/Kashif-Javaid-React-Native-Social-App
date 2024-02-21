@@ -16,10 +16,10 @@ import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 
-GoogleSignin.configure({
-  webClientId:
-    '753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com',
-});
+// GoogleSignin.configure({
+//   webClientId:
+//     '753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com',
+// });
 export default function SingUp(
   props: NativeStackScreenProps<ParamsList, 'Singup'>,
 ) {
@@ -35,9 +35,9 @@ export default function SingUp(
     badpassword,
     confirmpass,
     setConfirmpass,
+    signup,
     badconfirmpass,
-    handleSignUp,
-    onGoogleButtonPress,
+    Googlesign,
   } = useSingup(props);
 
   return (
@@ -79,12 +79,10 @@ export default function SingUp(
           <Text style={{color: 'red'}}>{badconfirmpass}</Text>
         </View>
         <View>
-          <TouchableOpacity
-            style={signstyleshhet.signin}
-            onPress={handleSignUp}>
+          <TouchableOpacity style={signstyleshhet.signin} onPress={signup}>
             <Text style={signstyleshhet.signbutt}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={onGoogleButtonPress}>
+          <TouchableOpacity onPress={Googlesign}>
             <Text style={signstyleshhet.google}>
               <Image source={signimg} />
             </Text>

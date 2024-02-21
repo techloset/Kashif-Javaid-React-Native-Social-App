@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import {EditStyle} from './EditStyle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
-import auth from '@react-native-firebase/auth';
 import EditInput from '../../components/editprofileinput/EditProfile';
 import {useEditProfile} from './useEditProfile';
 

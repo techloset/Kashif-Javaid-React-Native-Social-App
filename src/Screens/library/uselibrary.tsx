@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {useProfile} from '../profile/useProfile';
 import {ParamsList, Post} from '../../../type';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useProfile} from '../profile/useProfile';
 
 export function useLibrary(
   props: NativeStackScreenProps<ParamsList, 'Library'>,

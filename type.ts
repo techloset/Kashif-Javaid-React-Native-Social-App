@@ -65,3 +65,41 @@ type user = {
   bio: string;
   photoUrl: string;
 };
+
+export interface AuthState {
+  user: null;
+  isLoading: boolean;
+  error: string | null;
+  badUsername: string;
+  badEmail: string;
+  badPassword: string;
+  badConfirmPass: string;
+  setuseName: string;
+  setuseEmail: string;
+  setusePassword: string;
+  setuseConfirmPass: string;
+}
+
+export interface Googletype {
+  user: null;
+  isLoading: boolean;
+  error: string | null;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginState {
+  user: null;
+  isLoading: boolean;
+  error: string | null;
+  email: string;
+  password: string;
+}
+
+export interface resetpasswordState {
+  user: null;
+  error: string | null;
+  email: string;
+  isLoading: boolean;
+}

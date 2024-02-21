@@ -1,13 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  Alert,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
 import instimg from '../../../assets/images/Instagram.png';
 import google from '../../../assets/images/Google.png';
 import {loginstyle} from './LoginStyle';
@@ -23,8 +15,8 @@ export default function Login(props: Params) {
     password,
     setPassword,
     badpassword,
-    handleLogin,
-    googlelogout,
+    Loginhandle,
+    Googlesign,
   } = useLogin(props);
   return (
     <View style={loginstyle.container}>
@@ -62,10 +54,10 @@ export default function Login(props: Params) {
           <TouchableOpacity onPress={() => props.navigation.navigate('Reset')}>
             <Text style={loginstyle.forpassword}>Forgot password?</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={loginstyle.logindiv} onPress={handleLogin}>
+          <TouchableOpacity style={loginstyle.logindiv} onPress={Loginhandle}>
             <Text style={loginstyle.loginbutt}>Log in</Text>
           </TouchableOpacity>
-          <Text style={loginstyle.googlebutt} onPress={googlelogout}>
+          <Text style={loginstyle.googlebutt} onPress={Googlesign}>
             <Image source={google} />
           </Text>
         </View>

@@ -73,7 +73,7 @@ export default function Profile(
 
         <View style={{marginTop: 12}}>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('Library')}>
+            onPress={() => props.navigation.navigate('EditNavigation')}>
             <Image source={profileimgs} alt="images" />
           </TouchableOpacity>
         </View>

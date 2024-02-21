@@ -1,18 +1,14 @@
 import {Alert} from 'react-native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import auth from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {ParamsList} from '../../../../type';
-import {db} from '../../../config/Firebase';
+import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
+import {SignUp} from '../../../store/slices/sigupslice/sigupslice';
+import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
+
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
-GoogleSignin.configure({
-  webClientId:
-    '753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com',
-});
-export default function useSingup(
-  props: NativeStackScreenProps<ParamsList, 'Singup'>,
-) {
+
+const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,104 +18,71 @@ export default function useSingup(
   const [badpassword, setBadpassword] = useState('');
   const [badconfirmpass, setBadconfirmpass] = useState('');
 
-  const validate = () => {
-    let isValid = true;
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector(state => state.auth.user);
+  const signup = () => {
+    const validationError = validate(username, email, password, confirmpass);
+    if (validationError) {
+      setBadusername(username === '' ? 'Please enter a username' : '');
+      setBademail(email === '' ? 'Please enter a valid email' : '');
+      setBadpassword(password === '' ? 'Please enter a password' : '');
+      setBadconfirmpass(
+        confirmpass === '' ? 'Please confirm your password' : '',
+      );
+      return;
+    }
+    try {
+      dispatch(SignUp({username, email, password, confirmpass}));
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+  const validate = (
+    username: string,
+    email: string,
+    password: string,
+    confirmpass: string,
+  ): string | undefined => {
     if (username === '') {
-      setBadusername('Please enter a username');
-      isValid = false;
-    } else {
-      setBadusername('');
+      return 'Please enter a username';
     }
     if (email === '') {
-      setBademail('Please enter a valid email');
-      isValid = false;
-    } else if (
+      return 'Please enter a valid email';
+    }
+    if (
       !email
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     ) {
-      setBademail('Please enter a valid email');
-      isValid = false;
-    } else {
-      setBademail('');
+      return 'Please enter a valid email';
     }
     if (password === '') {
-      setBadpassword('Please enter a password');
-      isValid = false;
-    } else if (password.length < 8) {
-      setBadpassword('Password must be at least 8 characters');
-      isValid = false;
-    } else {
-      setBadpassword('');
+      return 'Please enter a password';
+    }
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters';
     }
     if (confirmpass === '') {
-      setBadconfirmpass('Please confirm your password');
-      isValid = false;
-    } else if (confirmpass !== password) {
-      setBadconfirmpass('Passwords do not match');
-      isValid = false;
-    } else {
-      setBadconfirmpass('');
+      return 'Please confirm your password';
     }
-
-    return isValid;
-  };
-  const handleSignUp = async () => {
-    if (validate()) {
-      await auth().createUserWithEmailAndPassword(email, password);
-      db.collection('Users')
-        .add({
-          username,
-          email,
-          password,
-        })
-        .then(() => {
-          console.log('User added!');
-        });
-      await auth()
-        .currentUser?.updateProfile({
-          displayName: username,
-        })
-        .then(() => {
-          Alert.alert('User account created & signed in!');
-        })
-
-        .catch(error => {
-          if (error.code === 'auth/email-already-in-use') {
-            Alert.alert('That email address is already in use!');
-          }
-
-          if (error.code === 'auth/invalid-email') {
-            Alert.alert('That email address is invalid!');
-          }
-
-          console.error(error);
-        });
+    if (confirmpass !== password) {
+      return 'Passwords do not match';
     }
   };
-  const onGoogleButtonPress = async () => {
-    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-    const {idToken} = await GoogleSignin.signIn();
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    const user_sign = auth().signInWithCredential(googleCredential);
-    user_sign.then(user => {
-      db.collection('Users').add({
-        displayName: String,
-        email,
-        password,
-      });
-      console.log(user);
-    });
+
+  const Googlesignup = useAppSelector(state => state.Googlesignup.user);
+  const Googlesign = () => {
+    try {
+      dispatch(GoogleSignIn());
+    } catch (error) {
+      console.log('error', error);
+    }
   };
+
   return {
-    onGoogleButtonPress,
-    handleSignUp,
-    badusername,
-    bademail,
-    badpassword,
-    badconfirmpass,
+    signup,
     username,
     setUserName,
     email,
@@ -128,5 +91,16 @@ export default function useSingup(
     setPassword,
     confirmpass,
     setConfirmpass,
+    setBadusername,
+    setBademail,
+    setBadpassword,
+    setBadconfirmpass,
+    badusername,
+    bademail,
+    badpassword,
+    badconfirmpass,
+    Googlesign,
   };
-}
+};
+
+export default useSingup;

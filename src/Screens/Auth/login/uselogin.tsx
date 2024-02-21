@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
-import auth from '@react-native-firebase/auth';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {ParamsList} from '../../../../type';
 import {Alert} from 'react-native';
+import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
+import {userlogin} from '../../../store/slices/loginslice/loginSlice';
+import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
+
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
+
 export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [bademail, setBademail] = useState('');
   const [badpassword, setBadpassword] = useState('');
+
   const validate = () => {
     let isValid = true;
+
     if (email === '') {
       setBademail('Please enter a valid email');
       isValid = false;
@@ -27,6 +32,7 @@ export function useLogin(props: Params) {
     } else {
       setBademail('');
     }
+
     if (password === '') {
       setBadpassword('Please enter your Password');
       isValid = false;
@@ -39,35 +45,28 @@ export function useLogin(props: Params) {
 
     return isValid;
   };
-  const handleLogin = () => {
+
+  const dispatch = useAppDispatch();
+  const login = useAppSelector(state => state.login.user);
+
+  const Loginhandle = () => {
     if (validate()) {
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          const user = userCredential.user;
-          console.log('User signed in:', user);
-        })
-        .catch(error => {
-          if (error.code === 'auth/user-not-found') {
-          } else {
-            Alert.alert('Create account');
-          }
-        });
+      try {
+        dispatch(userlogin({email, password}));
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+  };
+  const Googlesignup = useAppSelector(state => state.Googlesignup.user);
+  const Googlesign = () => {
+    try {
+      dispatch(GoogleSignIn());
+    } catch (error) {
+      console.log('error', error);
     }
   };
 
-  const googlelogout = async () => {
-    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-    await GoogleSignin.signOut();
-    const {idToken} = await GoogleSignin.signIn();
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    const user_sign = auth().signInWithCredential(googleCredential);
-    user_sign
-      .then(user => {})
-      .catch(error => {
-        console.log(error);
-      });
-  };
   return {
     password,
     setPassword,
@@ -75,7 +74,7 @@ export function useLogin(props: Params) {
     setEmail,
     bademail,
     badpassword,
-    handleLogin,
-    googlelogout,
+    Loginhandle,
+    Googlesign,
   };
 }
