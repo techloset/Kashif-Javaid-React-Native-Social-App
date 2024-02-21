@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import instaimg from '../../../src/assets/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
 import {HomeStyle} from './HomeStyle';

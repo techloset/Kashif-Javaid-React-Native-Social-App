@@ -14,7 +14,7 @@ export default function Profile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {
   const user = auth().currentUser;
-  const {data} = useProfile();
+  const {data, siguout} = useProfile(props);
   const {image, bio, name, username} = useEditProfile();
 
   return (
@@ -63,6 +63,11 @@ export default function Profile(
           <TouchableOpacity
             onPress={() => props.navigation.navigate('Editprofile')}>
             <Text>Edit Profile</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={ProfileStlye.button}>
+          <TouchableOpacity onPress={siguout}>
+            <Text>Signed out</Text>
           </TouchableOpacity>
         </View>
 

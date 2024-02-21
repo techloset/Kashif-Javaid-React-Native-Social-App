@@ -56,3 +56,12 @@ export type EditInput = {
   value?: string;
   label?: string;
 };
+
+type user = {
+  id: string;
+  user: string;
+  email: string;
+  phone: string;
+  bio: string;
+  photoUrl: string;
+};

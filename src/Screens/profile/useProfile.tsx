@@ -1,8 +1,12 @@
 import {useState, useEffect} from 'react';
 import {db} from '../../config/Firebase';
 import auth from '@react-native-firebase/auth';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ParamsList} from '../../../type';
 
-export function useProfile() {
+export function useProfile(
+  props: NativeStackScreenProps<ParamsList, 'Profile'>,
+) {
   const [data, setData] = useState<any>([]);
   useEffect(() => {
     const fetchImages = async () => {
@@ -32,5 +36,10 @@ export function useProfile() {
     fetchImages();
   }, []);
 
-  return {data};
+  const siguout = () => {
+    auth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
+  };
+  return {data, siguout};
 }
