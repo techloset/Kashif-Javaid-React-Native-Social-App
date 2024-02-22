@@ -103,3 +103,16 @@ export interface resetpasswordState {
   email: string;
   isLoading: boolean;
 }
+
+export interface PostState {
+  user: null;
+  error: string | null;
+  isLoading: boolean;
+  description: string;
+  imageUri: string;
+  selectedAsset: string;
+}
+
+export interface UploadResult {
+  success: boolean;
+}

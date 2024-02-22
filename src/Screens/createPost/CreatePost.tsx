@@ -8,12 +8,12 @@ import {useCreate} from './useCreate';
 
 export default function CreatePost() {
   const {
-    pickImage,
     description,
-    uploadImageAndDescription,
     setDescription,
+    handleImageSelect,
     imageUri,
     uploading,
+    handleUpload,
   } = useCreate();
 
   return (
@@ -41,7 +41,7 @@ export default function CreatePost() {
           ) : (
             <TouchableOpacity
               style={{marginHorizontal: 12, marginTop: 20}}
-              onPress={pickImage}>
+              onPress={handleImageSelect}>
               <Image source={upload} alt="upload" />
             </TouchableOpacity>
           )}
@@ -56,7 +56,7 @@ export default function CreatePost() {
 
         <TouchableOpacity
           style={CreateStyle.buttcontainer}
-          onPress={uploadImageAndDescription}
+          onPress={handleUpload}
           disabled={uploading}>
           <Text style={CreateStyle.text}>Upload</Text>
         </TouchableOpacity>

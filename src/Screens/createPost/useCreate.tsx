@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {
-  launchImageLibrary,
-  ImagePickerResponse,
   ImageLibraryOptions,
+  ImagePickerResponse,
+  launchImageLibrary,
 } from 'react-native-image-picker';
-import storage from '@react-native-firebase/storage';
-import auth from '@react-native-firebase/auth';
-import {db} from '../../config/Firebase';
+import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
+import {useState} from 'react';
+import {uploadImageAndDescription} from '../../store/slices/createSlice/createSlice';
 
 export function useCreate() {
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState(null);
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [selectedAsset, setSelectedAsset] = useState<
     ImagePickerResponse['assets'] | null
@@ -18,98 +17,44 @@ export function useCreate() {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
 
-  const pickImage = async () => {
+  const dispatch = useAppDispatch();
+  const addpost = useAppSelector(state => state.addpost.user);
+
+  const handleImageSelect = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
-    launchImageLibrary(options, handleImageSelection);
+    launchImageLibrary(options, response => {
+      if (response.assets && response.assets.length > 0) {
+        const selectedAssets = response.assets;
+        const uri: string = selectedAssets[0].uri ?? '';
+        setImageUri(uri);
+        setSelectedAsset(selectedAssets);
+      } else {
+        Alert.alert('No image selected');
+      }
+    });
   };
+  console.log('pick image', handleImageSelect);
 
-  const handleImageSelection = (fileobj: ImagePickerResponse) => {
-    if (fileobj.assets && fileobj.assets.length > 0) {
-      const selectedAssets = fileobj.assets;
-      const uri: string = selectedAssets[0].uri ?? '';
-      setImageUri(uri);
-      setSelectedAsset(selectedAssets);
-    } else {
-      Alert.alert('No image selected');
-    }
-  };
-
-  const uploadImageAndDescription = async () => {
-    if (!imageUri || !selectedAsset) {
-      Alert.alert('Please select All files');
+  const handleUpload = () => {
+    if (!imageUri || !selectedAsset || !description) {
+      Alert.alert('Please select an image and enter description');
       return;
     }
-    setUploading(true);
-    try {
-      const uploadTask = storage()
-        .ref()
-        .child(`/userprofile/${Date.now()}`)
-        .putFile(imageUri);
-
-      uploadTask.on(
-        'state_changed',
-        snapshot => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setTransferred(progress);
-        },
-        error => {
-          Alert.alert('Error uploading image');
-          setUploading(false);
-        },
-        async () => {
-          try {
-            const downloadURL = await uploadTask.snapshot?.ref.getDownloadURL();
-            if (downloadURL) {
-              const user = auth().currentUser;
-              if (user) {
-                const userId = user.uid;
-                const userName = user.displayName || '';
-                const mediaType =
-                  selectedAsset &&
-                  selectedAsset.length > 0 &&
-                  selectedAsset[0].type &&
-                  selectedAsset[0].type.startsWith('video')
-                    ? 'video'
-                    : 'image';
-
-                await db.collection('Images').add({
-                  downloadURL,
-                  userName,
-                  userId,
-                  createdAt: new Date(),
-                  mediaType,
-                  description,
-                });
-
-                Alert.alert('Image uploaded successfully');
-                setImageUri(null);
-                setSelectedAsset(null);
-                setDescription('');
-              }
-            }
-          } catch (error) {
-            console.error('Error getting download URL', error);
-          }
-          setUploading(false);
-        },
-      );
-    } catch (error) {
-      console.error('Error uploading image', error);
-      setUploading(false);
-    }
+    dispatch(uploadImageAndDescription({imageUri, description, selectedAsset}));
+    setImageUri('');
+    setDescription(null);
+    setSelectedAsset(null);
   };
 
-  useEffect(() => {
-    console.log(description);
-  }, []);
+  console.log('click', handleUpload);
 
   return {
     description,
     setDescription,
-    pickImage,
-    uploadImageAndDescription,
+    handleImageSelect,
+    handleUpload,
     imageUri,
+    addpost,
     uploading,
     transferred,
   };
