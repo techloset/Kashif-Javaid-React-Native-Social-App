@@ -13,7 +13,7 @@ import Video from 'react-native-video';
 import {useEditProfile} from '../editProfile/useEditProfile';
 
 export default function Home() {
-  const {data, formatDate} = useHome();
+  const {allPosts, formatDate} = useHome();
   const user = auth().currentUser;
   const {image} = useEditProfile();
 
@@ -48,10 +48,11 @@ export default function Home() {
           <Text style={HomeStyle.dots}>...</Text>
         </View>
         <FlatList
-          data={data}
+          data={allPosts.data}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
+              <Text>{item.userName}</Text>
               {item.mediaType === 'image' ? (
                 <Image
                   source={{uri: item.downloadURL}}
@@ -122,23 +123,22 @@ export default function Home() {
                       alignItems: 'center',
                     }}>
                     <Text>
-                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>
+                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>{' '}
                       {item.description}
                     </Text>
                   </View>
-                </View>
-
-                <View style={{marginLeft: 15, marginTop: 15}}>
-                  {item.createdAt ? (
-                    <Text>{formatDate(item.createdAt)}</Text>
-                  ) : (
-                    <Text>No creation date available</Text>
-                  )}
                 </View>
               </View>
             </View>
           )}
         />
+        {/* <View style={{marginLeft: 15, marginTop: 15}}>
+          {item.createdAt ? (
+            <Text>{formatDate(item.createdAt)}</Text>
+          ) : (
+            <Text>No creation date available</Text>
+          )}
+        </View> */}
       </View>
     </View>
   );

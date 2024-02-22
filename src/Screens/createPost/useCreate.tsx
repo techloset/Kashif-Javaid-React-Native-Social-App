@@ -7,16 +7,14 @@ import {
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {useState} from 'react';
 import {uploadImageAndDescription} from '../../store/slices/createSlice/createSlice';
-
 export function useCreate() {
-  const [description, setDescription] = useState(null);
+  const [description, setDescription] = useState('');
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [selectedAsset, setSelectedAsset] = useState<
     ImagePickerResponse['assets'] | null
   >(null);
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
-
   const dispatch = useAppDispatch();
   const addpost = useAppSelector(state => state.addpost.user);
 
@@ -34,7 +32,6 @@ export function useCreate() {
     });
   };
   console.log('pick image', handleImageSelect);
-
   const handleUpload = () => {
     if (!imageUri || !selectedAsset || !description) {
       Alert.alert('Please select an image and enter description');
@@ -42,12 +39,10 @@ export function useCreate() {
     }
     dispatch(uploadImageAndDescription({imageUri, description, selectedAsset}));
     setImageUri('');
-    setDescription(null);
+    setDescription('');
     setSelectedAsset(null);
   };
-
   console.log('click', handleUpload);
-
   return {
     description,
     setDescription,
@@ -57,5 +52,7 @@ export function useCreate() {
     addpost,
     uploading,
     transferred,
+    setUploading,
+    setTransferred,
   };
 }

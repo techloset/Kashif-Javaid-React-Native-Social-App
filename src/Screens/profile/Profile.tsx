@@ -14,7 +14,7 @@ export default function Profile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {
   const user = auth().currentUser;
-  const {data, siguout} = useProfile(props);
+  const {profile, siguout} = useProfile(props);
   const {image, bio, name, username} = useEditProfile();
 
   return (
@@ -80,7 +80,7 @@ export default function Profile(
 
         <View>
           <FlatList
-            data={data}
+            data={profile.data}
             numColumns={3}
             keyExtractor={item => item.id}
             renderItem={({item}) => (

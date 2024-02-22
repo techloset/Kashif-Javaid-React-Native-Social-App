@@ -116,3 +116,20 @@ export interface PostState {
 export interface UploadResult {
   success: boolean;
 }
+
+export interface HomeState {
+  user: null;
+  error: string | null;
+  isLoading: boolean;
+  data: any[];
+  setData: any[];
+  isVideoPlaying: boolean;
+}
+
+export interface profileState {
+  user: null;
+  error: string | null;
+  isLoading: boolean;
+  data: any[];
+  setData: any[];
+}
