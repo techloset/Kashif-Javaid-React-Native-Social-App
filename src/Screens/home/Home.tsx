@@ -12,7 +12,7 @@ import save from '../../assets/images/Save.png';
 import Video from 'react-native-video';
 import {useEditProfile} from '../editProfile/useEditProfile';
 
-export default function Home() {
+export default function Home(item: any) {
   const {allPosts, formatDate} = useHome();
   const user = auth().currentUser;
   const {image} = useEditProfile();
@@ -132,13 +132,13 @@ export default function Home() {
             </View>
           )}
         />
-        {/* <View style={{marginLeft: 15, marginTop: 15}}>
+        <View style={{marginLeft: 15, marginTop: 15}}>
           {item.createdAt ? (
             <Text>{formatDate(item.createdAt)}</Text>
           ) : (
             <Text>No creation date available</Text>
           )}
-        </View> */}
+        </View>
       </View>
     </View>
   );

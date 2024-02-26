@@ -21,13 +21,18 @@ export function useHome() {
       'November',
       'December',
     ];
-
     const month = monthNames[timestamp.getMonth()];
     const day = timestamp.getDate();
     return `${month} ${day}`;
   };
   useEffect(() => {
     dispatch(fetchPost());
+  }, [dispatch]);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(fetchPost());
+    }, 30000);
+    return () => clearInterval(intervalId);
   }, [dispatch]);
   return {
     allPosts,

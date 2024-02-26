@@ -42,21 +42,29 @@ export function TabNavigation() {
             const user = auth().currentUser;
             return (
               <View>
-                {user?.providerData[0].photoURL ? (
+                {user && user.providerData && user.providerData[0].photoURL ? (
                   <Image
                     source={{uri: user.providerData[0].photoURL}}
                     style={{width: 28, height: 28, borderRadius: 30}}
                   />
                 ) : (
-                  !Image && (
-                    <View style={{width: 28, height: 28, borderRadius: 30}} />
-                  )
-                )}
-                {image && (
-                  <Image
-                    source={{uri: image}}
-                    style={{width: 28, height: 28, borderRadius: 30}}
-                  />
+                  <>
+                    {image ? (
+                      <Image
+                        source={{uri: image}}
+                        style={{borderRadius: 30, width: 28, height: 28}}
+                      />
+                    ) : (
+                      <View
+                        style={{
+                          width: 28,
+                          height: 28,
+                          borderRadius: 100,
+                          backgroundColor: 'gray',
+                        }}
+                      />
+                    )}
+                  </>
                 )}
               </View>
             );

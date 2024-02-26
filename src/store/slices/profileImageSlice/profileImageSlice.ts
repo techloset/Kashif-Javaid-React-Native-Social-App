@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../../config/Firebase';
-import {Alert} from 'react-native';
 import storage from '@react-native-firebase/storage';
 import {ImageState, UploadResult1} from '../../../../type';
 
@@ -37,17 +36,14 @@ export const updateUserImage = createAsyncThunk(
                 await uploadTask.snapshot?.ref.getDownloadURL();
               if (downloadURL) {
                 const user = auth().currentUser;
-                if (user) {
-                  const userId = user.uid;
-                  const querySnapshot = await db
-                    .collection('profile')
-                    .where('userId', '==', userId)
-                    .get();
-                  querySnapshot.forEach(async doc => {
-                    await doc.ref.update({downloadURL});
+                const userId = user?.uid;
+                if (userId) {
+                  // Store the downloadURL with user's UID
+                  await db.collection('profile').doc(userId).set({
+                    downloadURL,
+                    userId,
                   });
-
-                  Alert.alert('Profile image updated successfully');
+                  // Update the imageUrl in Redux store
                   resolve({success: true, imageUrl: downloadURL});
                 }
               }

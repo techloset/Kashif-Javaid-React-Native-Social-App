@@ -116,6 +116,9 @@ export interface PostState {
 export interface UploadResult {
   success: boolean;
 }
+export interface Item {
+  createdAt: Date;
+}
 
 export interface UploadResult1 {
   success: boolean;
@@ -140,7 +143,7 @@ export interface profileState {
 }
 
 export interface EditprofileState {
-  user: null | any;
+  user: null;
   isLoading: boolean;
   error: string | null;
   name: string;
