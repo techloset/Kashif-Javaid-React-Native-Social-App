@@ -25,8 +25,8 @@ export default function EditProfile(
     setPhone,
     gender,
     setGender,
-    handleEditProfile,
-    profile,
+    updatehandle,
+    profileimage,
     image,
   } = useEditProfile();
 
@@ -40,7 +40,7 @@ export default function EditProfile(
               <Text>Cancel</Text>
             </TouchableOpacity>
             <Text>Edit Profile</Text>
-            <TouchableOpacity onPress={handleEditProfile}>
+            <TouchableOpacity onPress={updatehandle}>
               <Text>Done</Text>
             </TouchableOpacity>
           </View>
@@ -74,7 +74,7 @@ export default function EditProfile(
             )}
           </View>
 
-          <TouchableOpacity onPress={profile}>
+          <TouchableOpacity onPress={profileimage}>
             <Text style={EditStyle.photo}>Change Profile Photo</Text>
           </TouchableOpacity>
           <View style={EditStyle.line}></View>

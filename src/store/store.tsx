@@ -6,6 +6,9 @@ import resetpasswordReducer from './slices/resetpasswordSlice/resetpasswordSlice
 import createpostReducer from './slices/createSlice/createSlice';
 import fetchPostReducer from './slices/homeSlice/homeSlice';
 import userprofileReducer from './slices/profileslice/profileSlice';
+import editprofileReducer from './slices/editprofileSlice/editprofileSlice';
+import updateReducer from './slices/editprofileSlice/editprofileSlice';
+import updateprofileimageReducer from './slices/profileImageSlice/profileImageSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -15,6 +18,9 @@ export const store = configureStore({
     addpost: createpostReducer,
     allPosts: fetchPostReducer,
     profile: userprofileReducer,
+    editprofile: editprofileReducer,
+    updateprofile: updateReducer,
+    updateImage: updateprofileimageReducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

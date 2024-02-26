@@ -7,6 +7,7 @@ import {
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {useState} from 'react';
 import {uploadImageAndDescription} from '../../store/slices/createSlice/createSlice';
+
 export function useCreate() {
   const [description, setDescription] = useState('');
   const [imageUri, setImageUri] = useState<string | null>(null);
@@ -15,6 +16,7 @@ export function useCreate() {
   >(null);
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
+
   const dispatch = useAppDispatch();
   const addpost = useAppSelector(state => state.addpost.user);
 

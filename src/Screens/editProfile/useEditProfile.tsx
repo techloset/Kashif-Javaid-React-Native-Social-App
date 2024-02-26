@@ -1,16 +1,16 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../config/Firebase';
-import {Alert} from 'react-native';
 import {
   launchImageLibrary,
-  ImagePickerResponse,
   ImageLibraryOptions,
 } from 'react-native-image-picker';
-import storage from '@react-native-firebase/storage';
+import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
+import {updateUserImage} from '../../store/slices/profileImageSlice/profileImageSlice';
+import {userupdateprofile} from '../../store/slices/editprofileSlice/editprofileSlice';
 
 export function useEditProfile() {
-  const [image, setImage] = useState<string | null>('');
   const [name, setName] = useState('');
   const [username, setUserName] = useState('');
   const [website, setWebsite] = useState('');
@@ -18,6 +18,10 @@ export function useEditProfile() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
+  const [image, setImage] = useState<string | null>('');
+  const dispatch = useAppDispatch();
+  const updateprofile = useAppSelector(state => state.updateprofile);
+  const imageUrl = useAppSelector(state => state.updateImage.imageUrl);
   const user = auth().currentUser;
 
   useEffect(() => {
@@ -27,8 +31,6 @@ export function useEditProfile() {
         const snapshot = await userRef.get();
         if (snapshot.exists) {
           const userData = snapshot.data();
-          console.log('User Data:', userData);
-          setImage(userData?.downloadURL || '');
           setName(userData?.name || '');
           setUserName(userData?.username || '');
           setWebsite(userData?.website || '');
@@ -43,87 +45,36 @@ export function useEditProfile() {
     fetchUserProfile();
   }, [user]);
 
-  const profile = async () => {
+  useEffect(() => {
+    setImage(imageUrl);
+  }, [imageUrl]);
+
+  const profileimage = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
-    launchImageLibrary(options, profileimage);
-  };
-
-  const profileimage = async (fileobj: ImagePickerResponse) => {
-    if (fileobj.assets && fileobj.assets.length > 0) {
-      const selectedAsset = fileobj.assets[0];
-      const uri: string = selectedAsset.uri ?? '';
-      const uploadTask = storage()
-        .ref()
-        .child(`/profileimage/${Date.now()}`)
-        .putFile(uri);
-
-      uploadTask.on(
-        'state_changed',
-        snapshot => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          if (progress === 100) Alert.alert('uploaded');
-        },
-        error => {
-          Alert.alert('Error.');
-        },
-        async () => {
-          try {
-            const downloadURL = await uploadTask.snapshot?.ref.getDownloadURL();
-            if (downloadURL) {
-              setImage(downloadURL);
-              console.log(downloadURL);
-            }
-          } catch (error) {
-            console.error('Download URL: ', error);
-          }
-        },
-      );
-    } else {
-      Alert.alert('Not select');
-    }
-  };
-
-  const validate = () => {
-    let isValid = true;
-    if (phone.length < 11) {
-      setPhone('');
-      isValid = false;
-    } else if (phone.length >= 11) {
-      isValid = true;
-    }
-    return isValid;
-  };
-
-  const handleEditProfile = async () => {
-    if (validate()) {
-      if (user) {
-        const userId = user.uid;
-        const userRef = db.collection('Users').doc(user.uid);
-        await userRef
-          .set(
-            {
-              userId,
-              createdAt: new Date(),
-              name,
-              username,
-              website,
-              bio,
-              email,
-              phone,
-              gender,
-              downloadURL: image,
-            },
-            {merge: true},
-          )
-          .then(() => {
-            Alert.alert('Profile updated!');
-          })
-          .catch(error => {
-            Alert.alert('Profile update karne mein masla: ', error.message);
-          });
+    launchImageLibrary(options, response => {
+      if (response.assets && response.assets.length > 0) {
+        const selectedAssets = response.assets;
+        const uri: string = selectedAssets[0].uri ?? '';
+        dispatch(updateUserImage({imageUri: uri}));
+        setImage(uri);
+      } else {
+        Alert.alert('No image selected');
       }
-    }
+    });
+  };
+
+  const updatehandle = () => {
+    dispatch(
+      userupdateprofile({
+        name,
+        username,
+        website,
+        bio,
+        email,
+        phone,
+        gender,
+      }),
+    );
   };
 
   return {
@@ -142,9 +93,9 @@ export function useEditProfile() {
     gender,
     setGender,
     user,
-    handleEditProfile,
-    profile,
+    updateprofile,
     profileimage,
     image,
+    updatehandle,
   };
 }

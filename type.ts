@@ -117,6 +117,11 @@ export interface UploadResult {
   success: boolean;
 }
 
+export interface UploadResult1 {
+  success: boolean;
+  imageUrl: string;
+}
+
 export interface HomeState {
   user: null;
   error: string | null;
@@ -132,4 +137,24 @@ export interface profileState {
   isLoading: boolean;
   data: any[];
   setData: any[];
+}
+
+export interface EditprofileState {
+  user: null | any;
+  isLoading: boolean;
+  error: string | null;
+  name: string;
+  username: string;
+  website: string;
+  bio: string;
+  email: string;
+  phone: string;
+  gender: string;
+  data: {};
+}
+
+export interface ImageState {
+  isLoading: boolean;
+  error: string | null;
+  imageUrl: string;
 }
