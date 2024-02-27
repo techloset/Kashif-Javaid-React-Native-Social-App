@@ -160,4 +160,5 @@ export interface ImageState {
   isLoading: boolean;
   error: string | null;
   imageUrl: string;
+  userId: string | null;
 }

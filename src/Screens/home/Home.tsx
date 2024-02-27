@@ -129,16 +129,16 @@ export default function Home(item: any) {
                   </View>
                 </View>
               </View>
+              <View style={{marginLeft: 15, marginTop: 15}}>
+                {item.createdAt ? (
+                  <Text>{formatDate(item.createdAt)}</Text>
+                ) : (
+                  <Text>No creation date available</Text>
+                )}
+              </View>
             </View>
           )}
         />
-        <View style={{marginLeft: 15, marginTop: 15}}>
-          {item.createdAt ? (
-            <Text>{formatDate(item.createdAt)}</Text>
-          ) : (
-            <Text>No creation date available</Text>
-          )}
-        </View>
       </View>
     </View>
   );

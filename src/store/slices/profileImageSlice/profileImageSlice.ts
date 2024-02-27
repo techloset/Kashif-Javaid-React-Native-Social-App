@@ -8,6 +8,7 @@ const initialState: ImageState = {
   isLoading: false,
   error: null,
   imageUrl: '',
+  userId: '',
 };
 
 export const updateUserImage = createAsyncThunk(

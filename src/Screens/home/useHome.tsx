@@ -1,12 +1,16 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
-
+import 'firebase/firestore';
+import {db} from '../../config/Firebase';
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const dispatch = useAppDispatch();
   const allPosts = useAppSelector(state => state.allPosts);
-  const formatDate = (timestamp: Date) => {
+  const formatDate = (timestamp: db.firestore.Timestamp) => {
+    // Convert Firestore Timestamp to JavaScript Date object
+    const dateObject = timestamp.toDate();
+
     const monthNames = [
       'January',
       'February',
@@ -21,8 +25,8 @@ export function useHome() {
       'November',
       'December',
     ];
-    const month = monthNames[timestamp.getMonth()];
-    const day = timestamp.getDate();
+    const month = monthNames[dateObject.getMonth()];
+    const day = dateObject.getDate();
     return `${month} ${day}`;
   };
   useEffect(() => {
