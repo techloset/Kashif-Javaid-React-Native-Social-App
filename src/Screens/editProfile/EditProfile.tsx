@@ -5,7 +5,6 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
 import EditInput from '../../components/editprofileinput/EditProfile';
 import {useEditProfile} from './useEditProfile';
-
 export default function EditProfile(
   props: NativeStackScreenProps<ParamsList, 'Editprofile'>,
 ) {
@@ -26,7 +25,7 @@ export default function EditProfile(
     gender,
     setGender,
     updatehandle,
-    profileimage,
+    profileImage,
     image,
   } = useEditProfile();
 
@@ -74,7 +73,7 @@ export default function EditProfile(
             )}
           </View>
 
-          <TouchableOpacity onPress={profileimage}>
+          <TouchableOpacity onPress={profileImage}>
             <Text style={EditStyle.photo}>Change Profile Photo</Text>
           </TouchableOpacity>
           <View style={EditStyle.line}></View>

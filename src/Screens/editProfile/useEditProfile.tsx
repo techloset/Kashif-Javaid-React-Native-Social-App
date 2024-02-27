@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../config/Firebase';
+
 import {
   launchImageLibrary,
   ImageLibraryOptions,
@@ -21,7 +22,7 @@ export function useEditProfile() {
   const [image, setImage] = useState<string | null>('');
   const dispatch = useAppDispatch();
   const updateprofile = useAppSelector(state => state.updateprofile);
-  const imageUrl = useAppSelector(state => state.updateImage.imageUrl);
+
   const user = auth().currentUser;
 
   useEffect(() => {
@@ -44,25 +45,25 @@ export function useEditProfile() {
 
     fetchUserProfile();
   }, [user]);
-
+  const imageUrl = useAppSelector(state => state.updateImage.imageUrl);
+  const userId = useAppSelector(state => state.updateImage.userId);
   useEffect(() => {
     setImage(imageUrl);
   }, [imageUrl]);
-
-  const profileimage = () => {
+  const profileImage = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, response => {
+      console.log('response:', response);
       if (response.assets && response.assets.length > 0) {
         const selectedAssets = response.assets;
         const uri: string = selectedAssets[0].uri ?? '';
-        dispatch(updateUserImage({imageUri: uri}));
+        dispatch(updateUserImage({imageUri: uri, userId: userId}));
         setImage(uri);
       } else {
         Alert.alert('No image selected');
       }
     });
   };
-
   const updatehandle = () => {
     dispatch(
       userupdateprofile({
@@ -94,7 +95,7 @@ export function useEditProfile() {
     setGender,
     user,
     updateprofile,
-    profileimage,
+    profileImage,
     image,
     updatehandle,
   };

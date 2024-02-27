@@ -29,6 +29,11 @@ export type date = {
   id: string;
   imageUrl: string;
 };
+export interface user {
+  id: string;
+  name: string;
+  user: null;
+}
 
 export type Post = {
   id: string;
@@ -55,15 +60,6 @@ export type EditInput = {
   onChangeText?: (text: string) => void;
   value?: string;
   label?: string;
-};
-
-type user = {
-  id: string;
-  user: string;
-  email: string;
-  phone: string;
-  bio: string;
-  photoUrl: string;
 };
 
 export interface AuthState {
@@ -123,6 +119,7 @@ export interface Item {
 export interface UploadResult1 {
   success: boolean;
   imageUrl: string;
+  userId: string;
 }
 
 export interface HomeState {
@@ -155,10 +152,9 @@ export interface EditprofileState {
   gender: string;
   data: {};
 }
-
 export interface ImageState {
   isLoading: boolean;
   error: string | null;
   imageUrl: string;
-  userId: string | null;
+  userId: string;
 }

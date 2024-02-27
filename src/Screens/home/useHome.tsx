@@ -1,16 +1,23 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
-import 'firebase/firestore';
-import {db} from '../../config/Firebase';
+
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const dispatch = useAppDispatch();
   const allPosts = useAppSelector(state => state.allPosts);
-  const formatDate = (timestamp: db.firestore.Timestamp) => {
-    // Convert Firestore Timestamp to JavaScript Date object
-    const dateObject = timestamp.toDate();
 
+  useEffect(() => {
+    dispatch(fetchPost());
+  }, [dispatch]);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(fetchPost());
+    }, 10000);
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
+
+  const formatDate = (timestamp: Date) => {
     const monthNames = [
       'January',
       'February',
@@ -25,19 +32,10 @@ export function useHome() {
       'November',
       'December',
     ];
-    const month = monthNames[dateObject.getMonth()];
-    const day = dateObject.getDate();
+    const month = monthNames[timestamp.getMonth()];
+    const day = timestamp.getDate();
     return `${month} ${day}`;
   };
-  useEffect(() => {
-    dispatch(fetchPost());
-  }, [dispatch]);
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      dispatch(fetchPost());
-    }, 30000);
-    return () => clearInterval(intervalId);
-  }, [dispatch]);
   return {
     allPosts,
     isVideoPlaying,

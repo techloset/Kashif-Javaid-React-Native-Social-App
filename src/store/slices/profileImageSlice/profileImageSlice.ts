@@ -13,7 +13,7 @@ const initialState: ImageState = {
 
 export const updateUserImage = createAsyncThunk(
   'updateImage',
-  async ({imageUri}: {imageUri: string}) => {
+  async ({imageUri, userId}: {imageUri: string; userId: string}) => {
     try {
       if (!imageUri) {
         throw new Error('Please select all files');
@@ -21,7 +21,7 @@ export const updateUserImage = createAsyncThunk(
 
       const uploadTask = storage()
         .ref()
-        .child(`/profile/${Date.now()}`)
+        .child(`/profile/${auth().currentUser?.uid}/${Date.now()}`)
         .putFile(imageUri);
 
       return new Promise<UploadResult1>((resolve, reject) => {
@@ -36,16 +36,14 @@ export const updateUserImage = createAsyncThunk(
               const downloadURL =
                 await uploadTask.snapshot?.ref.getDownloadURL();
               if (downloadURL) {
-                const user = auth().currentUser;
-                const userId = user?.uid;
+                const userId = auth().currentUser?.uid;
                 if (userId) {
-                  // Store the downloadURL with user's UID
+                  const imageId = Date.now().toString();
                   await db.collection('profile').doc(userId).set({
                     downloadURL,
-                    userId,
+                    imageId,
                   });
-                  // Update the imageUrl in Redux store
-                  resolve({success: true, imageUrl: downloadURL});
+                  resolve({success: true, imageUrl: downloadURL, userId});
                 }
               }
             } catch (error) {
@@ -65,7 +63,11 @@ export const updateUserImage = createAsyncThunk(
 const updateprofileimageSlice = createSlice({
   name: 'updateImage',
   initialState,
-  reducers: {},
+  reducers: {
+    clearImageState: state => {
+      return initialState;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(updateUserImage.pending, state => {
@@ -75,11 +77,17 @@ const updateprofileimageSlice = createSlice({
       .addCase(updateUserImage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.imageUrl = action.payload.imageUrl;
+        console.log('imageurl change howa ha', state.imageUrl);
+        state.userId = action.payload.userId;
+        console.log('userid a rahi ha', state.userId);
       })
       .addCase(updateUserImage.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.error.message || 'Something went wrong';
       });
   },
 });
+
+export const {clearImageState} = updateprofileimageSlice.actions;
 
 export default updateprofileimageSlice.reducer;
