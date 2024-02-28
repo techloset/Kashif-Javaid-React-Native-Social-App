@@ -5,9 +5,7 @@ import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
 import {SignUp} from '../../../store/slices/sigupslice/sigupslice';
 import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
-
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
-
 const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +15,6 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [bademail, setBademail] = useState('');
   const [badpassword, setBadpassword] = useState('');
   const [badconfirmpass, setBadconfirmpass] = useState('');
-
   const dispatch = useAppDispatch();
   const auth = useAppSelector(state => state.auth.user);
   const signup = () => {
@@ -71,7 +68,6 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
       return 'Passwords do not match';
     }
   };
-
   const Googlesignup = useAppSelector(state => state.Googlesignup.user);
   const Googlesign = () => {
     try {
@@ -80,7 +76,6 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
       console.log('error', error);
     }
   };
-
   return {
     signup,
     username,

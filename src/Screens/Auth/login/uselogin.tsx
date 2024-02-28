@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
-import {Alert} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
 import {userlogin} from '../../../store/slices/loginslice/loginSlice';
 import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';

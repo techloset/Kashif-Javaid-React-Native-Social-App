@@ -10,16 +10,9 @@ import instaimg from '../../../assets/images/Instagram.png';
 import {signstyleshhet} from './SingupStyle';
 import signimg from '../../../assets/images/signup.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
-
-// GoogleSignin.configure({
-//   webClientId:
-//     '753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com',
-// });
 export default function SingUp(
   props: NativeStackScreenProps<ParamsList, 'Singup'>,
 ) {

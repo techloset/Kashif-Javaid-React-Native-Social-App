@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
 import instimg from '../../../assets/images/Instagram.png';
 import google from '../../../assets/images/Google.png';

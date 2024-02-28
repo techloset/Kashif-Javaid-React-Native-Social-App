@@ -1,17 +1,13 @@
 import {Alert} from 'react-native';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {firebase} from '@react-native-firebase/auth';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
 import {ResetPassword} from '../../../store/slices/resetpasswordSlice/resetpasswordSlice';
-
 type Params = NativeStackScreenProps<ParamsList, 'Reset'>;
-
 export function useRestpassword(props: Params) {
   const [email, setEmail] = useState('');
   const [bademail, setBademail] = useState('');
-
   const dispatch = useAppDispatch();
   const resetpassword = useAppSelector(state => state.resetpassword.email);
   const changepassword = async () => {
@@ -39,7 +35,6 @@ export function useRestpassword(props: Params) {
       }
     }
   };
-
   return {
     changepassword,
     email,

@@ -53,6 +53,11 @@ export default function Home() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
+              <Image
+                source={{uri: item.profileImageUrl}}
+                style={{width: 28, height: 28, borderRadius: 100}}
+              />
+
               {item.mediaType === 'image' ? (
                 <Image
                   source={{uri: item.downloadURL}}
@@ -123,7 +128,7 @@ export default function Home() {
                       alignItems: 'center',
                     }}>
                     <Text>
-                      <Text style={{fontWeight: 'bold'}}>{item.userName}</Text>{' '}
+                      <Text style={{fontWeight: 'bold'}}>{item?.userName}</Text>{' '}
                       {item.description}
                     </Text>
                   </View>

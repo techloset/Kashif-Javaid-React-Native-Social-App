@@ -38,10 +38,10 @@ export const updateUserImage = createAsyncThunk(
               if (downloadURL) {
                 const userId = auth().currentUser?.uid;
                 if (userId) {
-                  const imageId = Date.now().toString();
-                  await db.collection('profile').doc(userId).set({
+                  const imageId = Date.now();
+                  await db.collection('images').doc(userId).set({
                     downloadURL,
-                    imageId,
+                    userId,
                   });
                   resolve({success: true, imageUrl: downloadURL, userId});
                 }
@@ -77,9 +77,7 @@ const updateprofileimageSlice = createSlice({
       .addCase(updateUserImage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.imageUrl = action.payload.imageUrl;
-        console.log('imageurl change howa ha', state.imageUrl);
         state.userId = action.payload.userId;
-        console.log('userid a rahi ha', state.userId);
       })
       .addCase(updateUserImage.rejected, (state, action) => {
         state.isLoading = false;

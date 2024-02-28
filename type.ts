@@ -131,6 +131,17 @@ export interface HomeState {
   isVideoPlaying: boolean;
 }
 
+export interface PostData {
+  postId: string;
+  profileImage: string;
+  profileImageUrl: string;
+  createdAt: number | null;
+  mediaType: string;
+  userName: string;
+  description: string;
+  downloadURL: string;
+}
+
 export interface profileState {
   user: null;
   error: string | null;
