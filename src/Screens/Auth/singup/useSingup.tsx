@@ -1,5 +1,4 @@
-import {Alert} from 'react-native';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
@@ -30,9 +29,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
     }
     try {
       dispatch(SignUp({username, email, password, confirmpass}));
-    } catch (error) {
-      console.log('error', error);
-    }
+    } catch (error) {}
   };
   const validate = (
     username: string,
@@ -72,9 +69,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
-    } catch (error) {
-      console.log('error', error);
-    }
+    } catch (error) {}
   };
   return {
     signup,

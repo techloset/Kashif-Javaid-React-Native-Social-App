@@ -12,6 +12,7 @@ import signimg from '../../../assets/images/signup.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
+import InputField from '../../../components/inputfiled/InputField';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 export default function SingUp(
   props: NativeStackScreenProps<ParamsList, 'Singup'>,
@@ -40,36 +41,38 @@ export default function SingUp(
           <Image source={instaimg} />
         </View>
         <View style={signstyleshhet.inputdiv}>
-          <TextInput
+          <InputField
             placeholder="Username"
             value={username}
-            style={signstyleshhet.inputfiled}
             onChangeText={text => setUserName(text)}
           />
-          <Text style={{color: 'red'}}>{badusername}</Text>
-          <TextInput
+          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
+            {badusername}
+          </Text>
+          <InputField
             placeholder="Email"
             value={email}
-            style={signstyleshhet.inputfiled}
             onChangeText={text => setEmail(text)}
           />
-          <Text style={{color: 'red'}}>{bademail}</Text>
-          <TextInput
+          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
+            {bademail}
+          </Text>
+          <InputField
             placeholder="Password"
             value={password}
-            style={signstyleshhet.inputfiled}
-            secureTextEntry
             onChangeText={text => setPassword(text)}
           />
-          <Text style={{color: 'red'}}>{badpassword}</Text>
-          <TextInput
+          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
+            {badpassword}
+          </Text>
+          <InputField
             placeholder="Confirm Password"
             value={confirmpass}
-            style={signstyleshhet.inputfiled}
-            secureTextEntry
             onChangeText={text => setConfirmpass(text)}
           />
-          <Text style={{color: 'red'}}>{badconfirmpass}</Text>
+          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
+            {badconfirmpass}
+          </Text>
         </View>
         <View>
           <TouchableOpacity style={signstyleshhet.signin} onPress={signup}>
@@ -89,12 +92,16 @@ export default function SingUp(
           <View style={signstyleshhet.line} />
         </View>
         <View>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+          <View>
             <Text style={signstyleshhet.accountheading}>
               Don’t have an account?{' '}
-              <Text style={signstyleshhet.sign}>Log In</Text>
+              <Text
+                style={signstyleshhet.sign}
+                onPress={() => props.navigation.navigate('Login')}>
+                Log In
+              </Text>
             </Text>
-          </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </View>

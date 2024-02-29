@@ -53,7 +53,6 @@ export function useEditProfile() {
   const profileImage = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, response => {
-      console.log('response:', response);
       if (response.assets && response.assets.length > 0) {
         const selectedAssets = response.assets;
         const uri: string = selectedAssets[0].uri ?? '';

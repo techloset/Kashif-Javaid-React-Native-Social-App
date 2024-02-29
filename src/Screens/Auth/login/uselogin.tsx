@@ -4,9 +4,7 @@ import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
 import {userlogin} from '../../../store/slices/loginslice/loginSlice';
 import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
-
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
-
 export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +13,6 @@ export function useLogin(props: Params) {
 
   const validate = () => {
     let isValid = true;
-
     if (email === '') {
       setBademail('Please enter a valid email');
       isValid = false;
@@ -52,18 +49,14 @@ export function useLogin(props: Params) {
     if (validate()) {
       try {
         dispatch(userlogin({email, password}));
-      } catch (error) {
-        console.log('error', error);
-      }
+      } catch (error) {}
     }
   };
   const Googlesignup = useAppSelector(state => state.Googlesignup.user);
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
-    } catch (error) {
-      console.log('error', error);
-    }
+    } catch (error) {}
   };
 
   return {

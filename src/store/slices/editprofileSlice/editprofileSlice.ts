@@ -18,9 +18,9 @@ const initialState: EditprofileState = {
 };
 
 const validatePhoneNumber = (phoneNumber: string): boolean => {
-  return phoneNumber.length <= 11;
+  return phoneNumber.length === 11;
 };
-
+Alert.alert('Please enter a valid phone number');
 export const userupdateprofile = createAsyncThunk(
   'updateprofile',
   async (
@@ -49,6 +49,7 @@ export const userupdateprofile = createAsyncThunk(
         throw new Error('User not authenticated.');
       }
       if (!validatePhoneNumber(phone)) {
+        Alert.alert('Please enter a valid phone number');
         throw new Error(
           'Invalid phone number! Phone number must not exceed 11 digits.',
         );

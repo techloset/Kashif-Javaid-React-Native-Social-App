@@ -18,10 +18,7 @@ export const fetchPost = createAsyncThunk('allPosts', async () => {
       imagesSnapshot.docs.map(async imageDoc => {
         const imageData = imageDoc.data();
         const postId = imageDoc.id;
-        console.log('postid', postId);
         const userId = imageData.userId;
-        console.log('userId: ', userId);
-
         const profileQuerySnapshot = await db
           .collection('profile')
           .where('userId', '==', userId)
@@ -32,6 +29,7 @@ export const fetchPost = createAsyncThunk('allPosts', async () => {
             const profileImage = profileData.downloadURL;
             const postData: PostData = {
               postId: imageDoc.id,
+              userId: '',
               downloadURL: imageData.downloadURL,
               profileImageUrl: profileImage,
               mediaType: 'image',
@@ -69,7 +67,6 @@ const fetchPostSlice = createSlice({
       .addCase(fetchPost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
-        console.log('state', state.data);
       })
       .addCase(fetchPost.rejected, (state, action) => {
         state.isLoading = false;

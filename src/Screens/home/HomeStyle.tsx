@@ -32,8 +32,10 @@ export const HomeStyle = StyleSheet.create({
     color: 'black',
   },
   dots: {
-    marginRight: 14,
     fontSize: 20,
+    color: 'black',
+    fontWeight: 'bold',
+    marginRight: 10,
   },
   profileimg: {
     marginTop: 10,
@@ -90,5 +92,20 @@ export const HomeStyle = StyleSheet.create({
     marginLeft: 3,
     textAlign: 'justify',
     lineHeight: 14,
+  },
+  username: {
+    fontFamily: 'Roboto-medium-bold',
+    color: 'black',
+    fontSize: 13,
+    fontWeight: 'bold',
+    marginLeft: 11,
+    marginTop: 3,
+  },
+  profileimage: {
+    width: 35,
+    height: 35,
+    borderRadius: 100,
+    marginLeft: 11,
+    marginTop: 7,
   },
 });

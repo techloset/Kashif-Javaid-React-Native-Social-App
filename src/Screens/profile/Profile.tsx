@@ -32,19 +32,16 @@ export default function Profile(
                   source={{uri: user.providerData[0].photoURL}}
                   style={ProfileStlye.profileimg}
                 />
+              ) : !image ? (
+                <View
+                  style={{
+                    width: 100,
+                    height: 100,
+                    borderRadius: 100,
+                    backgroundColor: 'gray',
+                  }}
+                />
               ) : (
-                !image && (
-                  <View
-                    style={{
-                      width: 100,
-                      height: 100,
-                      borderRadius: 100,
-                      backgroundColor: 'gray',
-                    }}
-                  />
-                )
-              )}
-              {image && (
                 <Image
                   source={{uri: image}}
                   style={{width: 100, borderRadius: 100, height: 100}}
@@ -72,8 +69,7 @@ export default function Profile(
         </View>
 
         <View style={{marginTop: 12}}>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('EditNavigation')}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Create')}>
             <Image source={profileimgs} alt="images" />
           </TouchableOpacity>
         </View>

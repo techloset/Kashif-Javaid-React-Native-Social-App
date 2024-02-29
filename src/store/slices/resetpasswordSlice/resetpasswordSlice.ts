@@ -9,16 +9,15 @@ const initialState: resetpasswordState = {
   error: null,
   email: '',
 };
-
 export const ResetPassword = createAsyncThunk(
   'resetpassword',
   async ({email}: {email: string}) => {
     try {
-      if (firebase?.auth()?.currentUser?.email) {
+      if (!firebase?.auth()?.currentUser?.email) {
         throw new Error('');
       } else {
         await firebase.auth().sendPasswordResetEmail(email);
-        Alert.alert('Please Set Email password');
+        Alert.alert('Please Set password in amail account and again Login');
       }
     } catch (error) {
       console.error('Error while resetting password:', error);

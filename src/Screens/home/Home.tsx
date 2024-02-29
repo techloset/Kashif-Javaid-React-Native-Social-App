@@ -11,11 +11,16 @@ import ovel from '../../assets/images/Oval.png';
 import save from '../../assets/images/Save.png';
 import Video from 'react-native-video';
 import {useEditProfile} from '../editProfile/useEditProfile';
-
-export default function Home() {
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ImageData, ParamsList} from '../../../type';
+type Params = NativeStackScreenProps<ParamsList, 'HomeScreen'>;
+export default function Home(props: Params) {
   const {allPosts, formatDate} = useHome();
   const user = auth().currentUser;
   const {image} = useEditProfile();
+  const switchScreen = (item: ImageData) => {
+    props.navigation.navigate('OtherProfile', {event: item} as any);
+  };
 
   return (
     <View style={HomeStyle.container}>
@@ -28,15 +33,34 @@ export default function Home() {
           <View style={HomeStyle.scondcontainer}>
             <View>
               <View>
-                {user?.providerData[0].photoURL ? (
+                {user && user.providerData && user.providerData[0].photoURL ? (
                   <Image
                     source={{uri: user.providerData[0].photoURL}}
-                    style={HomeStyle.img}
+                    style={HomeStyle.profileimage}
+                  />
+                ) : !image ? (
+                  <View
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: 100,
+                      marginLeft: 11,
+                      marginTop: 11,
+                      backgroundColor: 'gray',
+                    }}
                   />
                 ) : (
-                  !image && <View style={HomeStyle.img} />
+                  <Image
+                    source={{uri: image}}
+                    style={{
+                      width: 32,
+                      borderRadius: 100,
+                      height: 32,
+                      marginLeft: 11,
+                      marginTop: 11,
+                    }}
+                  />
                 )}
-                {image && <Image source={{uri: image}} style={HomeStyle.img} />}
               </View>
             </View>
             <View style={HomeStyle.name}>
@@ -53,10 +77,23 @@ export default function Home() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
-              <Image
-                source={{uri: item.profileImageUrl}}
-                style={{width: 28, height: 28, borderRadius: 100}}
-              />
+              <View style={{flexDirection: 'row', marginTop: 20}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    switchScreen(item);
+                  }}>
+                  <Image
+                    source={{uri: item.profileImageUrl}}
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: 100,
+                      marginLeft: 10,
+                    }}
+                  />
+                </TouchableOpacity>
+                <Text style={HomeStyle.username}>{item.userName}</Text>
+              </View>
 
               {item.mediaType === 'image' ? (
                 <Image

@@ -5,7 +5,6 @@ import upload from '../../assets/images/upload.png';
 import imageupload from '../../assets/images/imageupload.png';
 import InputField from '../../components/inputfiled/InputField';
 import {useCreate} from './useCreate';
-
 export default function CreatePost() {
   const {
     description,
@@ -15,7 +14,6 @@ export default function CreatePost() {
     uploading,
     handleUpload,
   } = useCreate();
-
   return (
     <View style={CreateStyle.container}>
       <ScrollView>
@@ -46,14 +44,12 @@ export default function CreatePost() {
             </TouchableOpacity>
           )}
         </View>
-
         <Text style={CreateStyle.Post}>Post Description</Text>
         <InputField
           placeholder="Add post description"
           value={description}
           onChangeText={text => setDescription(text)}
         />
-
         <TouchableOpacity
           style={CreateStyle.buttcontainer}
           onPress={handleUpload}

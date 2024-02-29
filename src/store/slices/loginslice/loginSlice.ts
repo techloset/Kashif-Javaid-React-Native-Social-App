@@ -21,9 +21,7 @@ export const userlogin = createAsyncThunk(
       const user = userCredential.user;
       console.log('User signed in:', user);
       return user;
-    } catch (error) {
-      console.log('error', error);
-    }
+    } catch (error) {}
   },
 );
 
@@ -42,7 +40,6 @@ export const loginSlice = createSlice({
       })
       .addCase(userlogin.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || null;
       });
   },
 });

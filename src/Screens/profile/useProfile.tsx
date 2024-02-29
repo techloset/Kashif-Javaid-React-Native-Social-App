@@ -1,11 +1,9 @@
 import {useState, useEffect} from 'react';
-import {db} from '../../config/Firebase';
 import auth from '@react-native-firebase/auth';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {userprofile} from '../../store/slices/profileslice/profileSlice';
-
 export function useProfile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {
@@ -13,7 +11,6 @@ export function useProfile(
   const profile = useAppSelector(state => state.profile);
   useEffect(() => {
     dispatch(userprofile());
-    console.log('profile', userprofile);
   }, [dispatch]);
 
   const siguout = () => {

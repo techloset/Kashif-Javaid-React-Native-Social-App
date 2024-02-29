@@ -1,9 +1,10 @@
 import React from 'react';
 import {TabNavigation} from './TabNavigation';
-import {EditNavigation} from './EditNavigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import EditProfile from '../screens/editProfile/EditProfile';
 import {ParamsList} from '../../type';
+import OtherProfile from '../screens/otherProfile/OtherProfile';
+import ResetPassword from '../screens/auth/resetPassword/ResetPassword';
 
 const Stack = createNativeStackNavigator<ParamsList>();
 
@@ -16,13 +17,18 @@ export default function MainScreens() {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="EditNavigation"
-        component={EditNavigation}
+        name="Editprofile"
+        component={EditProfile}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Editprofile"
-        component={EditProfile}
+        name="OtherProfile"
+        component={OtherProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Reset"
+        component={ResetPassword}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -125,7 +125,8 @@ export default function EditProfile(
               justifyContent: 'center',
             }}>
             <Text>Want to change your password?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Reset')}>
               <Text style={{color: 'skyblue'}}>Reset Password.</Text>
             </TouchableOpacity>
           </View>

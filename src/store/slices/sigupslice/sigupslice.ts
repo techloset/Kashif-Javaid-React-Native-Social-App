@@ -41,7 +41,6 @@ export const SignUp = createAsyncThunk(
       } else {
         console.error(error);
       }
-      return Promise.reject(new Error(error.message));
     }
   },
 );
@@ -73,7 +72,6 @@ const authSlice = createSlice({
       })
       .addCase(SignUp.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || null;
       });
   },
 });

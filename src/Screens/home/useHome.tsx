@@ -4,6 +4,7 @@ import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
 
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   const formatDate = (timestamp: Date) => {
     const monthNames = [
       'January',
@@ -23,17 +24,22 @@ export function useHome() {
     const day = timestamp.getDate();
     return `${month} ${day}`;
   };
-
   const dispatch = useAppDispatch();
   const allPosts = useAppSelector(state => state.allPosts);
   useEffect(() => {
     dispatch(fetchPost());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(fetchPost());
+    }, 6000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return {
     allPosts,
     isVideoPlaying,
-    fetchPost,
     setIsVideoPlaying,
     formatDate,
   };

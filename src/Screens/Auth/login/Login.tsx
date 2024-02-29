@@ -5,6 +5,7 @@ import {loginstyle} from './LoginStyle';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useLogin} from './uselogin';
+import InputField from '../../../components/inputfiled/InputField';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export default function Login(props: Params) {
   const {
@@ -24,28 +25,18 @@ export default function Login(props: Params) {
           <Image source={instimg} />
         </View>
         <View style={loginstyle.inputdiv}>
-          <TextInput
+          <InputField
             placeholder="Email"
-            style={[
-              loginstyle.inputstyle,
-              bademail !== '' && loginstyle.errorInput,
-            ]}
             value={email}
             onChangeText={text => setEmail(text)}
           />
           {bademail !== '' && (
             <Text style={loginstyle.errorText}>{bademail}</Text>
           )}
-
-          <TextInput
+          <InputField
             placeholder="Password"
-            style={[
-              loginstyle.inputstyle,
-              badpassword !== '' && loginstyle.errorInput,
-            ]}
             value={password}
             onChangeText={text => setPassword(text)}
-            secureTextEntry
           />
           {badpassword !== '' && (
             <Text style={loginstyle.errorText}>{badpassword}</Text>
@@ -68,12 +59,16 @@ export default function Login(props: Params) {
           <View style={loginstyle.line} />
         </View>
         <View>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Singup')}>
+          <View>
             <Text style={loginstyle.accountheading}>
               Don’t have an account?{' '}
-              <Text style={loginstyle.sign}>Sign up</Text>
+              <Text
+                style={loginstyle.sign}
+                onPress={() => props.navigation.navigate('Singup')}>
+                Sign up
+              </Text>
             </Text>
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

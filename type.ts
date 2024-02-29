@@ -10,11 +10,9 @@ export type ParamsList = {
   Profile: undefined;
   useAddScreen: undefined;
   user: undefined;
-  Library: undefined;
   Editprofile: undefined;
-  Photo: undefined;
-  Video: undefined;
   EditNavigation: undefined;
+  OtherProfile: undefined;
 };
 export type RootStackParamList = {
   Login: undefined;
@@ -133,6 +131,7 @@ export interface HomeState {
 
 export interface PostData {
   postId: string;
+  userId: string;
   profileImage: string;
   profileImageUrl: string;
   createdAt: number | null;
@@ -167,5 +166,13 @@ export interface ImageState {
   isLoading: boolean;
   error: string | null;
   imageUrl: string;
+  userId: string;
+}
+
+export interface ImageData {
+  postId: string;
+  downloadURL: string;
+  profileImageUrl: string;
+  userName: string;
   userId: string;
 }
