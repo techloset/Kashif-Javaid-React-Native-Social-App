@@ -36,11 +36,11 @@ export default function EditProfile(
           <View style={EditStyle.container2}>
             <TouchableOpacity
               onPress={() => props.navigation.navigate('Profile')}>
-              <Text>Cancel</Text>
+              <Text style={EditStyle.cancel}>Cancel</Text>
             </TouchableOpacity>
-            <Text>Edit Profile</Text>
+            <Text style={EditStyle.profile}>Edit Profile</Text>
             <TouchableOpacity onPress={updatehandle}>
-              <Text>Done</Text>
+              <Text style={EditStyle.done}>Done</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -134,7 +134,7 @@ export default function EditProfile(
             <Text>Want to change your password?</Text>
             <TouchableOpacity
               onPress={() => props.navigation.navigate('Reset')}>
-              <Text style={{color: 'skyblue'}}>Reset Password.</Text>
+              <Text style={EditStyle.forget}>Reset Password.</Text>
             </TouchableOpacity>
           </View>
         </View>
