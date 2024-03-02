@@ -65,7 +65,7 @@ export default function Home(props: Params) {
             </View>
             <View style={HomeStyle.name}>
               <Text style={HomeStyle.text1}>{user?.displayName}</Text>
-              <Text>Pakistan</Text>
+              <Text style={{color: 'black'}}>Pakistan</Text>
             </View>
           </View>
 
@@ -165,8 +165,10 @@ export default function Home(props: Params) {
                       alignItems: 'center',
                     }}>
                     <Text>
-                      <Text style={{fontWeight: 'bold'}}>{item?.userName}</Text>{' '}
-                      {item.description}
+                      <Text style={{fontWeight: 'bold', color: 'black'}}>
+                        {item?.userName}
+                      </Text>{' '}
+                      <Text style={{color: 'black'}}>{item.description}</Text>
                     </Text>
                   </View>
                 </View>

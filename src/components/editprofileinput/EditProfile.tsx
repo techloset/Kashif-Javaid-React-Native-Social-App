@@ -1,13 +1,6 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {InputType} from '../../../type';
-
 const EditInput: React.FC<InputType> = ({
   placeholder,
   value,

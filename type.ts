@@ -13,9 +13,16 @@ export type ParamsList = {
   Editprofile: undefined;
   EditNavigation: undefined;
   OtherProfile: undefined;
+  AuthScreens: undefined;
 };
 export type RootStackParamList = {
   Login: undefined;
+};
+
+export type tabnavigation = {
+  HOME: string;
+  CREATE: string;
+  PROFILE: string;
 };
 
 export type params = {
@@ -49,6 +56,7 @@ export type InputType = {
   onChangeText?: (text: string) => void;
   value?: string;
   label?: string;
+  secureTextEntry: boolean;
 };
 
 export type EditInput = {

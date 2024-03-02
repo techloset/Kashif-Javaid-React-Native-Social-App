@@ -1,14 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit';
-import authReducer from './slices/sigupslice/sigupslice';
-import googleReducer from './slices/googleSlice/googleSlice';
-import loginReducer from './slices/loginslice/loginSlice';
-import resetpasswordReducer from './slices/resetpasswordSlice/resetpasswordSlice';
+import authReducer from './slices/authSlice/sigupslice';
+import googleReducer from './slices/authSlice/googleSlice';
+import loginReducer from './slices/authSlice/loginSlice';
+import resetpasswordReducer from './slices/authSlice/resetpasswordSlice';
 import createpostReducer from './slices/createSlice/createSlice';
 import fetchPostReducer from './slices/homeSlice/homeSlice';
-import userprofileReducer from './slices/profileslice/profileSlice';
-import editprofileReducer from './slices/editprofileSlice/editprofileSlice';
-import updateReducer from './slices/editprofileSlice/editprofileSlice';
-import updateprofileimageReducer from './slices/profileImageSlice/profileImageSlice';
+import userprofileReducer from './slices/profilesSlice/profileSlice';
+import editprofileReducer from './slices/profilesSlice/editprofileSlice';
+import updateReducer from './slices/profilesSlice/editprofileSlice';
+import updateprofileimageReducer from './slices/profilesSlice/profileImageSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer,

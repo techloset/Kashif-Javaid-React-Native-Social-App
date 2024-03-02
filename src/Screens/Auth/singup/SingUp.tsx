@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import instaimg from '../../../assets/images/Instagram.png';
 import {signstyleshhet} from './SingupStyle';
 import signimg from '../../../assets/images/signup.png';
@@ -44,6 +37,7 @@ export default function SingUp(
           <InputField
             placeholder="Username"
             value={username}
+            secureTextEntry={false}
             onChangeText={text => setUserName(text)}
           />
           <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
@@ -52,6 +46,7 @@ export default function SingUp(
           <InputField
             placeholder="Email"
             value={email}
+            secureTextEntry={false}
             onChangeText={text => setEmail(text)}
           />
           <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
@@ -60,6 +55,7 @@ export default function SingUp(
           <InputField
             placeholder="Password"
             value={password}
+            secureTextEntry={true}
             onChangeText={text => setPassword(text)}
           />
           <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
@@ -68,6 +64,7 @@ export default function SingUp(
           <InputField
             placeholder="Confirm Password"
             value={confirmpass}
+            secureTextEntry={true}
             onChangeText={text => setConfirmpass(text)}
           />
           <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>

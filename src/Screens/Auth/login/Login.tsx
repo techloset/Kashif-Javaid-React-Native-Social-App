@@ -28,6 +28,7 @@ export default function Login(props: Params) {
           <InputField
             placeholder="Email"
             value={email}
+            secureTextEntry={false}
             onChangeText={text => setEmail(text)}
           />
           {bademail !== '' && (
@@ -36,6 +37,7 @@ export default function Login(props: Params) {
           <InputField
             placeholder="Password"
             value={password}
+            secureTextEntry={true}
             onChangeText={text => setPassword(text)}
           />
           {badpassword !== '' && (

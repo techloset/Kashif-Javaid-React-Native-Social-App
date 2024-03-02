@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../../constants/color/colors';
 
 export const resstyle = StyleSheet.create({
   container: {
@@ -27,7 +28,7 @@ export const resstyle = StyleSheet.create({
     borderWidth: 0.2,
     marginTop: 10,
     borderRadius: 3,
-    backgroundColor: '#f9f9f7',
+    backgroundColor: color.inputbackgroundColor,
     fontFamily: 'Roboto-Regular',
     padding: 15,
   },
@@ -45,6 +46,6 @@ export const resstyle = StyleSheet.create({
     fontWeight: '600',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: '#3797EF',
+    backgroundColor: color.forgetpassword,
   },
 });

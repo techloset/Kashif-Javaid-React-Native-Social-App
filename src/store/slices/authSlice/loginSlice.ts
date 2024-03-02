@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {LoginState} from '../../../../type';
+
 import auth from '@react-native-firebase/auth';
+import {LoginState} from '../../../../type';
 
 const initialState: LoginState = {
   user: null,

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {ResetPassword} from '../../../store/slices/resetpasswordSlice/resetpasswordSlice';
+import {ResetPassword} from '../../../store/slices/authSlice/resetpasswordSlice';
 type Params = NativeStackScreenProps<ParamsList, 'Reset'>;
 export function useRestpassword(props: Params) {
   const [email, setEmail] = useState('');

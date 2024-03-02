@@ -76,6 +76,7 @@ export const HomeStyle = StyleSheet.create({
     fontWeight: '600',
     lineHeight: 14,
     fontFamily: 'Roboto-Bold.ttf',
+    color: 'black',
   },
   butt: {
     gap: -10,

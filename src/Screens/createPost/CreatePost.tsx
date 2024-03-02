@@ -48,6 +48,7 @@ export default function CreatePost() {
         <InputField
           placeholder="Add post description"
           value={description}
+          secureTextEntry={false}
           onChangeText={text => setDescription(text)}
         />
         <TouchableOpacity

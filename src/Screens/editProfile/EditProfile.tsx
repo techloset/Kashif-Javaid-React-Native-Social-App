@@ -82,21 +82,25 @@ export default function EditProfile(
         <EditInput
           label="Name"
           value={name}
+          secureTextEntry={false}
           onChangeText={text => setName(text)}
         />
         <EditInput
           label="Username"
           value={username}
+          secureTextEntry={false}
           onChangeText={text => setUserName(text)}
         />
         <EditInput
           label="Website"
           value={website}
+          secureTextEntry={false}
           onChangeText={text => setWebsite(text)}
         />
         <EditInput
           label="Bio"
           value={bio}
+          secureTextEntry={false}
           onChangeText={text => setBio(text)}
         />
         <View style={EditStyle.line}></View>
@@ -106,16 +110,19 @@ export default function EditProfile(
           <EditInput
             label="Email"
             value={email}
+            secureTextEntry={false}
             onChangeText={text => setEmail(text)}
           />
           <EditInput
             label="Phone"
             value={phone}
+            secureTextEntry={false}
             onChangeText={text => setPhone(text)}
           />
           <EditInput
             label="Gender"
             value={gender}
+            secureTextEntry={false}
             onChangeText={text => setGender(text)}
           />
           <View

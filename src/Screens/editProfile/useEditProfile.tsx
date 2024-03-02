@@ -2,14 +2,13 @@ import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../config/Firebase';
-
 import {
   launchImageLibrary,
   ImageLibraryOptions,
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
-import {updateUserImage} from '../../store/slices/profileImageSlice/profileImageSlice';
-import {userupdateprofile} from '../../store/slices/editprofileSlice/editprofileSlice';
+import {updateUserImage} from '../../store/slices/profilesSlice/profileImageSlice';
+import {userupdateprofile} from '../../store/slices/profilesSlice/editprofileSlice';
 
 export function useEditProfile() {
   const [name, setName] = useState('');
@@ -24,7 +23,6 @@ export function useEditProfile() {
   const updateprofile = useAppSelector(state => state.updateprofile);
 
   const user = auth().currentUser;
-
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (user) {

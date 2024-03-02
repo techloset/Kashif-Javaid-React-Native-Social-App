@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {SignUp} from '../../../store/slices/sigupslice/sigupslice';
-import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
+import {SignUp} from '../../../store/slices/authSlice/sigupslice';
+import {GoogleSignIn} from '../../../store/slices/authSlice/googleSlice';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');

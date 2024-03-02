@@ -16,6 +16,8 @@ export const ProfileStlye = StyleSheet.create({
   },
   nameheading: {
     marginTop: 56,
+    color: 'black',
+    fontFamily: 'Roboto-Medium',
   },
   profileimg: {
     justifyContent: 'center',
@@ -41,12 +43,11 @@ export const ProfileStlye = StyleSheet.create({
   },
   bio: {
     marginTop: 1,
+    alignItems: 'center',
     fontFamily: 'Roboto-bold',
     color: 'black',
-    fontSize: 12,
+
     justifyContent: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold',
   },
   button: {
     height: 30,
@@ -61,5 +62,10 @@ export const ProfileStlye = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Roboto-bold',
     lineHeight: 18,
+  },
+  edit: {
+    fontFamily: 'Roboto-bold',
+    color: 'black',
+    fontWeight: 'bold',
   },
 });

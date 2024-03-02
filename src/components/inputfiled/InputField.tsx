@@ -7,6 +7,7 @@ const InputField: React.FC<InputType> = ({
   placeholder,
   value,
   onChangeText,
+  secureTextEntry,
 }) => {
   return (
     <View>
@@ -14,6 +15,7 @@ const InputField: React.FC<InputType> = ({
         <TextInput
           placeholder={placeholder}
           style={InputStyle.inputstyle}
+          secureTextEntry={secureTextEntry}
           value={value}
           onChangeText={onChangeText}
         />

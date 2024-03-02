@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../../constants/color/colors';
 
 export const signstyleshhet = StyleSheet.create({
   container: {
@@ -14,13 +15,13 @@ export const signstyleshhet = StyleSheet.create({
   inputdiv: {
     paddingTop: 39,
     padding: 4,
-    gap: -3,
+    gap: -8,
   },
   inputfiled: {
     padding: 15,
     borderWidth: 0.2,
     borderRadius: 1,
-    backgroundColor: '#f9f9f7',
+    backgroundColor: color.inputbackgroundColor,
     fontFamily: 'Roboto',
   },
   signin: {
@@ -36,7 +37,7 @@ export const signstyleshhet = StyleSheet.create({
     fontWeight: '600',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: '#3797EF',
+    backgroundColor: color.forgetpassword,
     marginHorizontal: 13,
   },
   google: {
@@ -52,7 +53,7 @@ export const signstyleshhet = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: color.loginline,
   },
   linetext: {
     width: 50,
@@ -60,10 +61,10 @@ export const signstyleshhet = StyleSheet.create({
   },
   accountheading: {
     marginTop: 40,
-    color: '#000000',
+    color: 'black',
     textAlign: 'center',
   },
   sign: {
-    color: '#3797EF',
+    color: color.forgetpassword,
   },
 });

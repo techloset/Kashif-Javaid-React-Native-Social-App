@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../../constants/color/colors';
 
 export const loginstyle = StyleSheet.create({
   container: {
@@ -20,12 +21,12 @@ export const loginstyle = StyleSheet.create({
     padding: 15,
     borderWidth: 0.2,
     borderRadius: 3,
-    backgroundColor: '#f9f9f7',
+    backgroundColor: color.inputbackgroundColor,
     fontFamily: 'Roboto-Light',
   },
   forpassword: {
     fontFamily: 'Roboto',
-    color: '#3797EF',
+    color: color.forgetpassword,
     fontSize: 14,
     fontWeight: 'bold',
     lineHeight: 14.06,
@@ -44,7 +45,7 @@ export const loginstyle = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: '#3797EF',
+    backgroundColor: color.forgetpassword,
     marginHorizontal: 10,
   },
   googlebutt: {
@@ -60,7 +61,7 @@ export const loginstyle = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    backgroundColor: color.loginline,
   },
   linetext: {
     width: 40,
@@ -70,11 +71,11 @@ export const loginstyle = StyleSheet.create({
   accountheading: {
     marginTop: 42,
     textAlign: 'center',
-    color: '#000000',
+    color: 'black',
     fontFamily: 'Roboto-Medium',
   },
   sign: {
-    color: '#3797EF',
+    color: color.forgetpassword,
     marginTop: 10,
   },
   errorInput: {

@@ -54,17 +54,17 @@ export default function Profile(
           </View>
         </View>
         <View style={ProfileStlye.bio}>
-          <Text>{bio}</Text>
+          <Text style={ProfileStlye.bio}>{bio}</Text>
         </View>
         <View style={ProfileStlye.button}>
           <TouchableOpacity
             onPress={() => props.navigation.navigate('Editprofile')}>
-            <Text>Edit Profile</Text>
+            <Text style={ProfileStlye.edit}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
         <View style={ProfileStlye.button}>
           <TouchableOpacity onPress={siguout}>
-            <Text>Signed out</Text>
+            <Text style={ProfileStlye.edit}>Signed out</Text>
           </TouchableOpacity>
         </View>
 

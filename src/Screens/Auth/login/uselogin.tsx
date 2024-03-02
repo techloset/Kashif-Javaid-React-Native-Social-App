@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {userlogin} from '../../../store/slices/loginslice/loginSlice';
-import {GoogleSignIn} from '../../../store/slices/googleSlice/googleSlice';
+import {GoogleSignIn} from '../../../store/slices/authSlice/googleSlice';
+import {userlogin} from '../../../store/slices/authSlice/loginSlice';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
