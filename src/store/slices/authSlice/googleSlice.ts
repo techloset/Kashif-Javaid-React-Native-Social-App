@@ -4,8 +4,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../../config/Firebase';
 GoogleSignin.configure({
-  webClientId:
-    '753257465557-kl0kd9ng0anhf8u9rnhf3cq4qsgr0ra6.apps.googleusercontent.com',
+  webClientId: process.env.GOOGLE_CLIENT_ID,
 });
 const initialState: Googletype = {
   user: null,
@@ -14,6 +13,7 @@ const initialState: Googletype = {
   username: '',
   email: '',
   password: '',
+  userId: '',
 };
 export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
   try {
@@ -23,12 +23,12 @@ export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
     const {idToken} = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const userCredential = await auth().signInWithCredential(googleCredential);
-    const {displayName, email} = userCredential.user || {};
+    const {displayName, email, uid} = userCredential.user || {};
     db.collection('Users').add({
       displayName: displayName || '',
       email: email || '',
+      userId: uid || '',
     });
-    console.log('User signed in with Google:', userCredential.user);
     return userCredential.user;
   } catch (error) {
     console.error('Google sign-in error:', error);

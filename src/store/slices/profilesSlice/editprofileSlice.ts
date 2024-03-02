@@ -48,9 +48,7 @@ export const userupdateprofile = createAsyncThunk(
         throw new Error('User not authenticated.');
       }
       if (!validatePhoneNumber(phone)) {
-        Alert.alert(
-          'Invalid phone number! Phone number must not exceed 11 digits',
-        );
+        Alert.alert('Please enter a valid 11-digit phone number');
         throw new Error(
           'Invalid phone number! Phone number must not exceed 11 digits.',
         );

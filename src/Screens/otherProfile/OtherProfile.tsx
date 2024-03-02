@@ -2,7 +2,7 @@ import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {OtherProfileStyle} from './OtherProfileStyle';
 import profilelock from '../../assets/images/profile.png';
-
+import profileimgs from '../../assets/images/profileimg.png';
 export default function OtherProfile({route}: any) {
   const {event} = route.params;
   console.log('route', route.params);
@@ -37,6 +37,7 @@ export default function OtherProfile({route}: any) {
               />
             )}
             <Text style={OtherProfileStyle.username}>{event.userName}</Text>
+            <Image source={profileimgs} style={{marginTop: 30}} />
             <View>
               <Image
                 source={{uri: event.downloadURL}}

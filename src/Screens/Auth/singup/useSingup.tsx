@@ -4,6 +4,7 @@ import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
 import {SignUp} from '../../../store/slices/authSlice/sigupslice';
 import {GoogleSignIn} from '../../../store/slices/authSlice/googleSlice';
+import {Alert} from 'react-native';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');
@@ -69,6 +70,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
+      Alert.alert('Login successful. Happy browsing!');
     } catch (error) {}
   };
   return {

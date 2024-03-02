@@ -38,6 +38,7 @@ export interface user {
   id: string;
   name: string;
   user: null;
+  userId: string;
 }
 
 export type Post = {
@@ -89,6 +90,7 @@ export interface Googletype {
   username: string;
   email: string;
   password: string;
+  userId: string;
 }
 
 export interface LoginState {

@@ -41,9 +41,8 @@ export const OtherProfileStyle = StyleSheet.create({
     fontWeight: 'bold',
   },
   profileimageall: {
-    width: 100,
+    width: 120,
     height: 100,
-    marginRight: 220,
-    marginTop: 20,
+    marginRight: 240,
   },
 });
