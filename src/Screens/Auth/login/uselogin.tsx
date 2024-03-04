@@ -45,15 +45,16 @@ export function useLogin(props: Params) {
 
   const dispatch = useAppDispatch();
   const login = useAppSelector(state => state.login.user);
-
   const Loginhandle = () => {
     if (validate()) {
       try {
         dispatch(userlogin({email, password}));
+        Alert.alert('Login successful. Happy browsing!');
       } catch (error) {}
     }
   };
   const Googlesignup = useAppSelector(state => state.Googlesignup.user);
+
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());

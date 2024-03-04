@@ -23,10 +23,13 @@ export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
     const {idToken} = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const userCredential = await auth().signInWithCredential(googleCredential);
-    const {displayName, email, uid} = userCredential.user || {};
+    const {displayName, email, uid, photoURL} = userCredential.user || {};
     db.collection('Users').add({
       displayName: displayName || '',
       email: email || '',
+      userId: uid || '',
+    });
+    db.collection('profile').add({
       userId: uid || '',
     });
     return userCredential.user;

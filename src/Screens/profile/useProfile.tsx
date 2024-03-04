@@ -12,7 +12,7 @@ export function useProfile(
   const profile = useAppSelector(state => state.profile);
   useEffect(() => {
     dispatch(userprofile());
-  }, [dispatch]);
+  }, [dispatch, profile]);
 
   const siguout = () => {
     auth()

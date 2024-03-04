@@ -26,14 +26,15 @@ export function useHome() {
   };
   const dispatch = useAppDispatch();
   const allPosts = useAppSelector(state => state.allPosts);
+
   useEffect(() => {
     dispatch(fetchPost());
-  }, [dispatch]);
+  }, [allPosts]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       dispatch(fetchPost());
-    }, 6000);
+    }, 20000);
     return () => clearInterval(intervalId);
   }, []);
 

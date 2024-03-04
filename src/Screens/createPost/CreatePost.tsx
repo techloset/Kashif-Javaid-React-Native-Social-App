@@ -19,7 +19,7 @@ export default function CreatePost() {
       <ScrollView>
         <View>
           <View style={CreateStyle.seccontainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleImageSelect}>
               <Text style={{color: 'black'}}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity>
