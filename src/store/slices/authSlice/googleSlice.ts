@@ -31,6 +31,7 @@ export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
     });
     db.collection('profile').add({
       userId: uid || '',
+      downloadURL: photoURL || '',
     });
     return userCredential.user;
   } catch (error) {
