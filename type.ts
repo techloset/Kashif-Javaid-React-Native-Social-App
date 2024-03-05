@@ -12,7 +12,8 @@ export type ParamsList = {
   user: undefined;
   Editprofile: undefined;
   EditNavigation: undefined;
-  OtherProfile: undefined;
+  OtherProfile: {event: ImageData};
+
   AuthScreens: undefined;
 };
 export type RootStackParamList = {
@@ -23,11 +24,6 @@ export type tabnavigation = {
   HOME: string;
   CREATE: string;
   PROFILE: string;
-};
-
-export type params = {
-  image: string;
-  photoUrl: string;
 };
 
 export type date = {
@@ -179,10 +175,11 @@ export interface ImageState {
   userId: string;
 }
 
-export interface ImageData {
-  postId: string;
-  downloadURL: string;
+export type Params = {
+  image: string;
+  photoUrl: string;
   profileImageUrl: string;
-  userName: string;
-  userId: string;
+};
+export interface ImageData {
+  route: any;
 }

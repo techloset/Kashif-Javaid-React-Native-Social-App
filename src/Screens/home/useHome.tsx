@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
 import {db} from '../../config/Firebase';
-import {PostData} from '../../../type';
 
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -30,7 +29,7 @@ export function useHome() {
 
   useEffect(() => {
     const unsubscribe = db.collection('Images').onSnapshot(async snapshot => {
-      const posts: PostData[] = [];
+      const posts: any[] = [];
       snapshot.forEach(async doc => {
         const imageData = doc.data();
         const postId = doc.id;
@@ -59,7 +58,7 @@ export function useHome() {
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [dispatch, fetchPost]);
 
   return {
     allPosts,

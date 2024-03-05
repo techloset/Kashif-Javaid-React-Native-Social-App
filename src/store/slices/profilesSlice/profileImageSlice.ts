@@ -60,16 +60,10 @@ export const updateUserImage = createAsyncThunk(
   },
 );
 
-console.log('updateUserImage', updateUserImage);
-
 const updateprofileimageSlice = createSlice({
   name: 'updateImage',
   initialState,
-  reducers: {
-    clearImageState: state => {
-      return initialState;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(updateUserImage.pending, state => {
@@ -79,7 +73,6 @@ const updateprofileimageSlice = createSlice({
       .addCase(updateUserImage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.imageUrl = action.payload.imageUrl;
-
         state.userId = action.payload.userId;
       })
       .addCase(updateUserImage.rejected, (state, action) => {
@@ -89,6 +82,6 @@ const updateprofileimageSlice = createSlice({
   },
 });
 
-export const {clearImageState} = updateprofileimageSlice.actions;
+export const {} = updateprofileimageSlice.actions;
 
 export default updateprofileimageSlice.reducer;

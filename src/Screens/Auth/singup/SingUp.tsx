@@ -1,7 +1,7 @@
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import instaimg from '../../../assets/images/Instagram.png';
+import instaimg from '../../../constants/images/Instagram.png';
 import {signstyleshhet} from './SingupStyle';
-import signimg from '../../../assets/images/signup.png';
+import signimg from '../../../constants/images/signup.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';

@@ -30,6 +30,7 @@ export function useEditProfile() {
         const snapshot = await userRef.get();
         if (snapshot.exists) {
           const userData = snapshot.data();
+          setName(userData?.image || '');
           setName(userData?.name || '');
           setUserName(userData?.username || '');
           setWebsite(userData?.website || '');
@@ -43,11 +44,9 @@ export function useEditProfile() {
 
     fetchUserProfile();
   }, [user]);
+
   const imageUrl = useAppSelector(state => state.updateImage.imageUrl);
   const userId = useAppSelector(state => state.updateImage.userId);
-  useEffect(() => {
-    setImage(imageUrl);
-  }, [imageUrl]);
   const profileImage = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, response => {
@@ -55,12 +54,17 @@ export function useEditProfile() {
         const selectedAssets = response.assets;
         const uri: string = selectedAssets[0].uri ?? '';
         dispatch(updateUserImage({imageUri: uri, userId: userId}));
-        setImage(uri);
+        setImage(imageUrl);
       } else {
         Alert.alert('No image selected');
       }
     });
   };
+
+  useEffect(() => {
+    setImage(imageUrl);
+  }, [dispatch, imageUrl]);
+
   const updatehandle = () => {
     dispatch(
       userupdateprofile({

@@ -14,6 +14,7 @@ export const fetchPost = createAsyncThunk('allPosts', async () => {
   try {
     const posts: PostData[] = [];
     const imagesSnapshot = await db.collection('Images').get();
+
     await Promise.all(
       imagesSnapshot.docs.map(async imageDoc => {
         const imageData = imageDoc.data();
@@ -23,24 +24,26 @@ export const fetchPost = createAsyncThunk('allPosts', async () => {
           .collection('profile')
           .where('userId', '==', userId)
           .get();
-        await Promise.all(
-          profileQuerySnapshot.docs.map(async profileDoc => {
-            const profileData = profileDoc.data();
-            const profileImage = profileData.downloadURL;
-            const postData: PostData = {
-              postId: imageDoc.id,
-              userId: '',
-              downloadURL: imageData.downloadURL,
-              profileImageUrl: profileImage,
-              mediaType: 'image',
-              profileImage: '',
-              createdAt: null,
-              userName: imageData.userName,
-              description: imageData.description,
-            };
-            posts.push(postData);
-          }),
-        );
+
+        let profileImageUrl = '';
+        if (!profileQuerySnapshot.empty) {
+          const profileDoc = profileQuerySnapshot.docs[0];
+          const profileData = profileDoc.data();
+          profileImageUrl = profileData.downloadURL;
+        }
+
+        const postData: PostData = {
+          postId: imageDoc.id,
+          userId: '',
+          downloadURL: imageData.downloadURL,
+          profileImageUrl: profileImageUrl,
+          mediaType: 'image',
+          profileImage: '',
+          createdAt: null,
+          userName: imageData.userName,
+          description: imageData.description,
+        };
+        posts.push(postData);
       }),
     );
 

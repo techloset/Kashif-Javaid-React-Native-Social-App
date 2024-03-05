@@ -1,11 +1,15 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
+import {RouteProp} from '@react-navigation/native';
 import {OtherProfileStyle} from './OtherProfileStyle';
-import profilelock from '../../assets/images/profile.png';
-import profileimgs from '../../assets/images/profileimg.png';
-export default function OtherProfile({route}: any) {
+import profilelock from '../../constants/images/profile.png';
+import profileimgs from '../../constants/images/profileimg.png';
+import {ImageData, ParamsList} from '../../../type';
+type OtherProfileScreenRouteProp = RouteProp<ParamsList, 'OtherProfile'>;
+
+export default function OtherProfile({route}: ImageData) {
   const {event} = route.params;
-  console.log('route', route.params);
+  console.log('event', event);
 
   return (
     <View style={OtherProfileStyle.container}>
@@ -16,9 +20,9 @@ export default function OtherProfile({route}: any) {
             <Text style={OtherProfileStyle.nameheading}>{event.userName}</Text>
           </View>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            {event.profileImageUrl ? (
+            {event?.profileImageUrl ? (
               <Image
-                source={{uri: event.profileImageUrl}}
+                source={{uri: event?.profileImageUrl}}
                 style={{
                   width: 100,
                   borderRadius: 100,
@@ -36,11 +40,11 @@ export default function OtherProfile({route}: any) {
                 }}
               />
             )}
-            <Text style={OtherProfileStyle.username}>{event.userName}</Text>
+            <Text style={OtherProfileStyle.username}>{event?.userName}</Text>
             <Image source={profileimgs} style={{marginTop: 30}} />
             <View>
               <Image
-                source={{uri: event.downloadURL}}
+                source={{uri: event?.downloadURL}}
                 style={OtherProfileStyle.profileimageall}
               />
             </View>

@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import instaimg from '../../../src/assets/images/Instagram.png';
+import instaimg from '../../constants/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
 import {HomeStyle} from './HomeStyle';
 import {useHome} from './useHome';
-import Like from '../../assets/images/Like.png';
-import comment from '../../assets/images/Comment.png';
-import messenger from '../../assets/images/Messanger.png';
-import ovel from '../../assets/images/Oval.png';
-import save from '../../assets/images/Save.png';
+import Like from '../../constants/images/Like.png';
+import comment from '../../constants/images/Comment.png';
+import messenger from '../../constants/images/Messanger.png';
+import ovel from '../../constants/images/Oval.png';
+import save from '../../constants/images/Save.png';
 import Video from 'react-native-video';
 import {useEditProfile} from '../editProfile/useEditProfile';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -19,7 +19,7 @@ export default function Home(props: Params) {
   const user = auth().currentUser;
   const {image} = useEditProfile();
   const switchScreen = (item: ImageData) => {
-    props.navigation.navigate('OtherProfile', {event: item} as any);
+    props.navigation.navigate('OtherProfile', {event: item});
   };
 
   return (

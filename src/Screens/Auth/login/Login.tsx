@@ -1,6 +1,6 @@
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import instimg from '../../../assets/images/Instagram.png';
-import google from '../../../assets/images/Google.png';
+import instimg from '../../../constants/images/Instagram.png';
+import google from '../../../constants/images/Google.png';
 import {loginstyle} from './LoginStyle';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';

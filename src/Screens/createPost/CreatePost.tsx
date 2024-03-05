@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {CreateStyle} from './CreateStyle';
-import upload from '../../assets/images/upload.png';
-import imageupload from '../../assets/images/imageupload.png';
+import upload from '../../constants/images/upload.png';
+import imageupload from '../../constants/images/imageupload.png';
 import InputField from '../../components/inputfiled/InputField';
 import {useCreate} from './useCreate';
 export default function CreatePost() {

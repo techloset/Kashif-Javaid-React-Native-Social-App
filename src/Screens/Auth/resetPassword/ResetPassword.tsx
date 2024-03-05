@@ -1,5 +1,5 @@
 import {View, Image, Text, TextInput, TouchableOpacity} from 'react-native';
-import instimg from '../../../assets/images/Instagram.png';
+import instimg from '../../../constants/images/Instagram.png';
 import {resstyle} from './ResetStyle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';

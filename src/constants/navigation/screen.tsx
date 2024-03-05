@@ -8,8 +8,11 @@ import {Image, View} from 'react-native';
 import {useEditProfile} from '../../screens/editProfile/useEditProfile';
 import auth from '@react-native-firebase/auth';
 import {ParamsList} from '../../../type';
-import firsticon from '../../assets/images/icon/homeicon.png';
-import secondicon from '../../assets/images/icon/shoeicon.png';
+import firsticon from '../../constants/images/icon/homeicon.png';
+import secondicon from '../../constants/images/icon/shoeicon.png';
+import EditProfile from '../../screens/editProfile/EditProfile';
+import OtherProfile from '../../screens/otherProfile/OtherProfile';
+import {TabNavigation} from '../../navigation/TabNavigation';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = {
   LOGIN: 'Login',
@@ -108,4 +111,33 @@ export const TAB_NAVIGATION = [
     tabBarLabel: string;
     tabBarIcon: () => React.ReactElement;
   };
+}[];
+
+export const MAIN_STACK_NAVIGATION_SCREENS = {
+  HOME: 'HomeScreen',
+  EDITPROFILE: 'Editprofile',
+  OTHERPROFILE: 'OtherProfile',
+  RESET: 'Reset',
+};
+
+export const MAIN_STACK = [
+  {
+    name: MAIN_STACK_NAVIGATION_SCREENS.HOME,
+    component: TabNavigation as React.FC,
+  },
+  {
+    name: MAIN_STACK_NAVIGATION_SCREENS.EDITPROFILE,
+    component: EditProfile as React.FC,
+  },
+  {
+    name: MAIN_STACK_NAVIGATION_SCREENS.OTHERPROFILE,
+    component: OtherProfile as React.FC,
+  },
+  {
+    name: MAIN_STACK_NAVIGATION_SCREENS.RESET,
+    component: ResetPassword as React.FC,
+  },
+] as {
+  name: keyof ParamsList;
+  component: React.FC;
 }[];
