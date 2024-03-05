@@ -73,7 +73,7 @@ export default function Home(props: Params) {
         </View>
 
         <FlatList
-          data={allPosts.data}
+          data={allPosts}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
