@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import instimg from '../../../assets/images/Instagram.png';
 import google from '../../../assets/images/Google.png';
 import {loginstyle} from './LoginStyle';
@@ -20,7 +20,7 @@ export default function Login(props: Params) {
   } = useLogin(props);
   return (
     <View style={loginstyle.container}>
-      <View>
+      <ScrollView>
         <View style={loginstyle.logimg}>
           <Image source={instimg} />
         </View>
@@ -72,7 +72,7 @@ export default function Login(props: Params) {
             </Text>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
