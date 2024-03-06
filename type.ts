@@ -1,4 +1,4 @@
-import {KeyboardTypeOptions} from 'react-native';
+import {KeyboardTypeOptions, TouchableOpacityProps} from 'react-native';
 
 export type ParamsList = {
   Login: undefined;
@@ -182,4 +182,7 @@ export type Params = {
 };
 export interface ImageData {
   route: any;
+}
+export interface ButtonProps extends TouchableOpacityProps {
+  title: string;
 }

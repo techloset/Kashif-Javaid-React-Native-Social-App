@@ -45,4 +45,16 @@ export const OtherProfileStyle = StyleSheet.create({
     height: 100,
     marginRight: 240,
   },
+  userprofileImage: {
+    width: 100,
+    borderRadius: 100,
+    height: 100,
+    marginTop: 10,
+  },
+  nouserimage: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: 'gray',
+  },
 });

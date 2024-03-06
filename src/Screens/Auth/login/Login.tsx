@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useLogin} from './uselogin';
 import InputField from '../../../components/inputfiled/InputField';
+import Button from '../../../components/button/Button';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export default function Login(props: Params) {
   const {
@@ -46,9 +47,7 @@ export default function Login(props: Params) {
           <TouchableOpacity onPress={() => props.navigation.navigate('Reset')}>
             <Text style={loginstyle.forpassword}>Forgot password?</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={loginstyle.logindiv} onPress={Loginhandle}>
-            <Text style={loginstyle.loginbutt}>Log in</Text>
-          </TouchableOpacity>
+          <Button title="Log in" onPress={Loginhandle} />
           <Text style={loginstyle.googlebutt} onPress={Googlesign}>
             <Image source={google} />
           </Text>

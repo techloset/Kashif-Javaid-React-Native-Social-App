@@ -9,8 +9,6 @@ type OtherProfileScreenRouteProp = RouteProp<ParamsList, 'OtherProfile'>;
 
 export default function OtherProfile({route}: ImageData) {
   const {event} = route.params;
-  console.log('event', event);
-
   return (
     <View style={OtherProfileStyle.container}>
       <View style={{flex: 1}}>
@@ -23,22 +21,10 @@ export default function OtherProfile({route}: ImageData) {
             {event?.profileImageUrl ? (
               <Image
                 source={{uri: event?.profileImageUrl}}
-                style={{
-                  width: 100,
-                  borderRadius: 100,
-                  height: 100,
-                  marginTop: 10,
-                }}
+                style={OtherProfileStyle.userprofileImage}
               />
             ) : (
-              <View
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 100,
-                  backgroundColor: 'gray',
-                }}
-              />
+              <View style={OtherProfileStyle.nouserimage} />
             )}
             <Text style={OtherProfileStyle.username}>{event?.userName}</Text>
             <Image source={profileimgs} style={{marginTop: 30}} />

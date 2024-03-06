@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
 import InputField from '../../../components/inputfiled/InputField';
+import Button from '../../../components/button/Button';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 export default function SingUp(
   props: NativeStackScreenProps<ParamsList, 'Singup'>,
@@ -72,9 +73,7 @@ export default function SingUp(
           </Text>
         </View>
         <View>
-          <TouchableOpacity style={signstyleshhet.signin} onPress={signup}>
-            <Text style={signstyleshhet.signbutt}>Sign Up</Text>
-          </TouchableOpacity>
+          <Button title="Sign Up" onPress={signup} />
           <TouchableOpacity onPress={Googlesign}>
             <Text style={signstyleshhet.google}>
               <Image source={signimg} />

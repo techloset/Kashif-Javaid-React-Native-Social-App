@@ -5,6 +5,7 @@ import upload from '../../constants/images/upload.png';
 import imageupload from '../../constants/images/imageupload.png';
 import InputField from '../../components/inputfiled/InputField';
 import {useCreate} from './useCreate';
+import Button from '../../components/button/Button';
 export default function CreatePost() {
   const {
     description,
@@ -51,12 +52,7 @@ export default function CreatePost() {
           secureTextEntry={false}
           onChangeText={text => setDescription(text)}
         />
-        <TouchableOpacity
-          style={CreateStyle.buttcontainer}
-          onPress={handleUpload}
-          disabled={uploading}>
-          <Text style={CreateStyle.text}>Upload</Text>
-        </TouchableOpacity>
+        <Button title="Upload" onPress={handleUpload} />
         {uploading && <Text>Uploading...</Text>}
       </ScrollView>
     </View>
