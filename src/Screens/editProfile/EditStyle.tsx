@@ -71,4 +71,15 @@ export const EditStyle = StyleSheet.create({
   forget: {
     color: color.forgetpassword,
   },
+  noprofileimage: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: 'gray',
+  },
+  profileuserimage: {
+    borderRadius: 100,
+    width: 100,
+    height: 100,
+  },
 });

@@ -109,4 +109,25 @@ export const HomeStyle = StyleSheet.create({
     marginLeft: 11,
     marginTop: 7,
   },
+  usernotimage: {
+    width: 32,
+    height: 32,
+    borderRadius: 100,
+    marginLeft: 11,
+    marginTop: 11,
+    backgroundColor: 'gray',
+  },
+  profileimageuser: {
+    width: 32,
+    borderRadius: 100,
+    height: 32,
+    marginLeft: 11,
+    marginTop: 11,
+  },
+  picuser: {
+    width: 32,
+    height: 32,
+    borderRadius: 100,
+    marginLeft: 10,
+  },
 });

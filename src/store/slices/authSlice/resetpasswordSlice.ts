@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {resetpasswordState} from '../../../../type';
 import {firebase} from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
-
 const initialState: resetpasswordState = {
   user: null,
   isLoading: false,
@@ -25,7 +24,6 @@ export const ResetPassword = createAsyncThunk(
     }
   },
 );
-
 const resetpasswordSlice = createSlice({
   name: 'resetpassword',
   initialState,

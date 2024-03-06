@@ -39,26 +39,11 @@ export default function Home(props: Params) {
                     style={HomeStyle.profileimage}
                   />
                 ) : !image ? (
-                  <View
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 100,
-                      marginLeft: 11,
-                      marginTop: 11,
-                      backgroundColor: 'gray',
-                    }}
-                  />
+                  <View style={HomeStyle.usernotimage} />
                 ) : (
                   <Image
                     source={{uri: image}}
-                    style={{
-                      width: 32,
-                      borderRadius: 100,
-                      height: 32,
-                      marginLeft: 11,
-                      marginTop: 11,
-                    }}
+                    style={HomeStyle.profileimageuser}
                   />
                 )}
               </View>
@@ -84,12 +69,7 @@ export default function Home(props: Params) {
                   }}>
                   <Image
                     source={{uri: item.profileImageUrl}}
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 100,
-                      marginLeft: 10,
-                    }}
+                    style={HomeStyle.picuser}
                   />
                 </TouchableOpacity>
                 <Text style={HomeStyle.username}>{item.userName}</Text>

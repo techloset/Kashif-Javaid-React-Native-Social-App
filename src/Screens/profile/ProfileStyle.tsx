@@ -68,4 +68,15 @@ export const ProfileStlye = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
+  noimageuser: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: 'gray',
+  },
+  userimageprofile: {
+    width: 100,
+    borderRadius: 100,
+    height: 100,
+  },
 });

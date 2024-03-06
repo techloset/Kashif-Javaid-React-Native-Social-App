@@ -57,17 +57,10 @@ export default function EditProfile(
                 {image ? (
                   <Image
                     source={{uri: image}}
-                    style={{borderRadius: 100, width: 100, height: 100}}
+                    style={EditStyle.profileuserimage}
                   />
                 ) : (
-                  <View
-                    style={{
-                      width: 100,
-                      height: 100,
-                      borderRadius: 100,
-                      backgroundColor: 'gray',
-                    }}
-                  />
+                  <View style={EditStyle.noprofileimage} />
                 )}
               </>
             )}

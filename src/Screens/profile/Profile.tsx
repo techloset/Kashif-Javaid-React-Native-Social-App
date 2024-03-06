@@ -33,18 +33,11 @@ export default function Profile(
                   style={ProfileStlye.profileimg}
                 />
               ) : !image ? (
-                <View
-                  style={{
-                    width: 100,
-                    height: 100,
-                    borderRadius: 100,
-                    backgroundColor: 'gray',
-                  }}
-                />
+                <View style={ProfileStlye.noimageuser} />
               ) : (
                 <Image
                   source={{uri: image}}
-                  style={{width: 100, borderRadius: 100, height: 100}}
+                  style={ProfileStlye.userimageprofile}
                 />
               )}
             </View>
