@@ -1,10 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../../constants/color/colors';
-
+import {COLORS} from '../../../constants/color/colors';
 export const signstyleshhet = StyleSheet.create({
   container: {
     flex: 1,
-    fontFamily: 'Roboto',
+    fontFamily: 'Roboto-medium',
     alignItems: 'center',
   },
   sinimg: {
@@ -21,7 +20,7 @@ export const signstyleshhet = StyleSheet.create({
     padding: 15,
     borderWidth: 0.2,
     borderRadius: 1,
-    backgroundColor: color.inputbackgroundColor,
+    backgroundColor: COLORS.inputbackgroundColor,
     fontFamily: 'Roboto',
   },
   signin: {
@@ -33,11 +32,11 @@ export const signstyleshhet = StyleSheet.create({
     padding: 10,
     marginTop: 23,
     textAlign: 'center',
-    fontFamily: 'Robot',
+    fontFamily: 'Robot-bold',
     fontWeight: '600',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: color.forgetpassword,
+    backgroundColor: COLORS.forgetpassword,
     marginHorizontal: 13,
   },
   google: {
@@ -53,7 +52,7 @@ export const signstyleshhet = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: color.loginline,
+    backgroundColor: COLORS.loginline,
   },
   linetext: {
     width: 50,
@@ -65,6 +64,11 @@ export const signstyleshhet = StyleSheet.create({
     textAlign: 'center',
   },
   sign: {
-    color: color.forgetpassword,
+    color: COLORS.forgetpassword,
+  },
+  error: {
+    color: 'red',
+    marginLeft: 12,
+    marginTop: 4,
   },
 });

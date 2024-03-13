@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, KeyboardAvoidingView} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 import {InputStyle} from './InpustStyle';
 import {InputType} from '../../../type';
 
@@ -11,10 +10,10 @@ const InputField: React.FC<InputType> = ({
 }) => {
   return (
     <View>
-      <View style={InputStyle.inputdiv}>
+      <View style={InputStyle.input}>
         <TextInput
           placeholder={placeholder}
-          style={InputStyle.inputstyle}
+          style={InputStyle.inputStyle}
           secureTextEntry={secureTextEntry}
           value={value}
           onChangeText={onChangeText}

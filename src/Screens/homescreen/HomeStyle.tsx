@@ -124,10 +124,34 @@ export const HomeStyle = StyleSheet.create({
     marginLeft: 11,
     marginTop: 11,
   },
-  picuser: {
+  piture: {
     width: 32,
     height: 32,
     borderRadius: 100,
     marginLeft: 10,
+  },
+  param: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  icons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  userNameStyle: {
+    flexWrap: 'wrap',
+    alignItems: 'center',
+  },
+  userNameStyle1: {
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  Data: {
+    marginLeft: 15,
+    marginTop: 15,
+  },
+  flatlistdiv: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

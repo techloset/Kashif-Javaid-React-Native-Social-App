@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../constants/color/colors';
-
+import {COLORS} from '../../constants/color/colors';
 export const CreateStyle = StyleSheet.create({
   container: {
     flex: 1,
@@ -21,7 +20,7 @@ export const CreateStyle = StyleSheet.create({
   buttcontainer: {
     width: 340,
     height: 44,
-    backgroundColor: color.forgetpassword,
+    backgroundColor: COLORS.forgetpassword,
     borderRadius: 10,
     marginHorizontal: 10,
     marginTop: 40,
@@ -32,5 +31,13 @@ export const CreateStyle = StyleSheet.create({
     fontSize: 13,
     textAlign: 'center',
     marginTop: 10,
+  },
+  imagetext: {
+    color: 'black',
+    fontSize: 16,
+  },
+  uploadedimage: {
+    marginHorizontal: 12,
+    marginTop: 20,
   },
 });

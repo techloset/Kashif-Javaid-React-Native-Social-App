@@ -1,7 +1,7 @@
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import instaimg from '../../../constants/images/Instagram.png';
+import Instagram from '../../../constants/images/Instagram.png';
 import {signstyleshhet} from './SingupStyle';
-import signimg from '../../../constants/images/signup.png';
+import singup from '../../../constants/images/signup.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
@@ -32,7 +32,7 @@ export default function SingUp(
     <View style={signstyleshhet.container}>
       <ScrollView>
         <View style={signstyleshhet.sinimg}>
-          <Image source={instaimg} />
+          <Image source={Instagram} />
         </View>
         <View style={signstyleshhet.inputdiv}>
           <InputField
@@ -41,42 +41,34 @@ export default function SingUp(
             secureTextEntry={false}
             onChangeText={text => setUserName(text)}
           />
-          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
-            {badusername}
-          </Text>
+          <Text style={signstyleshhet.error}>{badusername}</Text>
           <InputField
             placeholder="Email"
             value={email}
             secureTextEntry={false}
             onChangeText={text => setEmail(text)}
           />
-          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
-            {bademail}
-          </Text>
+          <Text style={signstyleshhet.error}>{bademail}</Text>
           <InputField
             placeholder="Password"
             value={password}
             secureTextEntry={true}
             onChangeText={text => setPassword(text)}
           />
-          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
-            {badpassword}
-          </Text>
+          <Text style={signstyleshhet.error}>{badpassword}</Text>
           <InputField
             placeholder="Confirm Password"
             value={confirmpass}
             secureTextEntry={true}
             onChangeText={text => setConfirmpass(text)}
           />
-          <Text style={{color: 'red', marginLeft: 12, marginTop: 4}}>
-            {badconfirmpass}
-          </Text>
+          <Text style={signstyleshhet.error}>{badconfirmpass}</Text>
         </View>
         <View>
           <Button title="Sign Up" onPress={signup} />
           <TouchableOpacity onPress={Googlesign}>
             <Text style={signstyleshhet.google}>
-              <Image source={signimg} />
+              <Image source={singup} />
             </Text>
           </TouchableOpacity>
         </View>

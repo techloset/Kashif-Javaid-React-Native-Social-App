@@ -8,7 +8,7 @@ import {
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {updateUserImage} from '../../store/slices/profilesSlice/profileImageSlice';
-import {userupdateprofile} from '../../store/slices/profilesSlice/editprofileSlice';
+import {userupdateprofile} from '../../store/slices/profilesSlice/userEditprofileSlice';
 
 export function useEditProfile() {
   const [name, setName] = useState('');

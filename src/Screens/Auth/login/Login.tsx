@@ -1,5 +1,5 @@
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import instimg from '../../../constants/images/Instagram.png';
+import Instagram from '../../../constants/images/Instagram.png';
 import google from '../../../constants/images/Google.png';
 import {loginstyle} from './LoginStyle';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
@@ -23,7 +23,7 @@ export default function Login(props: Params) {
     <View style={loginstyle.container}>
       <ScrollView>
         <View style={loginstyle.logimg}>
-          <Image source={instimg} />
+          <Image source={Instagram} />
         </View>
         <View style={loginstyle.inputdiv}>
           <InputField

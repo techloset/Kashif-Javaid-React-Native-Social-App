@@ -47,14 +47,12 @@ export const updateUserImage = createAsyncThunk(
                 }
               }
             } catch (error) {
-              console.error('Error getting download URL', error);
               reject(error);
             }
           },
         );
       });
     } catch (error) {
-      console.error('Error uploading image', error);
       throw error;
     }
   },

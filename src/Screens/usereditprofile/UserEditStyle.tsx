@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../constants/color/colors';
-
+import {COLORS} from '../../constants/color/colors';
 export const EditStyle = StyleSheet.create({
   container: {
     fontFamily: 'Roboto',
@@ -36,7 +35,7 @@ export const EditStyle = StyleSheet.create({
   },
   photo: {
     marginTop: 12,
-    color: color.profilecolor,
+    color: COLORS.profilecolor,
     fontFamily: 'Roboto-bold',
     fontWeight: 'bold',
   },
@@ -63,13 +62,13 @@ export const EditStyle = StyleSheet.create({
     color: 'black',
   },
   done: {
-    color: color.profilecolor,
+    color: COLORS.profilecolor,
     fontFamily: 'Roboto-bold',
     fontWeight: 'bold',
     fontSize: 16,
   },
   forget: {
-    color: color.forgetpassword,
+    color: COLORS.forgetpassword,
   },
   noprofileimage: {
     width: 100,

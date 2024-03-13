@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
@@ -30,7 +30,6 @@ export function useRestpassword(props: Params) {
       try {
         await dispatch(ResetPassword({email}));
       } catch (error) {
-        console.log('Error', error);
         Alert.alert('Error', 'Failed to reset password');
       }
     }
@@ -41,5 +40,6 @@ export function useRestpassword(props: Params) {
     setEmail,
     bademail,
     setBademail,
+    resetpassword,
   };
 }

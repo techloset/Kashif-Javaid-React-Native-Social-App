@@ -1,22 +1,22 @@
 import {View, Image, Text, TextInput, TouchableOpacity} from 'react-native';
-import instimg from '../../../constants/images/Instagram.png';
-import {resstyle} from './ResetStyle';
+import Instagram from '../../../constants/images/Instagram.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useRestpassword} from './useRestpassword';
+import {resetpasswordstyle} from './ResetStyle';
 type Params = NativeStackScreenProps<ParamsList, 'Reset'>;
 export default function ResetPassword(props: Params) {
   const {email, setEmail, bademail, changepassword} = useRestpassword(props);
   return (
-    <View style={resstyle.container}>
-      <View style={resstyle.logimg}>
-        <Image source={instimg} />
+    <View style={resetpasswordstyle.container}>
+      <View style={resetpasswordstyle.logimg}>
+        <Image source={Instagram} />
       </View>
       <View>
-        <Text style={resstyle.restext}>
+        <Text style={resetpasswordstyle.restext}>
           Forgot your password? Write your email and we will
         </Text>
-        <Text style={resstyle.retext}>
+        <Text style={resetpasswordstyle.retext}>
           {' '}
           send you a magic link to reset your password
         </Text>
@@ -24,14 +24,16 @@ export default function ResetPassword(props: Params) {
       <View>
         <TextInput
           placeholder="Email"
-          style={resstyle.inputfiled}
+          style={resetpasswordstyle.inputfiled}
           value={email}
           onChangeText={text => setEmail(text)}
         />
         <Text style={{color: 'red'}}>{bademail}</Text>
       </View>
-      <TouchableOpacity style={resstyle.signin} onPress={changepassword}>
-        <Text style={resstyle.signbutt}>Send Magic Link</Text>
+      <TouchableOpacity
+        style={resetpasswordstyle.singup}
+        onPress={changepassword}>
+        <Text style={resetpasswordstyle.singupbutton}>Send Magic Link</Text>
       </TouchableOpacity>
     </View>
   );

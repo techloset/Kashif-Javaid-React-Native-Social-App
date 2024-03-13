@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {InputType} from '../../../type';
 const EditInput: React.FC<InputType> = ({
@@ -8,15 +7,15 @@ const EditInput: React.FC<InputType> = ({
   label,
 }) => {
   return (
-    <View style={inputstyle.container}>
-      <Text style={inputstyle.label}>{label}</Text>
+    <View style={inputStyle.container}>
+      <Text style={inputStyle.label}>{label}</Text>
       <TextInput
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         multiline={label === 'Bio'}
         numberOfLines={label === 'Bio' ? 3 : 1}
-        style={inputstyle.input}
+        style={inputStyle.input}
       />
     </View>
   );
@@ -24,7 +23,7 @@ const EditInput: React.FC<InputType> = ({
 
 export default EditInput;
 
-export const inputstyle = StyleSheet.create({
+export const inputStyle = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginHorizontal: 16,

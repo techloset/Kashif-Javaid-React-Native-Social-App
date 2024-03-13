@@ -6,18 +6,17 @@ import profilelock from '../../constants/images/profile.png';
 import profileimgs from '../../constants/images/profileimg.png';
 import {ImageData, ParamsList} from '../../../type';
 type OtherProfileScreenRouteProp = RouteProp<ParamsList, 'OtherProfile'>;
-
 export default function OtherProfile({route}: ImageData) {
   const {event} = route.params;
   return (
     <View style={OtherProfileStyle.container}>
       <View style={{flex: 1}}>
         <View style={OtherProfileStyle.profileName}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={OtherProfileStyle.profilelockdiv}>
             <Image source={profilelock} style={OtherProfileStyle.lock} />
             <Text style={OtherProfileStyle.nameheading}>{event.userName}</Text>
           </View>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View style={OtherProfileStyle.profileimageurl}>
             {event?.profileImageUrl ? (
               <Image
                 source={{uri: event?.profileImageUrl}}
@@ -27,7 +26,10 @@ export default function OtherProfile({route}: ImageData) {
               <View style={OtherProfileStyle.nouserimage} />
             )}
             <Text style={OtherProfileStyle.username}>{event?.userName}</Text>
-            <Image source={profileimgs} style={{marginTop: 30}} />
+            <Image
+              source={profileimgs}
+              style={OtherProfileStyle.profileimage1}
+            />
             <View>
               <Image
                 source={{uri: event?.downloadURL}}

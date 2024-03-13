@@ -57,4 +57,15 @@ export const OtherProfileStyle = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: 'gray',
   },
+  profilelockdiv: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  profileimageurl: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  profileimage1: {
+    marginTop: 30,
+  },
 });

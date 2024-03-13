@@ -24,7 +24,7 @@ export default function CreatePost() {
               <Text style={{color: 'black'}}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={{color: 'black', fontSize: 16}}>
+              <Text style={CreateStyle.imagetext}>
                 Images
                 <Image source={imageupload} />
               </Text>
@@ -39,7 +39,7 @@ export default function CreatePost() {
             />
           ) : (
             <TouchableOpacity
-              style={{marginHorizontal: 12, marginTop: 20}}
+              style={CreateStyle.uploadedimage}
               onPress={handleImageSelect}>
               <Image source={upload} alt="upload" />
             </TouchableOpacity>

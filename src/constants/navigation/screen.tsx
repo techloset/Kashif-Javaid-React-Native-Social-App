@@ -2,16 +2,16 @@ import Login from '../../screens/auth/login/Login';
 import ResetPassword from '../../screens/auth/resetPassword/ResetPassword';
 import SingUp from '../../screens/auth/singup/SingUp';
 import CreatePost from '../../screens/createPost/CreatePost';
-import Home from '../../screens/home/Home';
-import Profile from '../../screens/profile/Profile';
-import {Image, View} from 'react-native';
-import {useEditProfile} from '../../screens/editProfile/useEditProfile';
+import Home from '../../screens/homescreen/HomeScreen';
+import Profile from '../../screens/profilescreen/ProfileScreen';
+import {Image, StyleSheet, View} from 'react-native';
+import {useEditProfile} from '../../screens/usereditprofile/useEditProfile';
 import auth from '@react-native-firebase/auth';
 import {ParamsList} from '../../../type';
-import firsticon from '../../constants/images/icon/homeicon.png';
-import secondicon from '../../constants/images/icon/shoeicon.png';
-import EditProfile from '../../screens/editProfile/EditProfile';
-import OtherProfile from '../../screens/otherProfile/OtherProfile';
+import first from '../../constants/images/icon/home.png';
+import seconde from '../../constants/images/icon/show.png';
+import EditProfile from '../../screens/usereditprofile/UserEditProfile';
+import OtherProfile from '../../screens/otheruserProfile/OtherUserProfile';
 import {TabNavigation} from '../../navigation/TabNavigation';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = {
@@ -51,7 +51,7 @@ export const TAB_NAVIGATION = [
     options: {
       headerShown: false,
       tabBarLabel: '',
-      tabBarIcon: () => <Image source={firsticon} />,
+      tabBarIcon: () => <Image source={first} />,
     },
   },
   {
@@ -60,7 +60,7 @@ export const TAB_NAVIGATION = [
     options: {
       headerShown: false,
       tabBarLabel: '',
-      tabBarIcon: () => <Image source={secondicon} />,
+      tabBarIcon: () => <Image source={seconde} />,
     },
   },
   {
@@ -77,24 +77,14 @@ export const TAB_NAVIGATION = [
             {user && user.providerData && user.providerData[0].photoURL ? (
               <Image
                 source={{uri: user.providerData[0].photoURL}}
-                style={{width: 28, height: 28, borderRadius: 30}}
+                style={ScreenStyle.google}
               />
             ) : (
               <>
                 {image ? (
-                  <Image
-                    source={{uri: image}}
-                    style={{borderRadius: 30, width: 28, height: 28}}
-                  />
+                  <Image source={{uri: image}} style={ScreenStyle.google} />
                 ) : (
-                  <View
-                    style={{
-                      width: 28,
-                      height: 28,
-                      borderRadius: 100,
-                      backgroundColor: 'gray',
-                    }}
-                  />
+                  <View style={ScreenStyle.usernotimage} />
                 )}
               </>
             )}
@@ -141,3 +131,17 @@ export const MAIN_STACK = [
   name: keyof ParamsList;
   component: React.FC;
 }[];
+
+export const ScreenStyle = StyleSheet.create({
+  google: {
+    width: 28,
+    height: 28,
+    borderRadius: 30,
+  },
+  usernotimage: {
+    width: 28,
+    height: 28,
+    borderRadius: 100,
+    backgroundColor: 'gray',
+  },
+});

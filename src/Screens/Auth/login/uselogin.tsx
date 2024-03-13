@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
@@ -50,7 +50,9 @@ export function useLogin(props: Params) {
       try {
         dispatch(userlogin({email, password}));
         Alert.alert('Login successful. Happy browsing!');
-      } catch (error) {}
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
     }
   };
   const Googlesignup = useAppSelector(state => state.Googlesignup.user);
@@ -59,7 +61,9 @@ export function useLogin(props: Params) {
     try {
       dispatch(GoogleSignIn());
       Alert.alert('Login successful. Happy browsing!');
-    } catch (error) {}
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   };
 
   return {
@@ -71,5 +75,7 @@ export function useLogin(props: Params) {
     badpassword,
     Loginhandle,
     Googlesign,
+    login,
+    Googlesignup,
   };
 }

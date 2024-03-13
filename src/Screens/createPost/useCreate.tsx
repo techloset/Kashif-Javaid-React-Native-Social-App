@@ -44,7 +44,7 @@ export function useCreate() {
     setDescription('');
     setSelectedAsset(null);
   };
-  console.log('click', handleUpload);
+
   return {
     description,
     setDescription,

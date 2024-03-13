@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../constants/color/colors';
-export const Buttonstyle = StyleSheet.create({
-  logindiv: {
+import {COLORS} from '../../constants/color/colors';
+
+export const ButtonStyle = StyleSheet.create({
+  div: {
     marginTop: 30,
   },
-  loginbutt: {
+  login: {
     width: 335,
     height: 44,
     padding: 10,
@@ -12,7 +13,7 @@ export const Buttonstyle = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: color.forgetpassword,
+    backgroundColor: COLORS.forgetpassword,
     marginHorizontal: 10,
   },
 });

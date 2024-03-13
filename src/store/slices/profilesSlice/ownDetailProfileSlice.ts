@@ -36,12 +36,11 @@ export const userprofile = createAsyncThunk('profile', async () => {
     });
     return userData;
   } catch (error) {
-    console.error('Error fetching user images:', error);
     throw error;
   }
 });
 
-const userprofileSlice = createSlice({
+const owndetailprofileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
@@ -65,5 +64,5 @@ const userprofileSlice = createSlice({
   },
 });
 
-export const {setData} = userprofileSlice.actions;
-export default userprofileSlice.reducer;
+export const {setData} = owndetailprofileSlice.actions;
+export default owndetailprofileSlice.reducer;

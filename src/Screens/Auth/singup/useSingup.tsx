@@ -71,7 +71,9 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
     try {
       dispatch(GoogleSignIn());
       Alert.alert('Login successful. Happy browsing!');
-    } catch (error) {}
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   };
   return {
     signup,
@@ -92,6 +94,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
     badpassword,
     badconfirmpass,
     Googlesign,
+    Googlesignup,
   };
 };
 

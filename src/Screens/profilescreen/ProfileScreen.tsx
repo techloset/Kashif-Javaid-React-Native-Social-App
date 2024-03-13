@@ -8,7 +8,7 @@ import {useProfile} from './useProfile';
 import Video from 'react-native-video';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
-import {useEditProfile} from '../editProfile/useEditProfile';
+import {useEditProfile} from '../usereditprofile/useEditProfile';
 
 export default function Profile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
@@ -21,11 +21,11 @@ export default function Profile(
     <View style={ProfileStlye.container}>
       <View style={{flex: 1}}>
         <View style={ProfileStlye.profileName}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={ProfileStlye.profileimagelock}>
             <Image source={profilelock} style={ProfileStlye.lock} />
             <Text style={ProfileStlye.nameheading}>{username}</Text>
           </View>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View style={ProfileStlye.profileuserimage}>
             <View>
               {user && user.providerData && user.providerData[0].photoURL ? (
                 <Image
@@ -41,7 +41,7 @@ export default function Profile(
                 />
               )}
             </View>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <View style={ProfileStlye.userNamediv}>
               <Text style={ProfileStlye.username}>{name}</Text>
             </View>
           </View>
@@ -61,7 +61,7 @@ export default function Profile(
           </TouchableOpacity>
         </View>
 
-        <View style={{marginTop: 12}}>
+        <View style={ProfileStlye.createbutton}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Create')}>
             <Image source={profileimgs} alt="images" />
           </TouchableOpacity>
@@ -77,19 +77,13 @@ export default function Profile(
                 {item.downloadURL && item.mediaType !== 'video' && (
                   <Image
                     source={{uri: item.downloadURL}}
-                    style={{
-                      width: 124,
-                      height: 124,
-                    }}
+                    style={ProfileStlye.Image}
                   />
                 )}
                 {item.downloadURL && item.mediaType === 'video' && (
                   <Video
                     source={{uri: item.downloadURL}}
-                    style={{
-                      width: 124,
-                      height: 124,
-                    }}
+                    style={ProfileStlye.video}
                   />
                 )}
               </>

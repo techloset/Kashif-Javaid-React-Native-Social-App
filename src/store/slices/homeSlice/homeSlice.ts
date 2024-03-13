@@ -49,7 +49,6 @@ export const fetchPost = createAsyncThunk('allPosts', async () => {
 
     return posts;
   } catch (error) {
-    console.error('Error fetching posts:', error);
     throw error;
   }
 });

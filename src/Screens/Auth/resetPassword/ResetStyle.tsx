@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../../constants/color/colors';
-
-export const resstyle = StyleSheet.create({
+import {COLORS} from '../../../constants/color/colors';
+export const resetpasswordstyle = StyleSheet.create({
   container: {
     width: 375,
     height: 812,
@@ -28,14 +27,14 @@ export const resstyle = StyleSheet.create({
     borderWidth: 0.2,
     marginTop: 10,
     borderRadius: 3,
-    backgroundColor: color.inputbackgroundColor,
+    backgroundColor: COLORS.inputbackgroundColor,
     fontFamily: 'Roboto-Regular',
     padding: 15,
   },
-  signin: {
+  singup: {
     marginTop: '5%',
   },
-  signbutt: {
+  singupbutton: {
     width: 330,
     height: 44,
     marginRight: 10,
@@ -46,6 +45,6 @@ export const resstyle = StyleSheet.create({
     fontWeight: '600',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: color.forgetpassword,
+    backgroundColor: COLORS.forgetpassword,
   },
 });

@@ -1,16 +1,16 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import instaimg from '../../constants/images/Instagram.png';
+import instagram from '../../constants/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
 import {HomeStyle} from './HomeStyle';
 import {useHome} from './useHome';
 import Like from '../../constants/images/Like.png';
 import comment from '../../constants/images/Comment.png';
-import messenger from '../../constants/images/Messanger.png';
-import ovel from '../../constants/images/Oval.png';
+import messenger from '../../constants/images/Messenger.png';
+import oval from '../../constants/images/Oval.png';
 import save from '../../constants/images/Save.png';
 import Video from 'react-native-video';
-import {useEditProfile} from '../editProfile/useEditProfile';
+import {useEditProfile} from '../usereditprofile/useEditProfile';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ImageData, ParamsList} from '../../../type';
 type Params = NativeStackScreenProps<ParamsList, 'HomeScreen'>;
@@ -26,10 +26,10 @@ export default function Home(props: Params) {
     <View style={HomeStyle.container}>
       <View style={HomeStyle.container}>
         <View style={HomeStyle.imgcontainer}>
-          <Image source={instaimg} />
+          <Image source={instagram} />
         </View>
 
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={HomeStyle.flatlistdiv}>
           <View style={HomeStyle.scondcontainer}>
             <View>
               <View>
@@ -62,14 +62,14 @@ export default function Home(props: Params) {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <View>
-              <View style={{flexDirection: 'row', marginTop: 20}}>
+              <View style={HomeStyle.param}>
                 <TouchableOpacity
                   onPress={() => {
                     switchScreen(item);
                   }}>
                   <Image
                     source={{uri: item.profileImageUrl}}
-                    style={HomeStyle.picuser}
+                    style={HomeStyle.piture}
                   />
                 </TouchableOpacity>
                 <Text style={HomeStyle.username}>{item.userName}</Text>
@@ -90,8 +90,7 @@ export default function Home(props: Params) {
                 />
               )}
 
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={HomeStyle.icons}>
                 <View style={{flexDirection: 'row'}}>
                   <TouchableOpacity>
                     <Image source={Like} style={HomeStyle.like} />
@@ -105,13 +104,13 @@ export default function Home(props: Params) {
                 </View>
                 <View style={HomeStyle.butt}>
                   <TouchableOpacity>
-                    <Image source={ovel} style={HomeStyle.like} />
+                    <Image source={oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={ovel} style={HomeStyle.like} />
+                    <Image source={oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={ovel} style={HomeStyle.like} />
+                    <Image source={oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                 </View>
 
@@ -138,21 +137,17 @@ export default function Home(props: Params) {
                   </Text>
                 </View>
 
-                <View style={HomeStyle.user}>
-                  <View
-                    style={{
-                      flexWrap: 'wrap',
-                      alignItems: 'center',
-                    }}>
+                <View style={HomeStyle.userNameStyle}>
+                  <View style={{}}>
                     <Text>
-                      <Text style={{fontWeight: 'bold', color: 'black'}}>
+                      <Text style={HomeStyle.userNameStyle1}>
                         {item?.userName}
                       </Text>{' '}
                       <Text style={{color: 'black'}}>{item.description}</Text>
                     </Text>
                   </View>
                 </View>
-                <View style={{marginLeft: 15, marginTop: 15}}>
+                <View style={HomeStyle.Data}>
                   <Text>{formatDate(new Date())}</Text>
                 </View>
                 <Text></Text>

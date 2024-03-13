@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
 import {db} from '../../config/Firebase';
-
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const formatDate = (timestamp: Date) => {

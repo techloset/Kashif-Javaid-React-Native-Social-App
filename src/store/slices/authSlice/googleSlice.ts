@@ -35,7 +35,7 @@ export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
     });
     return userCredential.user;
   } catch (error) {
-    console.error('Google sign-in error:', error);
+    console.log(error);
     throw error;
   }
 });

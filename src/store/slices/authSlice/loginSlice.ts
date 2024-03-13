@@ -20,7 +20,6 @@ export const userlogin = createAsyncThunk(
         password,
       );
       const user = userCredential.user;
-      console.log('User signed in:', user);
       return user;
     } catch (error) {
       return error;

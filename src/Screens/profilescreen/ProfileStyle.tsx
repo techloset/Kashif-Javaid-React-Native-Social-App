@@ -79,4 +79,26 @@ export const ProfileStlye = StyleSheet.create({
     borderRadius: 100,
     height: 100,
   },
+  profileimagelock: {
+    flexDirection: 'row',
+  },
+  profileuserimage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  userNamediv: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  createbutton: {
+    marginTop: 12,
+  },
+  Image: {
+    width: 124,
+    height: 124,
+  },
+  video: {
+    width: 124,
+    height: 124,
+  },
 });

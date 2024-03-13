@@ -39,7 +39,6 @@ export const SignUp = createAsyncThunk(
       } else if (error.code === 'auth/invalid-email') {
         Alert.alert('That email address is invalid!');
       } else {
-        console.error(error);
       }
     }
   },

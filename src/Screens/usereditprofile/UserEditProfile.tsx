@@ -1,6 +1,5 @@
 import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
-import React, {useState} from 'react';
-import {EditStyle} from './EditStyle';
+import {EditStyle} from './UserEditStyle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
 import EditInput from '../../components/editprofileinput/EditProfile';
