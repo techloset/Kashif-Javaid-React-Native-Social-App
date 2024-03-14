@@ -138,7 +138,7 @@ export default function Home(props: Params) {
                 </View>
 
                 <View style={HomeStyle.userNameStyle}>
-                  <View style={{}}>
+                  <View style={HomeStyle.user1}>
                     <Text>
                       <Text style={HomeStyle.userNameStyle1}>
                         {item?.userName}

@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import auth from '@react-native-firebase/auth';
-import {db} from '../../../config/Firebase';
 import {Alert} from 'react-native';
 import {EditprofileState} from '../../../../type';
+import {users} from '../../../constants/instance';
 const initialState: EditprofileState = {
   user: null,
   isLoading: false,
@@ -55,7 +55,7 @@ export const userupdateprofile = createAsyncThunk(
       }
 
       const userId = user.uid;
-      const userRef = db.collection('Users').doc(userId);
+      const userRef = users.doc(userId);
       await userRef.set(
         {
           userId,

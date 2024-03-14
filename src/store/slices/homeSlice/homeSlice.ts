@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {HomeState, PostData} from '../../../../type';
 import {db} from '../../../config/Firebase';
+import {Images, profile} from '../../../constants/instance';
 const initialState: HomeState = {
   user: null,
   error: null,
@@ -13,15 +14,14 @@ const initialState: HomeState = {
 export const fetchPost = createAsyncThunk('allPosts', async () => {
   try {
     const posts: PostData[] = [];
-    const imagesSnapshot = await db.collection('Images').get();
+    const imagesSnapshot = await Images.get();
 
     await Promise.all(
       imagesSnapshot.docs.map(async imageDoc => {
         const imageData = imageDoc.data();
         const postId = imageDoc.id;
         const userId = imageData.userId;
-        const profileQuerySnapshot = await db
-          .collection('profile')
+        const profileQuerySnapshot = await profile
           .where('userId', '==', userId)
           .get();
 

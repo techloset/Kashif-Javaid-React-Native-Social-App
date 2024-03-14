@@ -99,7 +99,7 @@ export const HomeStyle = StyleSheet.create({
     color: 'black',
     fontSize: 13,
     fontWeight: 'bold',
-    marginLeft: 11,
+    marginLeft: 15,
     marginTop: 3,
   },
   profileimage: {
@@ -153,5 +153,9 @@ export const HomeStyle = StyleSheet.create({
   flatlistdiv: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  user1: {
+    marginRight: 35,
+    marginTop: 10,
   },
 });

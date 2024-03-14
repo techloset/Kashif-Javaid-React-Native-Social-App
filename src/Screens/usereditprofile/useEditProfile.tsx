@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
-import {db} from '../../config/Firebase';
 import {
   launchImageLibrary,
   ImageLibraryOptions,
@@ -9,6 +8,7 @@ import {
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {updateUserImage} from '../../store/slices/profilesSlice/profileImageSlice';
 import {userupdateprofile} from '../../store/slices/profilesSlice/userEditprofileSlice';
+import {users} from '../../constants/instance';
 
 export function useEditProfile() {
   const [name, setName] = useState('');
@@ -26,7 +26,7 @@ export function useEditProfile() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (user) {
-        const userRef = db.collection('Users').doc(user.uid);
+        const userRef = users.doc(user.uid);
         const snapshot = await userRef.get();
         if (snapshot.exists) {
           const userData = snapshot.data();

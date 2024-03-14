@@ -3,6 +3,7 @@ import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../../config/Firebase';
 import {AuthState} from '../../../../type';
+import {user} from '../../../constants/instance';
 const initialState: AuthState = {
   user: null,
   isLoading: false,
@@ -30,7 +31,7 @@ export const SignUp = createAsyncThunk(
   }) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password);
-      await db.collection('Users').add({username, email, password});
+      await user.add({username, email, password});
       await auth().currentUser?.updateProfile({displayName: username});
       Alert.alert('User account created & signed in!');
     } catch (error: any) {

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
-import {db} from '../../config/Firebase';
+import {Images, profile} from '../../constants/instance';
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const formatDate = (timestamp: Date) => {
@@ -27,14 +27,13 @@ export function useHome() {
   const allPosts = useAppSelector(state => state.allPosts.data);
 
   useEffect(() => {
-    const unsubscribe = db.collection('Images').onSnapshot(async snapshot => {
+    const unsubscribe = Images.onSnapshot(async snapshot => {
       const posts: any[] = [];
       snapshot.forEach(async doc => {
         const imageData = doc.data();
         const postId = doc.id;
         const userId = imageData.userId;
-        const profileQuerySnapshot = await db
-          .collection('profile')
+        const profileQuerySnapshot = await profile
           .where('userId', '==', userId)
           .get();
         const profileDoc = profileQuerySnapshot.docs[0];

@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 import {db} from '../../../config/Firebase';
 import storage from '@react-native-firebase/storage';
 import {ImageState, UploadResult1} from '../../../../type';
+import {profile} from '../../../constants/instance';
 
 const initialState: ImageState = {
   isLoading: false,
@@ -39,7 +40,7 @@ export const updateUserImage = createAsyncThunk(
                 const userId = auth().currentUser?.uid;
                 if (userId) {
                   const imageId = Date.now().toString();
-                  await db.collection('profile').doc(userId).set({
+                  await profile.doc(userId).set({
                     downloadURL,
                     userId,
                   });

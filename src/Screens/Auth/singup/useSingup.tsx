@@ -95,6 +95,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
     badconfirmpass,
     Googlesign,
     Googlesignup,
+    auth,
   };
 };
 

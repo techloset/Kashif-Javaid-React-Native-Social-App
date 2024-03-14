@@ -2,9 +2,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
-
-import {db} from '../../../config/Firebase';
 import {PostState, UploadResult} from '../../../../type';
+import {Images} from '../../../constants/instance';
 
 const initialState: PostState = {
   user: null,
@@ -60,7 +59,7 @@ export const uploadImageAndDescription = createAsyncThunk(
                       ? 'video'
                       : 'image';
 
-                  await db.collection('Images').add({
+                  await Images.add({
                     downloadURL,
                     userName,
                     userId,

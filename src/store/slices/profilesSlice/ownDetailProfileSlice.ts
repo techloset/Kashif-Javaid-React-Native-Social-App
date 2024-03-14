@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {profileState} from '../../../../type';
-import {db} from '../../../config/Firebase';
 import auth from '@react-native-firebase/auth';
+import {Images} from '../../../constants/instance';
 
 const initialState: profileState = {
   user: null,
@@ -21,10 +21,7 @@ export const userprofile = createAsyncThunk('profile', async () => {
     }
     const userId = currentUser.uid;
     console.log('userId', userId);
-    const response = await db
-      .collection('Images')
-      .where('userId', '==', userId)
-      .get();
+    const response = await Images.where('userId', '==', userId).get();
     const userData = response.docs.map(doc => {
       const data = doc.data();
       const createdAt = data.createdAt ? data.createdAt.toMillis() : null;

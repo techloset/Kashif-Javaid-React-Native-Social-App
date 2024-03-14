@@ -3,6 +3,7 @@ import {Googletype} from '../../../../type';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {db} from '../../../config/Firebase';
+import {profile, user} from '../../../constants/instance';
 GoogleSignin.configure({
   webClientId: process.env.GOOGLE_CLIENT_ID,
 });
@@ -24,12 +25,12 @@ export const GoogleSignIn = createAsyncThunk('googleSignIn', async () => {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const userCredential = await auth().signInWithCredential(googleCredential);
     const {displayName, email, uid, photoURL} = userCredential.user || {};
-    db.collection('Users').add({
+    user.add({
       displayName: displayName || '',
       email: email || '',
       userId: uid || '',
     });
-    db.collection('profile').add({
+    profile.add({
       userId: uid || '',
       downloadURL: photoURL || '',
     });
