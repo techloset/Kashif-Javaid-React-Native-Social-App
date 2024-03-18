@@ -1,4 +1,4 @@
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import {InputStyle} from './InpustStyle';
 import {InputType} from '../../../type';
 
@@ -15,6 +15,7 @@ const InputField: React.FC<InputType> = ({
           placeholder={placeholder}
           style={InputStyle.inputStyle}
           secureTextEntry={secureTextEntry}
+          placeholderTextColor="black"
           value={value}
           onChangeText={onChangeText}
         />

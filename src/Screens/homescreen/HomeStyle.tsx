@@ -150,6 +150,11 @@ export const HomeStyle = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
   },
+  Data1: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontFamily: 'Roboto-Medium',
+  },
   flatlistdiv: {
     flexDirection: 'row',
     justifyContent: 'space-between',

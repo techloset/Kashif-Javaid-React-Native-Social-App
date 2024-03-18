@@ -25,6 +25,7 @@ export default function ResetPassword(props: Params) {
         <TextInput
           placeholder="Email"
           style={resetpasswordstyle.inputfiled}
+          placeholderTextColor="black"
           value={email}
           onChangeText={text => setEmail(text)}
         />

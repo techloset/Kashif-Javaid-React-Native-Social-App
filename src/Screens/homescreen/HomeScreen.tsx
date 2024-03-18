@@ -148,7 +148,7 @@ export default function Home(props: Params) {
                   </View>
                 </View>
                 <View style={HomeStyle.Data}>
-                  <Text>{formatDate(new Date())}</Text>
+                  <Text style={HomeStyle.Data1}>{formatDate(new Date())}</Text>
                 </View>
                 <Text></Text>
               </View>

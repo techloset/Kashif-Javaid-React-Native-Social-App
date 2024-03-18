@@ -57,6 +57,8 @@ export const signstyleshhet = StyleSheet.create({
   linetext: {
     width: 50,
     textAlign: 'center',
+    color: 'black',
+    fontFamily: 'Roboto-Medium',
   },
   accountheading: {
     marginTop: 40,

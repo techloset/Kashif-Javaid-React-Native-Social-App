@@ -15,10 +15,14 @@ export const resetpasswordstyle = StyleSheet.create({
   restext: {
     textAlign: 'justify',
     padding: 3,
+    color: 'black',
+    fontFamily: 'Roboto-Medium',
   },
   retext: {
     marginLeft: 20,
     marginBottom: 90,
+    color: 'black',
+    fontFamily: 'Roboto-Medium',
   },
   inputfiled: {
     width: 335,
