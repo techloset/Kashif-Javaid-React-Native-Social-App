@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {COLORS} from '../../constants/color/colors';
+import {CUSTOM_COLORS} from '../../constants/color/colors';
+
 export const CreateStyle = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,7 +21,7 @@ export const CreateStyle = StyleSheet.create({
   buttcontainer: {
     width: 340,
     height: 44,
-    backgroundColor: COLORS.forgetpassword,
+    backgroundColor: CUSTOM_COLORS.FORGET_PASSWORD,
     borderRadius: 10,
     marginHorizontal: 10,
     marginTop: 40,

@@ -17,6 +17,8 @@ export const OtherProfileStyle = StyleSheet.create({
   },
   nameheading: {
     marginTop: 56,
+    fontFamily: 'Roboto-bold',
+    color: 'black',
   },
   profileimg: {
     justifyContent: 'center',

@@ -2,20 +2,19 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {GoogleSignIn} from '../../../store/slices/authSlice/googleSlice';
-import {userlogin} from '../../../store/slices/authSlice/loginSlice';
-import {Alert} from 'react-native';
+import {GoogleSignIn} from '../../../store/slices/authslice/googleslice';
+import {userlogin} from '../../../store/slices/authslice/loginslice';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [bademail, setBademail] = useState('');
   const [badpassword, setBadpassword] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   const validate = () => {
     let isValid = true;
     if (email === '') {
-      setBademail('Please enter a valid email');
+      setBademail('Email is invalid');
       isValid = false;
     } else if (
       !email
@@ -24,7 +23,7 @@ export function useLogin(props: Params) {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     ) {
-      setBademail('Please enter a valid email');
+      setBademail('Email is invalid');
       isValid = false;
     } else {
       setBademail('');
@@ -49,10 +48,7 @@ export function useLogin(props: Params) {
     if (validate()) {
       try {
         dispatch(userlogin({email, password}));
-        Alert.alert('Login successful. Happy browsing!');
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
+      } catch (error) {}
     }
   };
   const Googlesignup = useAppSelector(state => state.Googlesignup.user);
@@ -60,10 +56,7 @@ export function useLogin(props: Params) {
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
-      Alert.alert('Login successful. Happy browsing!');
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
+    } catch (error) {}
   };
 
   return {
@@ -77,5 +70,7 @@ export function useLogin(props: Params) {
     Googlesign,
     login,
     Googlesignup,
+    isLoading,
+    setIsLoading,
   };
 }

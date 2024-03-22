@@ -47,9 +47,7 @@ export const updateUserImage = createAsyncThunk(
                   resolve({success: true, imageUrl: downloadURL, userId});
                 }
               }
-            } catch (error) {
-              reject(error);
-            }
+            } catch (error) {}
           },
         );
       });

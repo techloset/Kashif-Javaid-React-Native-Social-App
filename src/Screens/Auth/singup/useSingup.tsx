@@ -2,9 +2,8 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {SignUp} from '../../../store/slices/authSlice/sigupslice';
-import {GoogleSignIn} from '../../../store/slices/authSlice/googleSlice';
-import {Alert} from 'react-native';
+import {SignUp} from '../../../store/slices/authslice/sigupslice';
+import {GoogleSignIn} from '../../../store/slices/authslice/googleslice';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');
@@ -15,13 +14,14 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [bademail, setBademail] = useState('');
   const [badpassword, setBadpassword] = useState('');
   const [badconfirmpass, setBadconfirmpass] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const auth = useAppSelector(state => state.auth.user);
   const signup = () => {
     const validationError = validate(username, email, password, confirmpass);
     if (validationError) {
       setBadusername(username === '' ? 'Please enter a username' : '');
-      setBademail(email === '' ? 'Please enter a valid email' : '');
+      setBademail(email === '' ? 'Email is invalid' : '');
       setBadpassword(password === '' ? 'Please enter a password' : '');
       setBadconfirmpass(
         confirmpass === '' ? 'Please confirm your password' : '',
@@ -42,7 +42,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
       return 'Please enter a username';
     }
     if (email === '') {
-      return 'Please enter a valid email';
+      return 'Email is invalid';
     }
     if (
       !email
@@ -51,7 +51,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     ) {
-      return 'Please enter a valid email';
+      return 'Email is invalid';
     }
     if (password === '') {
       return 'Please enter a password';
@@ -70,10 +70,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
-      Alert.alert('Login successful. Happy browsing!');
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
+    } catch (error) {}
   };
   return {
     signup,
@@ -96,6 +93,8 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
     Googlesign,
     Googlesignup,
     auth,
+    isLoading,
+    setIsLoading,
   };
 };
 

@@ -6,10 +6,9 @@ import {
   ImageLibraryOptions,
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
-import {updateUserImage} from '../../store/slices/profilesSlice/profileImageSlice';
-import {userupdateprofile} from '../../store/slices/profilesSlice/userEditprofileSlice';
 import {users} from '../../constants/instance';
-
+import {updateUserImage} from '../../store/slices/profileslice/profileimageslice';
+import {userupdateprofile} from '../../store/slices/profileslice/usereditprofileslice';
 export function useEditProfile() {
   const [name, setName] = useState('');
   const [username, setUserName] = useState('');
@@ -99,5 +98,6 @@ export function useEditProfile() {
     profileImage,
     image,
     updatehandle,
+    imageUrl,
   };
 }

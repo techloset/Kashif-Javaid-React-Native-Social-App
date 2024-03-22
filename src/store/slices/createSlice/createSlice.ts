@@ -72,15 +72,11 @@ export const uploadImageAndDescription = createAsyncThunk(
                   resolve({success: true});
                 }
               }
-            } catch (error) {
-              reject(error);
-            }
+            } catch (error) {}
           },
         );
       });
-    } catch (error) {
-      throw error;
-    }
+    } catch (error) {}
   },
 );
 

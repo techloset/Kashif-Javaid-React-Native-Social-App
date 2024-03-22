@@ -16,6 +16,7 @@ export function TabNavigation() {
             headerShown: false,
             tabBarLabel: '',
             tabBarIcon: item.options.tabBarIcon,
+            tabBarActiveTintColor: 'red',
           }}
         />
       ))}

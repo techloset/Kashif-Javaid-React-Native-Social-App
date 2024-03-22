@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {CreateStyle} from './CreateStyle';
-import upload from '../../constants/images/upload.png';
-import imageupload from '../../constants/images/imageupload.png';
+import Upload from '../../constants/images/upload.png';
+import ImageUpload from '../../constants/images/imageupload.png';
 import InputField from '../../components/inputfiled/InputField';
 import {useCreate} from './useCreate';
 import Button from '../../components/button/Button';
@@ -14,6 +14,7 @@ export default function CreatePost() {
     imageUri,
     uploading,
     handleUpload,
+    isLoading,
   } = useCreate();
   return (
     <View style={CreateStyle.container}>
@@ -26,7 +27,7 @@ export default function CreatePost() {
             <TouchableOpacity>
               <Text style={CreateStyle.imagetext}>
                 Images
-                <Image source={imageupload} />
+                <Image source={ImageUpload} />
               </Text>
             </TouchableOpacity>
             <Text></Text>
@@ -41,7 +42,7 @@ export default function CreatePost() {
             <TouchableOpacity
               style={CreateStyle.uploadedimage}
               onPress={handleImageSelect}>
-              <Image source={upload} alt="upload" />
+              <Image source={Upload} alt="upload" />
             </TouchableOpacity>
           )}
         </View>
@@ -52,7 +53,12 @@ export default function CreatePost() {
           secureTextEntry={false}
           onChangeText={text => setDescription(text)}
         />
-        <Button title="Upload" onPress={handleUpload} />
+        <Button
+          title="Upload"
+          onPress={handleUpload}
+          loading={isLoading}
+          disabled={isLoading}
+        />
         {uploading && <Text>Uploading...</Text>}
       </ScrollView>
     </View>

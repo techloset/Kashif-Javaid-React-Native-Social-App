@@ -1,9 +1,11 @@
 import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
 import {EditStyle} from './UserEditStyle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ParamsList} from '../../../type';
+import {ImageData, ParamsList} from '../../../type';
 import EditInput from '../../components/editprofileinput/EditProfile';
 import {useEditProfile} from './useEditProfile';
+import auth from '@react-native-firebase/auth';
+
 export default function EditProfile(
   props: NativeStackScreenProps<ParamsList, 'Editprofile'>,
 ) {
@@ -26,7 +28,10 @@ export default function EditProfile(
     updatehandle,
     profileImage,
     image,
+    imageUrl,
   } = useEditProfile();
+
+  const currentUser = auth().currentUser;
 
   return (
     <View style={EditStyle.container}>
@@ -55,7 +60,7 @@ export default function EditProfile(
               <>
                 {image ? (
                   <Image
-                    source={{uri: image}}
+                    source={{uri: imageUrl}}
                     style={EditStyle.profileuserimage}
                   />
                 ) : (
@@ -79,10 +84,11 @@ export default function EditProfile(
         />
         <EditInput
           label="Username"
-          value={username}
           secureTextEntry={false}
           onChangeText={text => setUserName(text)}
+          value={currentUser?.displayName || ''}
         />
+
         <EditInput
           label="Website"
           value={website}
@@ -101,9 +107,9 @@ export default function EditProfile(
           <Text style={EditStyle.privateinformation}>Private Information</Text>
           <EditInput
             label="Email"
-            value={email}
             secureTextEntry={false}
             onChangeText={text => setEmail(text)}
+            value={email || (currentUser?.email ? currentUser.email : '')}
           />
           <EditInput
             label="Phone"
@@ -123,7 +129,7 @@ export default function EditProfile(
               marginTop: 44,
               justifyContent: 'center',
             }}>
-            <Text>Want to change your password?</Text>
+            <Text style={EditStyle.text}>Want to change your password?</Text>
             <TouchableOpacity
               onPress={() => props.navigation.navigate('Reset')}>
               <Text style={EditStyle.forget}>Reset Password.</Text>

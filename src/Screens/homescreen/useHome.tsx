@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
-import {fetchPost} from '../../store/slices/homeSlice/homeSlice';
+import {fetchPost} from '../../store/slices/homeslice/homeslice';
 import {Images, profile} from '../../constants/instance';
 export function useHome() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [profileImage, setProfileImage] = useState('');
   const formatDate = (timestamp: Date) => {
     const monthNames = [
       'January',
@@ -51,6 +52,7 @@ export function useHome() {
           description: imageData.description,
         };
         posts.push(postData);
+        setProfileImage(profileImage);
       });
       dispatch(fetchPost());
     });
@@ -63,5 +65,6 @@ export function useHome() {
     isVideoPlaying,
     setIsVideoPlaying,
     formatDate,
+    profileImage,
   };
 }

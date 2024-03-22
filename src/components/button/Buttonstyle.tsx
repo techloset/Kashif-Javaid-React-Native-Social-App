@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {COLORS} from '../../constants/color/colors';
+import {CUSTOM_COLORS} from '../../constants/color/colors';
 
 export const ButtonStyle = StyleSheet.create({
   div: {
@@ -13,7 +13,7 @@ export const ButtonStyle = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: COLORS.forgetpassword,
+    backgroundColor: CUSTOM_COLORS.FORGET_PASSWORD,
     marginHorizontal: 10,
   },
 });

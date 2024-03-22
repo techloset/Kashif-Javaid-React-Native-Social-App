@@ -18,9 +18,7 @@ export const ResetPassword = createAsyncThunk(
         await firebase.auth().sendPasswordResetEmail(email);
         Alert.alert('Please Set password in email account and again Login');
       }
-    } catch (error) {
-      throw error;
-    }
+    } catch (error) {}
   },
 );
 const resetpasswordSlice = createSlice({

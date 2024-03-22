@@ -1,23 +1,23 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import instagram from '../../constants/images/Instagram.png';
+import Instagram from '../../constants/images/Instagram.png';
 import auth from '@react-native-firebase/auth';
 import {HomeStyle} from './HomeStyle';
 import {useHome} from './useHome';
 import Like from '../../constants/images/Like.png';
-import comment from '../../constants/images/Comment.png';
-import messenger from '../../constants/images/Messenger.png';
-import oval from '../../constants/images/Oval.png';
-import save from '../../constants/images/Save.png';
+import Comment from '../../constants/images/Comment.png';
+import Messenger from '../../constants/images/Messenger.png';
+import Oval from '../../constants/images/Oval.png';
+import Save from '../../constants/images/Save.png';
 import Video from 'react-native-video';
 import {useEditProfile} from '../usereditprofile/useEditProfile';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ImageData, ParamsList} from '../../../type';
 type Params = NativeStackScreenProps<ParamsList, 'HomeScreen'>;
 export default function Home(props: Params) {
-  const {allPosts, formatDate} = useHome();
+  const {allPosts, formatDate, profileImage} = useHome();
   const user = auth().currentUser;
-  const {image} = useEditProfile();
+  const {imageUrl, image} = useEditProfile();
   const switchScreen = (item: ImageData) => {
     props.navigation.navigate('OtherProfile', {event: item});
   };
@@ -26,7 +26,7 @@ export default function Home(props: Params) {
     <View style={HomeStyle.container}>
       <View style={HomeStyle.container}>
         <View style={HomeStyle.imgcontainer}>
-          <Image source={instagram} />
+          <Image source={Instagram} />
         </View>
 
         <View style={HomeStyle.flatlistdiv}>
@@ -38,18 +38,27 @@ export default function Home(props: Params) {
                     source={{uri: user.providerData[0].photoURL}}
                     style={HomeStyle.profileimage}
                   />
-                ) : !image ? (
-                  <View style={HomeStyle.usernotimage} />
-                ) : (
+                ) : image ? (
                   <Image
                     source={{uri: image}}
                     style={HomeStyle.profileimageuser}
                   />
+                ) : imageUrl ? (
+                  <Image
+                    source={{uri: imageUrl}}
+                    style={HomeStyle.profileimageuser}
+                  />
+                ) : (
+                  <View style={HomeStyle.usernotimage} />
                 )}
               </View>
             </View>
             <View style={HomeStyle.name}>
-              <Text style={HomeStyle.text1}>{user?.displayName}</Text>
+              {user?.displayName ? (
+                <Text style={HomeStyle.text1}>{user.displayName}</Text>
+              ) : (
+                <Text style={HomeStyle.text1}>User</Text>
+              )}
               <Text style={{color: 'black'}}>Pakistan</Text>
             </View>
           </View>
@@ -67,10 +76,14 @@ export default function Home(props: Params) {
                   onPress={() => {
                     switchScreen(item);
                   }}>
-                  <Image
-                    source={{uri: item.profileImageUrl}}
-                    style={HomeStyle.piture}
-                  />
+                  {item.profileImageUrl ? (
+                    <Image
+                      source={{uri: item.profileImageUrl}}
+                      style={HomeStyle.piture}
+                    />
+                  ) : (
+                    <View style={HomeStyle.usernotimage1} />
+                  )}
                 </TouchableOpacity>
                 <Text style={HomeStyle.username}>{item.userName}</Text>
               </View>
@@ -96,26 +109,26 @@ export default function Home(props: Params) {
                     <Image source={Like} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={comment} style={HomeStyle.like} />
+                    <Image source={Comment} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={messenger} style={HomeStyle.messenger} />
+                    <Image source={Messenger} style={HomeStyle.messenger} />
                   </TouchableOpacity>
                 </View>
                 <View style={HomeStyle.butt}>
                   <TouchableOpacity>
-                    <Image source={oval} style={HomeStyle.like} />
+                    <Image source={Oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={oval} style={HomeStyle.like} />
+                    <Image source={Oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Image source={oval} style={HomeStyle.like} />
+                    <Image source={Oval} style={HomeStyle.like} />
                   </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity>
-                  <Image source={save} style={HomeStyle.save} />
+                  <Image source={Save} style={HomeStyle.save} />
                 </TouchableOpacity>
               </View>
 
@@ -127,7 +140,7 @@ export default function Home(props: Params) {
                       style={HomeStyle.img1}
                     />
                   ) : (
-                    !image && <View style={HomeStyle.img1} />
+                    image && <View style={HomeStyle.img1} />
                   )}
                   {image && (
                     <Image source={{uri: image}} style={HomeStyle.img1} />

@@ -1,69 +1,37 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import {ProfileStlye} from './ProfileStyle';
-import auth from '@react-native-firebase/auth';
-import profilelock from '../../constants/images/profile.png';
-import profileimgs from '../../constants/images/profileimg.png';
+import ProfileImage from '../../constants/images/profileimg.png';
 import {useProfile} from './useProfile';
 import Video from 'react-native-video';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
 import {useEditProfile} from '../usereditprofile/useEditProfile';
-
+import UserProfile from '../../components/profile/Profile';
+import Editprofilebutton from '../../components/editprofilebutton/Editprofilebutton';
 export default function Profile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {
-  const user = auth().currentUser;
   const {profile, siguout} = useProfile(props);
-  const {image, bio, name, username} = useEditProfile();
+  const {bio} = useEditProfile();
 
   return (
     <View style={ProfileStlye.container}>
       <View style={{flex: 1}}>
-        <View style={ProfileStlye.profileName}>
-          <View style={ProfileStlye.profileimagelock}>
-            <Image source={profilelock} style={ProfileStlye.lock} />
-            <Text style={ProfileStlye.nameheading}>{username}</Text>
-          </View>
-          <View style={ProfileStlye.profileuserimage}>
-            <View>
-              {user && user.providerData && user.providerData[0].photoURL ? (
-                <Image
-                  source={{uri: user.providerData[0].photoURL}}
-                  style={ProfileStlye.profileimg}
-                />
-              ) : !image ? (
-                <View style={ProfileStlye.noimageuser} />
-              ) : (
-                <Image
-                  source={{uri: image}}
-                  style={ProfileStlye.userimageprofile}
-                />
-              )}
-            </View>
-            <View style={ProfileStlye.userNamediv}>
-              <Text style={ProfileStlye.username}>{name}</Text>
-            </View>
-          </View>
-        </View>
+        <UserProfile />
         <View style={ProfileStlye.bio}>
           <Text style={ProfileStlye.bio}>{bio}</Text>
         </View>
-        <View style={ProfileStlye.button}>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate('Editprofile')}>
-            <Text style={ProfileStlye.edit}>Edit Profile</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={ProfileStlye.button}>
-          <TouchableOpacity onPress={siguout}>
-            <Text style={ProfileStlye.edit}>Signed out</Text>
-          </TouchableOpacity>
-        </View>
 
+        <Editprofilebutton
+          name="Edit Profile"
+          onPress={() => props.navigation.navigate('Editprofile')}
+        />
+
+        <Editprofilebutton name="Sign Out" onPress={siguout} />
         <View style={ProfileStlye.createbutton}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Create')}>
-            <Image source={profileimgs} alt="images" />
+            <Image source={ProfileImage} alt="images" />
           </TouchableOpacity>
         </View>
 

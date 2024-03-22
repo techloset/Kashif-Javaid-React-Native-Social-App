@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-
 import auth from '@react-native-firebase/auth';
 import {LoginState} from '../../../../type';
 
@@ -21,9 +20,7 @@ export const userlogin = createAsyncThunk(
       );
       const user = userCredential.user;
       return user;
-    } catch (error) {
-      return error;
-    }
+    } catch (error) {}
   },
 );
 

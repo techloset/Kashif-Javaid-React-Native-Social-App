@@ -185,4 +185,10 @@ export interface ImageData {
 }
 export interface ButtonProps extends TouchableOpacityProps {
   title: string;
+  loading: boolean;
+  disabled: boolean;
+  onPress: () => void;
 }
+export type TabBarIconProps = {
+  focused: boolean;
+};

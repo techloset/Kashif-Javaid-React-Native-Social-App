@@ -1,5 +1,6 @@
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {InputType} from '../../../type';
+
 const EditInput: React.FC<InputType> = ({
   placeholder,
   value,
@@ -16,6 +17,7 @@ const EditInput: React.FC<InputType> = ({
         multiline={label === 'Bio'}
         numberOfLines={label === 'Bio' ? 3 : 1}
         style={inputStyle.input}
+        placeholderTextColor={inputStyle.placeholderText.color}
       />
     </View>
   );
@@ -45,5 +47,8 @@ export const inputStyle = StyleSheet.create({
     color: 'black',
     fontFamily: 'Roboto-light',
     fontSize: 16,
+  },
+  placeholderText: {
+    color: 'black',
   },
 });

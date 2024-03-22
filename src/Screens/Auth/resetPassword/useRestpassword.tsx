@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {ResetPassword} from '../../../store/slices/authSlice/resetpasswordSlice';
+import {ResetPassword} from '../../../store/slices/authslice/resetpasswordslice';
 type Params = NativeStackScreenProps<ParamsList, 'Reset'>;
 export function useRestpassword(props: Params) {
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export function useRestpassword(props: Params) {
   const changepassword = async () => {
     let isValid = true;
     if (email === '') {
-      setBademail('Please enter your email');
+      setBademail('Email is invalid');
       isValid = false;
     } else if (
       !email
@@ -22,7 +22,7 @@ export function useRestpassword(props: Params) {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     ) {
-      setBademail('Please enter a valid email');
+      setBademail('Email is invalid');
       isValid = false;
     }
 

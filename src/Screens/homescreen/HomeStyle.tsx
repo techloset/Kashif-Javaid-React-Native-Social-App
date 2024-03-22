@@ -71,7 +71,7 @@ export const HomeStyle = StyleSheet.create({
     borderRadius: 100,
   },
   text2: {
-    marginLeft: 5,
+    marginLeft: 19,
     marginTop: 15,
     fontWeight: '600',
     lineHeight: 14,
@@ -162,5 +162,13 @@ export const HomeStyle = StyleSheet.create({
   user1: {
     marginRight: 35,
     marginTop: 10,
+  },
+  usernotimage1: {
+    width: 32,
+    height: 32,
+    borderRadius: 100,
+    marginLeft: 11,
+    marginBottom: 5,
+    backgroundColor: 'gray',
   },
 });

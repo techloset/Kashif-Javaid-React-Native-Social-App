@@ -4,7 +4,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {Alert} from 'react-native';
-import {userprofile} from '../../store/slices/profilesSlice/ownDetailProfileSlice';
+import {userprofile} from '../../store/slices/profileslice/owndetailprofileslice';
 export function useProfile(
   props: NativeStackScreenProps<ParamsList, 'Profile'>,
 ) {

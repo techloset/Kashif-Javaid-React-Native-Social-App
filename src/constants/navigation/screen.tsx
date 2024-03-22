@@ -1,18 +1,18 @@
 import Login from '../../screens/auth/login/Login';
-import ResetPassword from '../../screens/auth/resetPassword/ResetPassword';
 import SingUp from '../../screens/auth/singup/SingUp';
-import CreatePost from '../../screens/createPost/CreatePost';
+import CreatePost from '../../screens/createpost/CreatePost';
 import Home from '../../screens/homescreen/HomeScreen';
 import Profile from '../../screens/profilescreen/ProfileScreen';
 import {Image, StyleSheet, View} from 'react-native';
 import {useEditProfile} from '../../screens/usereditprofile/useEditProfile';
 import auth from '@react-native-firebase/auth';
-import {ParamsList} from '../../../type';
+import {ParamsList, TabBarIconProps} from '../../../type';
 import first from '../../constants/images/icon/home.png';
 import seconde from '../../constants/images/icon/show.png';
 import EditProfile from '../../screens/usereditprofile/UserEditProfile';
-import OtherProfile from '../../screens/otheruserProfile/OtherUserProfile';
+import OtherProfile from '../../screens/otheruserprofile/OtherUserProfile';
 import {TabNavigation} from '../../navigation/TabNavigation';
+import ResetPassword from '../../screens/auth/resetpassword/ResetPassword';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = {
   LOGIN: 'Login',
@@ -51,7 +51,9 @@ export const TAB_NAVIGATION = [
     options: {
       headerShown: false,
       tabBarLabel: '',
-      tabBarIcon: () => <Image source={first} />,
+      tabBarIcon: ({focused}: TabBarIconProps) => (
+        <Image source={first} style={{tintColor: focused ? 'red' : 'gray'}} />
+      ),
     },
   },
   {
@@ -60,7 +62,9 @@ export const TAB_NAVIGATION = [
     options: {
       headerShown: false,
       tabBarLabel: '',
-      tabBarIcon: () => <Image source={seconde} />,
+      tabBarIcon: ({focused}: TabBarIconProps) => (
+        <Image source={seconde} style={{tintColor: focused ? 'red' : 'gray'}} />
+      ),
     },
   },
   {
@@ -100,6 +104,7 @@ export const TAB_NAVIGATION = [
     headerShown: boolean;
     tabBarLabel: string;
     tabBarIcon: () => React.ReactElement;
+    tabBarActiveTintColor: string;
   };
 }[];
 

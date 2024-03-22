@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {COLORS} from '../../../constants/color/colors';
+import {CUSTOM_COLORS} from '../../../constants/color/colors';
+
 export const resetpasswordstyle = StyleSheet.create({
   container: {
     width: 375,
@@ -31,7 +32,7 @@ export const resetpasswordstyle = StyleSheet.create({
     borderWidth: 0.2,
     marginTop: 10,
     borderRadius: 3,
-    backgroundColor: COLORS.inputbackgroundColor,
+    backgroundColor: CUSTOM_COLORS.INPUT_COLOR,
     fontFamily: 'Roboto-Regular',
     padding: 15,
   },
@@ -49,6 +50,15 @@ export const resetpasswordstyle = StyleSheet.create({
     fontWeight: '600',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: COLORS.forgetpassword,
+    backgroundColor: CUSTOM_COLORS.FORGET_PASSWORD,
+  },
+  backbutton: {
+    width: 40,
+  },
+  backbuttonimage: {
+    width: 9,
+    height: 17,
+    marginTop: 20,
+    marginLeft: 15,
   },
 });

@@ -6,11 +6,11 @@ import {
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {useState} from 'react';
-import {uploadImageAndDescription} from '../../store/slices/createSlice/createSlice';
-
+import {uploadImageAndDescription} from '../../store/slices/createslice/createslice';
 export function useCreate() {
   const [description, setDescription] = useState('');
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<
     ImagePickerResponse['assets'] | null
   >(null);
@@ -33,7 +33,7 @@ export function useCreate() {
       }
     });
   };
-  console.log('pick image', handleImageSelect);
+
   const handleUpload = () => {
     if (!imageUri || !selectedAsset || !description) {
       Alert.alert('Please select an image and enter description');
@@ -56,5 +56,7 @@ export function useCreate() {
     transferred,
     setUploading,
     setTransferred,
+    isLoading,
+    setIsLoading,
   };
 }

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {COLORS} from '../../../constants/color/colors';
+import {CUSTOM_COLORS} from '../../../constants/color/colors';
 
 export const loginstyle = StyleSheet.create({
   container: {
@@ -21,12 +21,12 @@ export const loginstyle = StyleSheet.create({
     padding: 15,
     borderWidth: 0.2,
     borderRadius: 3,
-    backgroundColor: COLORS.inputbackgroundColor,
+    backgroundColor: CUSTOM_COLORS.INPUT_COLOR,
     fontFamily: 'Roboto-Light',
   },
   forpassword: {
     fontFamily: 'Roboto',
-    color: COLORS.forgetpassword,
+    color: CUSTOM_COLORS.FORGET_PASSWORD,
     fontSize: 14,
     fontWeight: 'bold',
     lineHeight: 14.06,
@@ -45,14 +45,10 @@ export const loginstyle = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     borderRadius: 3,
-    backgroundColor: COLORS.forgetpassword,
+    backgroundColor: CUSTOM_COLORS.FORGET_PASSWORD,
     marginHorizontal: 10,
   },
-  googlebutt: {
-    padding: 4,
-    marginTop: 37,
-    textAlign: 'center',
-  },
+
   orcontainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -61,7 +57,7 @@ export const loginstyle = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: COLORS.loginline,
+    backgroundColor: CUSTOM_COLORS.LOGIN_LINE,
   },
   linetext: {
     width: 40,
@@ -75,7 +71,7 @@ export const loginstyle = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
   },
   sign: {
-    color: COLORS.forgetpassword,
+    color: CUSTOM_COLORS.FORGET_PASSWORD,
     marginTop: 10,
   },
   errorInput: {
@@ -84,5 +80,19 @@ export const loginstyle = StyleSheet.create({
   errorText: {
     color: 'red',
     marginLeft: 12,
+  },
+  googlemain: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 37,
+  },
+  googleicon: {
+    width: 16,
+    height: 16,
+    marginRight: 9,
+  },
+  googletext: {
+    color: 'black',
+    fontFamily: 'Roboto-Medium',
   },
 });

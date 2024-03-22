@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {HomeState, PostData} from '../../../../type';
-import {db} from '../../../config/Firebase';
 import {Images, profile} from '../../../constants/instance';
 const initialState: HomeState = {
   user: null,
