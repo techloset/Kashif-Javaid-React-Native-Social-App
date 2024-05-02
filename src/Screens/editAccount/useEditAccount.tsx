@@ -11,7 +11,6 @@ import {
   updateUserImage,
   userupdateprofile,
 } from '../../store/slices/profileslice/profileSlice';
-
 export function useEditProfile() {
   const [name, setName] = useState('');
   const [username, setUserName] = useState('');

@@ -1,5 +1,3 @@
-import Login from '../../screens/auth/login/Login';
-import SingUp from '../../screens/auth/singup/SingUp';
 import CreatePost from '../../screens/createpost/CreatePost';
 import Home from '../../screens/homescreen/HomeScreen';
 import Profile from '../../screens/account/Account';
@@ -12,7 +10,9 @@ import seconde from '../../constants/images/icon/show.png';
 import EditProfile from '../../screens/editAccount/EditAccount';
 import OtherProfile from '../../screens/publicProfile/PublicProfile';
 import {TabNavigation} from '../../navigation/TabNavigation';
-import ResetPassword from '../../screens/auth/resetpassword/ResetPassword';
+import ResetPassword from '../../screens/authentication/resetpassword/ResetPassword';
+import Login from '../../screens/authentication/login/Login';
+import SingUp from '../../screens/authentication/singup/SingUp';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = {
   LOGIN: 'Login',
