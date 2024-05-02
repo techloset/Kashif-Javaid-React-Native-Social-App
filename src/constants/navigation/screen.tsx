@@ -1,5 +1,5 @@
-import CreatePost from '../../screens/createpost/CreatePost';
-import Home from '../../screens/homescreen/HomeScreen';
+import CreatePost from '../../screens/createPost/CreatePost';
+import Home from '../../screens/homeScreen/HomeScreen';
 import Profile from '../../screens/account/Account';
 import {Image, StyleSheet, View} from 'react-native';
 import {useEditProfile} from '../../screens/editAccount/useEditAccount';
@@ -10,9 +10,9 @@ import seconde from '../../constants/images/icon/show.png';
 import EditProfile from '../../screens/editAccount/EditAccount';
 import OtherProfile from '../../screens/publicProfile/PublicProfile';
 import {TabNavigation} from '../../navigation/TabNavigation';
-import ResetPassword from '../../screens/authentication/resetpassword/ResetPassword';
+import ResetPassword from '../../screens/authentication/resetPassword/ResetPassword';
 import Login from '../../screens/authentication/login/Login';
-import SingUp from '../../screens/authentication/singup/SingUp';
+import SingUp from '../../screens/authentication/singUp/SingUp';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = {
   LOGIN: 'Login',
