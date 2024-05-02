@@ -127,7 +127,6 @@ export interface UploadResult1 {
 }
 
 export interface HomeState {
-  user: null;
   error: string | null;
   isLoading: boolean;
   data: any[];

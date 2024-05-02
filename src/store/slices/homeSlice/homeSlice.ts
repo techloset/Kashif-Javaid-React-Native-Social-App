@@ -2,12 +2,11 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {HomeState, PostData} from '../../../../type';
 import {Images, profile} from '../../../constants/instance';
 const initialState: HomeState = {
-  user: null,
-  error: null,
-  isLoading: false,
   data: [],
   setData: [],
   isVideoPlaying: false,
+  error: null,
+  isLoading: false,
 };
 
 export const fetchPost = createAsyncThunk('allPosts', async () => {
