@@ -105,7 +105,6 @@ export interface resetpasswordState {
 }
 
 export interface PostState {
-  user: null;
   error: string | null;
   isLoading: boolean;
   description: string;

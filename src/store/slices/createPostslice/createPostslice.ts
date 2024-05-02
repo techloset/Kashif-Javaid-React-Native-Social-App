@@ -6,12 +6,11 @@ import {PostState, UploadResult} from '../../../../type';
 import {Images} from '../../../constants/instance';
 
 const initialState: PostState = {
-  user: null,
-  error: null,
-  isLoading: false,
   description: '',
   imageUri: '',
   selectedAsset: '',
+  error: null,
+  isLoading: false,
 };
 
 export const uploadImageAndDescription = createAsyncThunk(
