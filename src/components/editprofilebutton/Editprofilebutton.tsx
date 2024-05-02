@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {ProfileStlye} from '../../screens/profilescreen/ProfileStyle';
+import {ProfileStlye} from '../../screens/account/AccountStyle';
 
 export default function Editprofilebutton(props: {
   name: string;

@@ -1,11 +1,11 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
-import {OtherProfileStyle} from './OtherProfileStyle';
+import {OtherProfileStyle} from './PublicProfileStyle';
 import ProfileLock from '../../constants/images/profile.png';
 import ProfileImage from '../../constants/images/profileimg.png';
 import {ImageData, ParamsList} from '../../../type';
-import {useEditProfile} from '../usereditprofile/useEditProfile';
+import {useEditProfile} from '../editAccount/useEditAccount';
 type OtherProfileScreenRouteProp = RouteProp<ParamsList, 'OtherProfile'>;
 export default function OtherProfile({route}: ImageData) {
   const {name} = useEditProfile();

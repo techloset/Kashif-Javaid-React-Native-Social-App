@@ -10,7 +10,7 @@ import Messenger from '../../constants/images/Messenger.png';
 import Oval from '../../constants/images/Oval.png';
 import Save from '../../constants/images/Save.png';
 import Video from 'react-native-video';
-import {useEditProfile} from '../usereditprofile/useEditProfile';
+import {useEditProfile} from '../editAccount/useEditAccount';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ImageData, ParamsList} from '../../../type';
 type Params = NativeStackScreenProps<ParamsList, 'HomeScreen'>;

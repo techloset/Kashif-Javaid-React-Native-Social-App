@@ -3,9 +3,10 @@ import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {CreateStyle} from './CreateStyle';
 import Upload from '../../constants/images/upload.png';
 import ImageUpload from '../../constants/images/imageupload.png';
-import InputField from '../../components/inputfiled/InputField';
+
 import {useCreate} from './useCreate';
 import Button from '../../components/button/Button';
+import InputField from '../../components/authInput/InputField';
 export default function CreatePost() {
   const {
     description,

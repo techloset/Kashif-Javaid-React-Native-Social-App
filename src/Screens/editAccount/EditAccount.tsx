@@ -1,9 +1,9 @@
 import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
-import {EditStyle} from './UserEditStyle';
+import {EditStyle} from './EditAccountStyle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ImageData, ParamsList} from '../../../type';
 import EditInput from '../../components/editprofileinput/EditProfile';
-import {useEditProfile} from './useEditProfile';
+import {useEditProfile} from './useEditAccount';
 import auth from '@react-native-firebase/auth';
 
 export default function EditProfile(
@@ -86,7 +86,10 @@ export default function EditProfile(
           label="Username"
           secureTextEntry={false}
           onChangeText={text => setUserName(text)}
-          value={currentUser?.displayName || ''}
+          value={
+            username ||
+            (currentUser?.displayName ? currentUser.displayName : '')
+          }
         />
 
         <EditInput

@@ -6,9 +6,10 @@ import Googleicon from '../../../constants/images/googleicon.png';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import useSingup from './useSingup';
-import InputField from '../../../components/inputfiled/InputField';
+
 import Button from '../../../components/button/Button';
 import Backimage from '../../../constants/images/Back.png';
+import InputField from '../../../components/authInput/InputField';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 
 export default function SingUp(props: Params) {

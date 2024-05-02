@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import {ProfileStlye} from './ProfileStyle';
+import {ProfileStlye} from './AccountStyle';
 import ProfileImage from '../../constants/images/profileimg.png';
-import {useProfile} from './useProfile';
+import {useProfile} from './useAccount';
 import Video from 'react-native-video';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../type';
-import {useEditProfile} from '../usereditprofile/useEditProfile';
+import {useEditProfile} from '../editAccount/useEditAccount';
 import UserProfile from '../../components/profile/Profile';
 import Editprofilebutton from '../../components/editprofilebutton/Editprofilebutton';
 export default function Profile(

@@ -5,9 +5,10 @@ import {loginstyle} from './LoginStyle';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useLogin} from './uselogin';
-import InputField from '../../../components/inputfiled/InputField';
+
 import Button from '../../../components/button/Button';
 import Googleicon from '../../../constants/images/googleicon.png';
+import InputField from '../../../components/authInput/InputField';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export default function Login(props: Params) {
   const {

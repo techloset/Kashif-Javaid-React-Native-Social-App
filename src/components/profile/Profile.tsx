@@ -1,8 +1,8 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
-import {ProfileStlye} from '../../screens/profilescreen/ProfileStyle';
+import {ProfileStlye} from '../../screens/account/AccountStyle';
 import Profilelock from '../../constants/images/profile.png';
-import {useEditProfile} from '../../screens/usereditprofile/useEditProfile';
+import {useEditProfile} from '../../screens/editAccount/useEditAccount';
 import auth from '@react-native-firebase/auth';
 export default function UserProfile() {
   const {imageUrl, name, username} = useEditProfile();
