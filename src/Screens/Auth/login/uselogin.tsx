@@ -2,8 +2,10 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {GoogleSignIn} from '../../../store/slices/authslice/googleslice';
-import {userlogin} from '../../../store/slices/authslice/loginslice';
+import {
+  GoogleSignIn,
+  userlogin,
+} from '../../../store/slices/authslice/authslice';
 type Params = NativeStackScreenProps<ParamsList, 'Login'>;
 export function useLogin(props: Params) {
   const [password, setPassword] = useState('');
@@ -43,7 +45,7 @@ export function useLogin(props: Params) {
   };
 
   const dispatch = useAppDispatch();
-  const login = useAppSelector(state => state.login.user);
+  const login = useAppSelector(state => state.auth.user);
   const Loginhandle = () => {
     if (validate()) {
       try {
@@ -51,7 +53,7 @@ export function useLogin(props: Params) {
       } catch (error) {}
     }
   };
-  const Googlesignup = useAppSelector(state => state.Googlesignup.user);
+  const Googlesignup = useAppSelector(state => state.auth.user);
 
   const Googlesign = () => {
     try {

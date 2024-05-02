@@ -6,7 +6,7 @@ import {
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {useState} from 'react';
-import {uploadImageAndDescription} from '../../store/slices/createslice/createslice';
+import {uploadImageAndDescription} from '../../store/slices/createPostslice/createPostslice';
 export function useCreate() {
   const [description, setDescription] = useState('');
   const [imageUri, setImageUri] = useState<string | null>(null);

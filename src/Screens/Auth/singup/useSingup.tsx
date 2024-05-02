@@ -2,8 +2,7 @@ import {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ParamsList} from '../../../../type';
 import {useAppDispatch, useAppSelector} from '../../../store/hook/hook';
-import {SignUp} from '../../../store/slices/authslice/sigupslice';
-import {GoogleSignIn} from '../../../store/slices/authslice/googleslice';
+import {GoogleSignIn, SignUp} from '../../../store/slices/authslice/authslice';
 type Params = NativeStackScreenProps<ParamsList, 'Singup'>;
 const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
   const [username, setUserName] = useState('');
@@ -66,7 +65,7 @@ const useSingup = (props: NativeStackScreenProps<ParamsList, 'Singup'>) => {
       return 'Passwords do not match';
     }
   };
-  const Googlesignup = useAppSelector(state => state.Googlesignup.user);
+  const Googlesignup = useAppSelector(state => state.auth.user);
   const Googlesign = () => {
     try {
       dispatch(GoogleSignIn());
