@@ -147,14 +147,6 @@ export interface PostData {
   downloadURL: string;
 }
 
-export interface profileState {
-  user: null;
-  error: string | null;
-  isLoading: boolean;
-  data: any[];
-  setData: any[];
-}
-
 export interface EditprofileState {
   user: null;
   isLoading: boolean;
@@ -192,3 +184,30 @@ export interface ButtonProps extends TouchableOpacityProps {
 export type TabBarIconProps = {
   focused: boolean;
 };
+
+export interface profileState {
+  user: null;
+  error: string | null;
+  isLoading: boolean;
+  data: {};
+  setData: ProfileTypes[];
+  imageUrl: string;
+  userId: string;
+  name: string;
+  username: string;
+  website: string;
+  bio: string;
+  email: string;
+  phone: string;
+  gender: string;
+}
+
+export interface ProfileTypes {
+  name: string;
+  username: string;
+  website: string;
+  bio: string;
+  email: string;
+  phone: string;
+  gender: string;
+}

@@ -7,8 +7,11 @@ import {
 } from 'react-native-image-picker';
 import {useAppDispatch, useAppSelector} from '../../store/hook/hook';
 import {users} from '../../constants/instance';
-import {updateUserImage} from '../../store/slices/profileslice/profileimageslice';
-import {userupdateprofile} from '../../store/slices/profileslice/usereditprofileslice';
+import {
+  updateUserImage,
+  userupdateprofile,
+} from '../../store/slices/profileslice/profileSlice';
+
 export function useEditProfile() {
   const [name, setName] = useState('');
   const [username, setUserName] = useState('');
@@ -19,7 +22,7 @@ export function useEditProfile() {
   const [gender, setGender] = useState('');
   const [image, setImage] = useState<string | null>('');
   const dispatch = useAppDispatch();
-  const updateprofile = useAppSelector(state => state.updateprofile);
+  const updateprofile = useAppSelector(state => state.profile);
 
   const user = auth().currentUser;
   useEffect(() => {
@@ -44,8 +47,8 @@ export function useEditProfile() {
     fetchUserProfile();
   }, [user]);
 
-  const imageUrl = useAppSelector(state => state.updateImage.imageUrl);
-  const userId = useAppSelector(state => state.updateImage.userId);
+  const imageUrl = useAppSelector(state => state.profile.imageUrl);
+  const userId = useAppSelector(state => state.profile.userId);
   const profileImage = () => {
     const options: ImageLibraryOptions = {quality: 0.5, mediaType: 'mixed'};
     launchImageLibrary(options, response => {
@@ -64,18 +67,17 @@ export function useEditProfile() {
     setImage(imageUrl);
   }, [dispatch, imageUrl]);
 
+  let userData = {
+    name,
+    username,
+    website,
+    bio,
+    email,
+    phone,
+    gender,
+  };
   const updatehandle = () => {
-    dispatch(
-      userupdateprofile({
-        name,
-        username,
-        website,
-        bio,
-        email,
-        phone,
-        gender,
-      }),
-    );
+    dispatch(userupdateprofile(userData));
   };
 
   return {
